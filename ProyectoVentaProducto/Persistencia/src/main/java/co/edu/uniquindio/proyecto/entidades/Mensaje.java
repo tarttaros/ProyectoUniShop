@@ -32,7 +32,7 @@ public class Mensaje implements Serializable
     private String emisor;
 
     //fecha del mensaje
-    @Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Future
     private LocalDateTime fecha;
 

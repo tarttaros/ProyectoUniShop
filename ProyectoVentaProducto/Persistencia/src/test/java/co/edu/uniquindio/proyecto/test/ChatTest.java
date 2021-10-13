@@ -104,10 +104,10 @@ public class ChatTest
 
         //se inicializa el comprador del producto
         Usuario u = new Usuario();
-        u.setNombre("laura");                              //se define el nombre del vendedor
-        u.setEmail("laura@correo.com");                    //se define el correo del vendedor
-        u.setPassword("laura123");                         //se define la contraseña del vendedor
-        u.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+        u.setNombre("laura");                              //se define el nombre del comprador
+        u.setEmail("laura@correo.com");                    //se define el correo del comprador
+        u.setPassword("laura123");                         //se define la contraseña del comprador
+        u.setCiudad(c);                                    //se define la ciudad de residencia del comprador
 
         //Guardamos el registro
         Usuario reg1 = usuarioRepo.save(u);

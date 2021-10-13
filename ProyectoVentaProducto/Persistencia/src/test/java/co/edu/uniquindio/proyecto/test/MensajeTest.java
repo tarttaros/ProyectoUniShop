@@ -13,11 +13,11 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class DetalleCompraTest
+public class MensajeTest
 {
     //variable que representa al repositorio
     @Autowired
-    private CompraRepo compraRepo;
+    private ChatRepo chatRepo;
     @Autowired
     private CiudadRepo ciudadRepo;
     @Autowired
@@ -25,11 +25,11 @@ public class DetalleCompraTest
     @Autowired
     private ProductoRepo productoRepo;
     @Autowired
-    private DetalleCompraRepo detalleCompraRepo;
+    private MensajeRepo mensajeRepo;
 
-    //Metodo que prueba el registrar un detallecompra
+    //Metodo que prueba el registrar un mensaje
     @Test
-    public void resgistrarDetalleCompraTest()
+    public void registrarMensajeTest()
     {
         //se inicializa la ciudad
         Ciudad c = new Ciudad("milan");
@@ -76,31 +76,30 @@ public class DetalleCompraTest
         //Guardamos el registro
         Producto reg3 = productoRepo.save(p);
 
-        //se inicializa la compra
-        Compra comp = new Compra();
-        comp.setCodigoUsuario(u);                          //se define el usuario que compra
-        comp.setMedioDPago("paypal");                      //se define el medio de pago
+        //se inicializa el chat
+        Chat ch = new Chat();
+        ch.setUsuarioComprador(u);                         //se define el comprador del producto
+        ch.setProductoComprar(p);                          //se define el producto a vender
 
         //Guardamos el registro
-        Compra reg4 = compraRepo.save(comp);
+        Chat reg4 = chatRepo.save(ch);
 
-        //se inicializa el detallecompra
-        DetalleCompra dc = new DetalleCompra();
-        dc.setCodigoCompra(comp);                          //se define la compra
-        dc.setPrecio(p.getPrecio());                       //se define el precio del producto
-        dc.setUnidades(1);                                 //se define las unidades a comprar
-        dc.setProductoComprar(p);                          //se define el producto a comprar
+        //se inicializa el mensaje
+        Mensaje mj = new Mensaje();
+        mj.setMensaje("hola, cuenta con envio?");          //se setea el mensaje a enviar
+        mj.setCodigoChat(ch);                              //se setea el chat donde se va a enviar
+        mj.setEmisor(u.getNombre());                       //se setea el emisor del mensaje
 
         //Guardamos el registro
-        DetalleCompra guardado = detalleCompraRepo.save(dc);
+        Mensaje guardado = mensajeRepo.save(mj);
 
         //Comprobamos que si haya guardado
         Assertions.assertNotNull(guardado);
     }
 
-    //Metodo que prueba el eliminar un detallecompra
+    //Metodo que prueba el eliminar un mensaje
     @Test
-    public void eliminarDetalleCompraTest()
+    public void eliminarMensajeTest()
     {
         //se inicializa la ciudad
         Ciudad c = new Ciudad("milan");
@@ -147,35 +146,34 @@ public class DetalleCompraTest
         //Guardamos el registro
         Producto reg3 = productoRepo.save(p);
 
-        //se inicializa la compra
-        Compra comp = new Compra();
-        comp.setCodigoUsuario(u);                          //se define el usuario que compra
-        comp.setMedioDPago("paypal");                      //se define el medio de pago
+        //se inicializa el chat
+        Chat ch = new Chat();
+        ch.setUsuarioComprador(u);                         //se define el comprador del producto
+        ch.setProductoComprar(p);                          //se define el producto a vender
 
         //Guardamos el registro
-        Compra reg4 = compraRepo.save(comp);
+        Chat reg4 = chatRepo.save(ch);
 
-        //se inicializa el detallecompra
-        DetalleCompra dc = new DetalleCompra();
-        dc.setCodigoCompra(comp);                          //se define la compra
-        dc.setPrecio(p.getPrecio());                       //se define el precio del producto
-        dc.setUnidades(1);                                 //se define las unidades a comprar
-        dc.setProductoComprar(p);                          //se define el producto a comprar
+        //se inicializa el mensaje
+        Mensaje mj = new Mensaje();
+        mj.setMensaje("hola, cuenta con envio?");          //se setea el mensaje a enviar
+        mj.setCodigoChat(ch);                              //se setea el chat donde se va a enviar
+        mj.setEmisor(u.getNombre());                       //se setea el emisor del mensaje
 
         //Guardamos el registro
-        DetalleCompra guardado = detalleCompraRepo.save(dc);
+        Mensaje guardado = mensajeRepo.save(mj);
 
         //Luego lo eliminamos
-        detalleCompraRepo.delete(guardado);
+        mensajeRepo.delete(guardado);
 
         //Por último, verificamos que si haya quedado borrado
-        DetalleCompra buscado = detalleCompraRepo.findById(1).orElse(null);
+        Mensaje buscado = mensajeRepo.findById(1).orElse(null);
         Assertions.assertNull(buscado);
     }
 
-    //Metodo que prueba el actualizar un detallecompra
+    //Metodo que prueba el actualizar un mensaje
     @Test
-    public void actualizarDetalleCompraTest()
+    public void actualizarMensajeTest()
     {
         //se inicializa la ciudad
         Ciudad c = new Ciudad("milan");
@@ -211,7 +209,7 @@ public class DetalleCompraTest
         //se inicializa el producto a vender
         Producto p = new Producto();
         p.setNombre("televisor");                          //se define el nombre del producto
-        p.setCantidad(9);                                  //se define la cantidad a vender
+        p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
         p.setDescuento(0);                                 //se define el descuento del producto
@@ -222,38 +220,37 @@ public class DetalleCompraTest
         //Guardamos el registro
         Producto reg3 = productoRepo.save(p);
 
-        //se inicializa la compra
-        Compra comp = new Compra();
-        comp.setCodigoUsuario(u);                          //se define el usuario que compra
-        comp.setMedioDPago("paypal");                      //se define el medio de pago
+        //se inicializa el chat
+        Chat ch = new Chat();
+        ch.setUsuarioComprador(u);                         //se define el comprador del producto
+        ch.setProductoComprar(p);                          //se define el producto a vender
 
         //Guardamos el registro
-        Compra reg4 = compraRepo.save(comp);
+        Chat reg4 = chatRepo.save(ch);
 
-        //se inicializa el detallecompra
-        DetalleCompra dc = new DetalleCompra();
-        dc.setCodigoCompra(comp);                          //se define la compra
-        dc.setPrecio(p.getPrecio());                       //se define el precio del producto
-        dc.setUnidades(1);                                 //se define las unidades a comprar
-        dc.setProductoComprar(p);                          //se define el producto a comprar
-
-        //Guardamos el registro
-        DetalleCompra guardado = detalleCompraRepo.save(dc);
-
-        //Modificamos el medio de pago
-        guardado.setUnidades(5);
+        //se inicializa el mensaje
+        Mensaje mj = new Mensaje();
+        mj.setMensaje("hola, cuenta con envio?");          //se setea el mensaje a enviar
+        mj.setCodigoChat(ch);                              //se setea el chat donde se va a enviar
+        mj.setEmisor(u.getNombre());                       //se setea el emisor del mensaje
 
         //Guardamos el registro
-        detalleCompraRepo.save(guardado);
+        Mensaje guardado = mensajeRepo.save(mj);
+
+        //Modificamos el producto a comprar
+        guardado.setMensaje("hola, ¿es con envio incluido?");
+
+        //Guardamos el registro
+        mensajeRepo.save(guardado);
 
         //Por último, verificamos que si haya quedado actualizado
-        DetalleCompra buscado = detalleCompraRepo.findById(1).orElse(null);
-        Assertions.assertEquals(5,buscado.getUnidades() );
+        Mensaje buscado = mensajeRepo.findById(1).orElse(null);
+        Assertions.assertEquals("hola, ¿es con envio incluido?", buscado.getMensaje());
     }
 
-    //Metodo que prueba el listar los detallecompra
+    //Metodo que prueba el listar los mensajes
     @Test
-    public void listarDetalleCompraTest()
+    public void listarMensajeTest()
     {
         //se inicializa la ciudad
         Ciudad c = new Ciudad("milan");
@@ -289,7 +286,7 @@ public class DetalleCompraTest
         //se inicializa el producto a vender
         Producto p = new Producto();
         p.setNombre("televisor");                          //se define el nombre del producto
-        p.setCantidad(9);                                  //se define la cantidad a vender
+        p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
         p.setDescuento(0);                                 //se define el descuento del producto
@@ -300,31 +297,30 @@ public class DetalleCompraTest
         //Guardamos el registro
         Producto reg3 = productoRepo.save(p);
 
-        //se inicializa la compra
-        Compra comp = new Compra();
-        comp.setCodigoUsuario(u);                          //se define el usuario que compra
-        comp.setMedioDPago("paypal");                      //se define el medio de pago
+        //se inicializa el chat
+        Chat ch = new Chat();
+        ch.setUsuarioComprador(u);                         //se define el comprador del producto
+        ch.setProductoComprar(p);                          //se define el producto a vender
 
         //Guardamos el registro
-        Compra reg4 = compraRepo.save(comp);
+        Chat reg4 = chatRepo.save(ch);
 
-        //se inicializa el detallecompra
-        DetalleCompra dc = new DetalleCompra();
-        dc.setCodigoCompra(comp);                          //se define la compra
-        dc.setPrecio(p.getPrecio());                       //se define el precio del producto
-        dc.setUnidades(1);                                 //se define las unidades a comprar
-        dc.setProductoComprar(p);                          //se define el producto a comprar
+        //se inicializa el mensaje
+        Mensaje mj = new Mensaje();
+        mj.setMensaje("hola, cuenta con envio?");          //se setea el mensaje a enviar
+        mj.setCodigoChat(ch);                              //se setea el chat donde se va a enviar
+        mj.setEmisor(u.getNombre());                       //se setea el emisor del mensaje
 
         //Guardamos el registro
-        DetalleCompra guardado = detalleCompraRepo.save(dc);
+        Mensaje guardado = mensajeRepo.save(mj);
 
-        //Obtenemos la lista de todas los detallecompra
-        List<DetalleCompra> lista = detalleCompraRepo.findAll();
+        //Obtenemos la lista de todos los mensajes
+        List<Mensaje> lista = mensajeRepo.findAll();
 
         //Imprimimos la lista
-        for (DetalleCompra detco : lista)
+        for (Mensaje msj : lista)
         {
-            System.out.println(detco);
+            System.out.println(msj);
         }
     }
 }
