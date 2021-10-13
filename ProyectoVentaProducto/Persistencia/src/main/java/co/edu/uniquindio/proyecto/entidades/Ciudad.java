@@ -18,8 +18,8 @@ public class Ciudad implements Serializable
 {
     //primary key codigo de la ciudad
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    @GeneratedValue
     private Integer codigoCiudad;
 
     //nombre de la ciudad

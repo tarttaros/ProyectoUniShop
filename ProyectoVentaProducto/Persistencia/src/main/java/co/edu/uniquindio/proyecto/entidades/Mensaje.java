@@ -19,8 +19,8 @@ public class Mensaje implements Serializable
 {
     //primary key codigo mensaje
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    @GeneratedValue
     private Integer codigoMensaje;
 
     //mensaje a enviar

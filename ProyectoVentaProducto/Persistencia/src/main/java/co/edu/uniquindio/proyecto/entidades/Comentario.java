@@ -6,10 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -22,7 +20,7 @@ public class Comentario implements Serializable
 {
     //primary key comentario
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
@@ -45,14 +43,13 @@ public class Comentario implements Serializable
     private String respuesta;
 
     //fecha del comentario
-    @Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Future
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fecha;
 
     //calificacion del producto
-    @Column(precision = 1, nullable = false)
+    @Column(nullable = true)
+    @Min(0)
     @Max(5)
-    @Positive
     private Integer calificacion;
 
     //metodo super

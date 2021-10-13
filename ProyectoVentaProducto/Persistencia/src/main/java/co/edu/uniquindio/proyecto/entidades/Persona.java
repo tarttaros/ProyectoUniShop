@@ -7,7 +7,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -19,8 +18,8 @@ public class Persona implements Serializable
 {
     //primary key
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    @GeneratedValue
     private Integer Codigo;
 
     //nombre de la persona

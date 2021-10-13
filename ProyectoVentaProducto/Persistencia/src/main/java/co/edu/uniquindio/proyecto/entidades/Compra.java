@@ -20,8 +20,8 @@ public class Compra implements Serializable
 {
     //primary key
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    @GeneratedValue
     private Integer Codigo;
 
     //codigo usuario que realiza la compra
@@ -30,7 +30,7 @@ public class Compra implements Serializable
     private Usuario codigoUsuario;
 
     //fecha de compra
-    @Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Future
     private LocalDateTime fecha;
 

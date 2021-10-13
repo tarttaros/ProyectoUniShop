@@ -18,28 +18,33 @@ import java.util.Map;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UsuarioTest
 {
+    //variables que representa a los repositorio
     @Autowired
     private UsuarioRepo usuarioRepo;
     @Autowired
     private CiudadRepo ciudadRepo;
 
+    //metodo que prueba el crear un usuario
     @Test
-    public void registrarUsuarioTest(){
-        Ciudad c = new Ciudad();
-        c.setNombreCiudad("toscana");
+    public void registrarUsuarioTest()
+    {
+        //se inicializa la ciudad
+        Ciudad c = new Ciudad("toscana");
 
         //Guardamos el registro
         Ciudad reg = ciudadRepo.save(c);
 
+        //se inicializa el map de telefonos
         Map<String,String> telefonos = new HashMap<>();
-        telefonos.put("celular","3133333333");
+        telefonos.put("celular","3133333333");          //se guarda el numero telefonico
 
+        //se inicializa el administrador
         Usuario u = new Usuario();
-        u.setNombre("laura");
-        u.setEmail("laura@correo.com");
-        u.setPassword("laura123");
-        u.setTelefonos(telefonos);
-        u.setCiudad(c);
+        u.setNombre("laura");                           //se define un nombre
+        u.setEmail("laura@correo.com");                 //se define un correo
+        u.setPassword("laura123");                      //se define una contraseña
+        u.setTelefonos(telefonos);                      //se define el map de numeros
+        u.setCiudad(c);                                 //se define la ciudad del usuario
 
         //Guardamos el registro
         Usuario guardado = usuarioRepo.save(u);
@@ -47,64 +52,97 @@ public class UsuarioTest
         //Comprobamos que si haya quedado
         Assertions.assertNotNull(guardado);
     }
-/*
+
+    //metodo que prueba la eliminacion de un usuario
     @Test
-    public void eliminarAdministradorTest(){
-        Administrador a = new Administrador();
-        a.setNombre("laura");
-        a.setEmail("laura@correo.com");
-        a.setPassword("laura123");
-
-        //Guardamos el registro
-        Administrador guardado = administradorRepo.save(a);
-
-        //Luego lo eliminamos
-        administradorRepo.delete(guardado);
-
-        //Por último, verificamos que si haya quedado borrado
-        Administrador buscado = administradorRepo.findById(1).orElse(null);
-        Assertions.assertNull(buscado);
-    }
-
-    @Test
-    public void actualizarAdministradorTest(){
-        Administrador a = new Administrador();
-        a.setNombre("laura");
-        a.setEmail("laura@correo.com");
-        a.setPassword("laura123");
-
-        //Guardamos el registro
-        Administrador registrado = administradorRepo.save(a);
-
-        //Modificamos el nombre
-        registrado.setNombre("laurita");
-
-        //Con save guardamos el registro modificado
-        administradorRepo.save(registrado);
-
-        //Por último, verificamos que si haya quedado actualizado
-        Administrador buscado = administradorRepo.findById(1).orElse(null);
-        Assertions.assertEquals("laurita", buscado.getNombre());
-    }
-    */
-
-    @Test
-    public void listarAdministradorTest(){
-        Ciudad c = new Ciudad();
-        c.setNombreCiudad("toscana");
+    public void eliminarUsuarioTest()
+    {
+        //se inicializa la ciudad
+        Ciudad c = new Ciudad("toscana");
 
         //Guardamos el registro
         Ciudad reg = ciudadRepo.save(c);
 
+        //se inicializa el map de telefonos
         Map<String,String> telefonos = new HashMap<>();
-        telefonos.put("celular","3133333333");
+        telefonos.put("celular","3133333333");          //se guarda el numero telefonico
 
+        //se inicializa el administrador
         Usuario u = new Usuario();
-        u.setNombre("laura");
-        u.setEmail("laura@correo.com");
-        u.setPassword("laura123");
-        u.setTelefonos(telefonos);
-        u.setCiudad(c);
+        u.setNombre("laura");                           //se define un nombre
+        u.setEmail("laura@correo.com");                 //se define un correo
+        u.setPassword("laura123");                      //se define una contraseña
+        u.setTelefonos(telefonos);                      //se define el map de numeros
+        u.setCiudad(c);                                 //se define la ciudad del usuario
+
+        //Guardamos el registro
+        Usuario guardado = usuarioRepo.save(u);
+
+        //Luego lo eliminamos
+        usuarioRepo.delete(guardado);
+
+        //Por último, verificamos que si haya quedado borrado
+        Usuario buscado = usuarioRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
+    }
+
+    //metodo que prueba la actualizacion de informacion de un usuario
+    @Test
+    public void actualizarUsuarioTest()
+    {
+        //se inicializa la ciudad
+        Ciudad c = new Ciudad("toscana");
+
+        //Guardamos el registro
+        Ciudad reg = ciudadRepo.save(c);
+
+        //se inicializa el map de telefonos
+        Map<String,String> telefonos = new HashMap<>();
+        telefonos.put("celular","3133333333");          //se guarda el numero telefonico
+
+        //se inicializa el administrador
+        Usuario u = new Usuario();
+        u.setNombre("laura");                           //se define un nombre
+        u.setEmail("laura@correo.com");                 //se define un correo
+        u.setPassword("laura123");                      //se define una contraseña
+        u.setTelefonos(telefonos);                      //se define el map de numeros
+        u.setCiudad(c);                                 //se define la ciudad del usuario
+
+        //Guardamos el registro
+        Usuario guardado = usuarioRepo.save(u);
+
+        //Modificamos el nombre
+        guardado.setNombre("laurita");
+
+        //Con save guardamos el registro modificado
+        usuarioRepo.save(guardado);
+
+        //Por último, verificamos que si haya quedado actualizado
+        Usuario buscado = usuarioRepo.findById(1).orElse(null);
+        Assertions.assertEquals("laurita", buscado.getNombre());
+    }
+
+    //metodo que prueba el listar los usuario almacenados
+    @Test
+    public void listarUsuarioTest()
+    {
+        //se inicializa la ciudad
+        Ciudad c = new Ciudad("toscana");
+
+        //Guardamos el registro
+        Ciudad reg = ciudadRepo.save(c);
+
+        //se inicializa el map de telefonos
+        Map<String,String> telefonos = new HashMap<>();
+        telefonos.put("celular","3133333333");          //se guarda el numero telefonico
+
+        //se inicializa el administrador
+        Usuario u = new Usuario();
+        u.setNombre("laura");                           //se define un nombre
+        u.setEmail("laura@correo.com");                 //se define un correo
+        u.setPassword("laura123");                      //se define una contraseña
+        u.setTelefonos(telefonos);                      //se define el map de numeros
+        u.setCiudad(c);                                 //se define la ciudad del usuario
 
         //Guardamos el registro
         Usuario guardado = usuarioRepo.save(u);

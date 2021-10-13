@@ -18,7 +18,7 @@ public class DetalleCompra implements Serializable
 {
     //primary key del detalle de la compra
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 

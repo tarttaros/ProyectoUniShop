@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -21,7 +23,7 @@ public class Producto implements Serializable
 {
     //primary key de producto
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigoProducto;
 
@@ -35,7 +37,7 @@ public class Producto implements Serializable
     private Integer cantidad;
 
     //descripcion del producto
-    @Column(length = 50, nullable = false)
+    @Column(length = 100, nullable = false)
     private String descripcion;
 
     //precio del producto
@@ -44,13 +46,13 @@ public class Producto implements Serializable
     private Double precio;
 
     //fecha de publicacion del produto
-    @Column(nullable = false,columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Future
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fecha;
 
     //descuento con el que cuenta el prodcuto
-    @Column(nullable = false, precision = 2)
-    @Positive
+    @Column(nullable = true)
+    @Min(0)
+    @Max(99)
     private Integer descuento;
 
     //usuario que vende el producto

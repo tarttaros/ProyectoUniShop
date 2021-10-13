@@ -20,7 +20,7 @@ public class Subasta implements Serializable
 {
     //primary key subasta
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 

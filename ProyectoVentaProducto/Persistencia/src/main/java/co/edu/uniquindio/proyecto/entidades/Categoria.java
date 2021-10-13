@@ -18,7 +18,7 @@ public class Categoria implements Serializable
 {
     //primary key de categoria
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 

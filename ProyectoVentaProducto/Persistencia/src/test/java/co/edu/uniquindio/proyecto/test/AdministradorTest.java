@@ -15,15 +15,19 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class AdministradorTest
 {
+    //variable que representa al repositorio
     @Autowired
     private AdministradorRepo administradorRepo;
 
+    //metodo que prueba el crear un administrador
     @Test
-    public void registrarAdministradorTest(){
+    public void registrarAdministradorTest()
+    {
+        //se inicializa el administrador
         Administrador a = new Administrador();
-        a.setNombre("laura");
-        a.setEmail("laura@correo.com");
-        a.setPassword("laura123");
+        a.setNombre("laura");                           //se define un nombre
+        a.setEmail("laura@correo.com");                 //se define un correo
+        a.setPassword("laura123");                      //se define una contraseña
 
         //Guardamos el registro
         Administrador guardado = administradorRepo.save(a);
@@ -32,12 +36,15 @@ public class AdministradorTest
         Assertions.assertNotNull(guardado);
     }
 
+    //metodo que prueba la eliminacion de un administrador
     @Test
-    public void eliminarAdministradorTest(){
+    public void eliminarAdministradorTest()
+    {
+        //se inicializa el administrador
         Administrador a = new Administrador();
-        a.setNombre("laura");
-        a.setEmail("laura@correo.com");
-        a.setPassword("laura123");
+        a.setNombre("laura");                           //se define un nombre
+        a.setEmail("laura@correo.com");                 //se define un correo
+        a.setPassword("laura123");                      //se define una contraseña
 
         //Guardamos el registro
         Administrador guardado = administradorRepo.save(a);
@@ -50,12 +57,15 @@ public class AdministradorTest
         Assertions.assertNull(buscado);
     }
 
+    //metodo que prueba la actualizacion de informacion de un administrador
     @Test
-    public void actualizarAdministradorTest(){
+    public void actualizarAdministradorTest()
+    {
+        //se inicializa el administrador
         Administrador a = new Administrador();
-        a.setNombre("laura");
-        a.setEmail("laura@correo.com");
-        a.setPassword("laura123");
+        a.setNombre("laura");                           //se define un nombre
+        a.setEmail("laura@correo.com");                 //se define un correo
+        a.setPassword("laura123");                      //se define una contraseña
 
         //Guardamos el registro
         Administrador registrado = administradorRepo.save(a);
@@ -71,13 +81,41 @@ public class AdministradorTest
         Assertions.assertEquals("laurita", buscado.getNombre());
     }
 
+    //metodo que lista los administradores almacenados
     @Test
-    @Sql("classpath:Administradores.sql")
-    public void listarAdministradorTest(){
-        //Obtenemos la lista de todos los usuarios
+    public void listarAdministradorTest()
+    {
+        //se inicializa el administrador
+        Administrador a = new Administrador();
+        a.setNombre("laura");                           //se define un nombre
+        a.setEmail("laura@correo.com");                 //se define un correo
+        a.setPassword("laura123");                      //se define una contraseña
+
+        //Guardamos el registro
+        Administrador registrado = administradorRepo.save(a);
+
+        //Obtenemos la lista de todos los Administradores
         List<Administrador> lista = administradorRepo.findAll();
 
         //Imprimimos la lista
-        System.out.println(lista);
+        for (Administrador admin : lista)
+        {
+            System.out.println(admin);
+        }
+    }
+
+    //metodo que lista los administradores almacenados
+    @Test
+    @Sql("classpath:Administradores.sql")
+    public void listarAdministradorTestSql()
+    {
+        //Obtenemos la lista de todos los Administradores
+        List<Administrador> lista = administradorRepo.findAll();
+
+        //Imprimimos la lista
+        for (Administrador admin : lista)
+        {
+            System.out.println(admin);
+        }
     }
 }

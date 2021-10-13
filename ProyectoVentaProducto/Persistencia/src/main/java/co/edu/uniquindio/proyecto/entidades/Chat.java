@@ -18,8 +18,8 @@ public class Chat implements Serializable
 {
     //primary key codigo del chat
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    @GeneratedValue
     private Integer codigoChat;
 
     //relacion chat usuarioComprador
