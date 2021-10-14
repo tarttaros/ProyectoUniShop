@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.util.Map;
 @Getter
 @Setter
 @Entity
+@ToString(callSuper=true)
 public class Usuario extends Persona implements Serializable
 {
     //relacion usuario ciudad
@@ -54,18 +56,9 @@ public class Usuario extends Persona implements Serializable
     }
 
     //metodo constructor
-    public Usuario(String nombre, String email, String password, Ciudad ciudad) {
+    public Usuario(String nombre, String email, String password, Ciudad ciudad)
+    {
         super(nombre, email, password);
         this.ciudad = ciudad;
-    }
-
-    //metodo toString
-    @Override
-    public String toString() {
-        return
-                "Usuario{ "+ super.toString()+
-                ", ciudad=" + ciudad +
-                ", telefonos=" + telefonos +
-                '}';
     }
 }

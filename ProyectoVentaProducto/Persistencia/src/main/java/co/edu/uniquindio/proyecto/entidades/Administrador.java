@@ -1,9 +1,16 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import java.io.Serializable;
 
+@Getter
+@Setter
 @Entity
+@ToString(callSuper=true)
 public class Administrador extends Persona implements Serializable
 {
     //metodo super
@@ -17,9 +24,4 @@ public class Administrador extends Persona implements Serializable
         super(nombre, email, password);
     }
 
-    //metodo toString
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

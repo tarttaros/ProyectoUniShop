@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.HashMap;
 import java.util.List;
@@ -147,6 +148,21 @@ public class UsuarioTest
         //Guardamos el registro
         Usuario guardado = usuarioRepo.save(u);
 
+        //Obtenemos la lista de todos los usuarios
+        List<Usuario> lista = usuarioRepo.findAll();
+
+        //Imprimimos la lista
+        for (Usuario user : lista)
+        {
+            System.out.println(user);
+        }
+    }
+
+    //metodo que prueba el listar los usuario almacenados
+    @Test
+    @Sql("classpath:Usuarios.sql")
+    public void listarUsuarioTestSql()
+    {
         //Obtenemos la lista de todos los usuarios
         List<Usuario> lista = usuarioRepo.findAll();
 

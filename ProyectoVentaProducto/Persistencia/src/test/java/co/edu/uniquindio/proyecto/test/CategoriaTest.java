@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
@@ -81,6 +82,21 @@ public class CategoriaTest
         //Guardamos el registro
         Categoria guardado = categoriaRepo.save(c);
 
+        //Obtenemos la lista de todas las categorias
+        List<Categoria> lista = categoriaRepo.findAll();
+
+        //Imprimimos la lista
+        for (Categoria categ : lista)
+        {
+            System.out.println(categ);
+        }
+    }
+
+    //metodo que lista las categorias almacenadas
+    @Test
+    @Sql("classpath:Categorias.sql")
+    public void listarCategoriaTestSql()
+    {
         //Obtenemos la lista de todas las categorias
         List<Categoria> lista = categoriaRepo.findAll();
 

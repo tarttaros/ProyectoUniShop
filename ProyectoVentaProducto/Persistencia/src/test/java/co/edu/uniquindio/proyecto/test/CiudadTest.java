@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
@@ -81,6 +82,21 @@ public class CiudadTest
         //Guardamos el registro
         Ciudad guardado = ciudadRepo.save(c);
 
+        //Obtenemos la lista de todas las ciudades
+        List<Ciudad> lista = ciudadRepo.findAll();
+
+        //Imprimimos la lista
+        for (Ciudad city : lista)
+        {
+            System.out.println(city);
+        }
+    }
+
+    //metodo que prueba el Listar las ciudades
+    @Test
+    @Sql("classpath:Ciudades.sql")
+    public void listarCiudadTestSql()
+    {
         //Obtenemos la lista de todas las ciudades
         List<Ciudad> lista = ciudadRepo.findAll();
 
