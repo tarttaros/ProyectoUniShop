@@ -59,6 +59,7 @@ public class MensajeTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -129,6 +130,7 @@ public class MensajeTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -203,6 +205,7 @@ public class MensajeTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -237,7 +240,7 @@ public class MensajeTest
         //Guardamos el registro
         Mensaje guardado = mensajeRepo.save(mj);
 
-        //Modificamos el producto a comprar
+        //Modificamos el mensaje
         guardado.setMensaje("hola, ¿es con envio incluido?");
 
         //Guardamos el registro
@@ -280,6 +283,7 @@ public class MensajeTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 

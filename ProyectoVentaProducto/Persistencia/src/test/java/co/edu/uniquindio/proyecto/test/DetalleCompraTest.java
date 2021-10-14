@@ -59,6 +59,7 @@ public class DetalleCompraTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -130,6 +131,7 @@ public class DetalleCompraTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -205,6 +207,7 @@ public class DetalleCompraTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -240,7 +243,7 @@ public class DetalleCompraTest
         //Guardamos el registro
         DetalleCompra guardado = detalleCompraRepo.save(dc);
 
-        //Modificamos el medio de pago
+        //Modificamos la cantidad de unidades
         guardado.setUnidades(5);
 
         //Guardamos el registro
@@ -283,6 +286,7 @@ public class DetalleCompraTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -318,7 +322,7 @@ public class DetalleCompraTest
         //Guardamos el registro
         DetalleCompra guardado = detalleCompraRepo.save(dc);
 
-        //Obtenemos la lista de todas los detallecompra
+        //Obtenemos la lista de todas los detallecompras
         List<DetalleCompra> lista = detalleCompraRepo.findAll();
 
         //Imprimimos la lista

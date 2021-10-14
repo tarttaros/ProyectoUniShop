@@ -54,6 +54,7 @@ public class SubastaTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -105,6 +106,7 @@ public class SubastaTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -160,6 +162,7 @@ public class SubastaTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -185,7 +188,7 @@ public class SubastaTest
         //Guardamos el registro
         Subasta guardado = subastaRepo.save(subast);
 
-        //Modificamos la cantidad de productos a vender
+        //Modificamos la fecha limite de la subasta
         guardado.setFechaLimite(LocalDateTime.of(2023, 9, 29,12,0,0));
 
         //Guardamos el registro
@@ -218,6 +221,7 @@ public class SubastaTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 

@@ -40,7 +40,7 @@ public class SubastaUsuario implements Serializable
     private Double valor;
 
     //fecha de la puja
-    @Column(nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Future
     private LocalDateTime fecha;
 

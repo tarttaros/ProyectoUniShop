@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.entidades.Subasta;
-import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,9 +28,9 @@ public class SubastaUsuarioTest
     @Autowired
     private SubastaUsuarioRepo subastaUsuarioRepo;
 
-    //metodo que prueba el crear una subasta
+    //metodo que prueba el registrar una subastaUsuario
     @Test
-    public void registrarSubastaTest()
+    public void registrarSubastaUsuarioTest()
     {
         //se inicializa la ciudad
         Ciudad c = new Ciudad("milan");
@@ -41,18 +38,29 @@ public class SubastaUsuarioTest
         //Guardamos el registro
         Ciudad reg = ciudadRepo.save(c);
 
-        //se inicializa el vendedor del producto
+        //se inicializa el comprador del producto
         Usuario u = new Usuario();
-        u.setNombre("laura");                              //se define el nombre del vendedor
-        u.setEmail("laura@correo.com");                    //se define el correo del vendedor
-        u.setPassword("laura123");                         //se define la contraseña del vendedor
-        u.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+        u.setNombre("laura");                              //se define el nombre del que hace la puja
+        u.setEmail("laura@correo.com");                    //se define el correo del que hace la puja
+        u.setPassword("laura123");                         //se define la contraseña del que hace la puja
+        u.setCiudad(c);                                    //se define la ciudad de residencia del que hace la puja
 
         //Guardamos el registro
         Usuario reg1 = usuarioRepo.save(u);
 
+        //se inicializa el vendedor del producto
+        Usuario u1 = new Usuario();
+        u1.setNombre("Gabriela");                           //se define el nombre del vendedor
+        u1.setEmail("gabriela@correo.com");                 //se define el correo del vendedor
+        u1.setPassword("gabriela123");                      //se define la contraseña del vendedor
+        u1.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+
+        //Guardamos el registro
+        Usuario reg2 = usuarioRepo.save(u1);
+
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -63,12 +71,12 @@ public class SubastaUsuarioTest
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
         p.setDescuento(0);                                 //se define el descuento del producto
-        p.setVendedor(u);                                  //se define el vendedor del producto
+        p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
 
         //Guardamos el registro
-        Producto reg2 = productoRepo.save(p);
+        Producto reg3 = productoRepo.save(p);
 
         //se inicializa una subasta
         Subasta subast = new Subasta();
@@ -76,15 +84,25 @@ public class SubastaUsuarioTest
         subast.setFechaLimite(LocalDateTime.of(2022, 9, 29,12,0,0));                       //se define la fecha de cierre de la subasta
 
         //Guardamos el registro
-        Subasta guardado = subastaRepo.save(subast);
+        Subasta reg4 = subastaRepo.save(subast);
+
+        //se inicializa la subasta usuario
+        SubastaUsuario subUsuario = new SubastaUsuario();
+        subUsuario.setUsuario(u);                          //se define el usuario que pujo
+        subUsuario.setSubasta(subast);                     //se define la subasta en la que se pujo
+        subUsuario.setFecha(null);                         //se define la fecha en la que se pujo
+        subUsuario.setValor(1100000.0);                    //se define el valor de la puja
+
+        //Guardamos el registro
+        SubastaUsuario guardado = subastaUsuarioRepo.save(subUsuario);
 
         //Comprobamos que si haya guardado
         Assertions.assertNotNull(guardado);
     }
 
-    //metodo que prueba el eliminar una subasta
+    //metodo que prueba el eliminar una subastaUsuario
     @Test
-    public void eliminarSubastaTest()
+    public void eliminarSubastaUsuarioTest()
     {
         //se inicializa la ciudad
         Ciudad c = new Ciudad("milan");
@@ -92,18 +110,29 @@ public class SubastaUsuarioTest
         //Guardamos el registro
         Ciudad reg = ciudadRepo.save(c);
 
-        //se inicializa el vendedor del producto
+        //se inicializa el comprador del producto
         Usuario u = new Usuario();
-        u.setNombre("laura");                              //se define el nombre del vendedor
-        u.setEmail("laura@correo.com");                    //se define el correo del vendedor
-        u.setPassword("laura123");                         //se define la contraseña del vendedor
-        u.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+        u.setNombre("laura");                              //se define el nombre del que hace la puja
+        u.setEmail("laura@correo.com");                    //se define el correo del que hace la puja
+        u.setPassword("laura123");                         //se define la contraseña del que hace la puja
+        u.setCiudad(c);                                    //se define la ciudad de residencia del que hace la puja
 
         //Guardamos el registro
         Usuario reg1 = usuarioRepo.save(u);
 
+        //se inicializa el vendedor del producto
+        Usuario u1 = new Usuario();
+        u1.setNombre("Gabriela");                           //se define el nombre del vendedor
+        u1.setEmail("gabriela@correo.com");                 //se define el correo del vendedor
+        u1.setPassword("gabriela123");                      //se define la contraseña del vendedor
+        u1.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+
+        //Guardamos el registro
+        Usuario reg2 = usuarioRepo.save(u1);
+
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -114,12 +143,12 @@ public class SubastaUsuarioTest
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
         p.setDescuento(0);                                 //se define el descuento del producto
-        p.setVendedor(u);                                  //se define el vendedor del producto
+        p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
 
         //Guardamos el registro
-        Producto reg2 = productoRepo.save(p);
+        Producto reg3 = productoRepo.save(p);
 
         //se inicializa una subasta
         Subasta subast = new Subasta();
@@ -127,19 +156,29 @@ public class SubastaUsuarioTest
         subast.setFechaLimite(LocalDateTime.of(2022, 9, 29,12,0,0));                       //se define la fecha de cierre de la subasta
 
         //Guardamos el registro
-        Subasta guardado = subastaRepo.save(subast);
+        Subasta reg4 = subastaRepo.save(subast);
+
+        //se inicializa la subasta usuario
+        SubastaUsuario subUsuario = new SubastaUsuario();
+        subUsuario.setUsuario(u);                          //se define el usuario que pujo
+        subUsuario.setSubasta(subast);                     //se define la subasta en la que se pujo
+        subUsuario.setFecha(null);                         //se define la fecha en la que se pujo
+        subUsuario.setValor(1100000.0);                    //se define el valor de la puja
+
+        //Guardamos el registro
+        SubastaUsuario guardado = subastaUsuarioRepo.save(subUsuario);
 
         //Luego lo eliminamos
-        subastaRepo.delete(guardado);
+        subastaUsuarioRepo.delete(guardado);
 
         //Por último, verificamos que si haya quedado borrado
-        Subasta buscado = subastaRepo.findById(1).orElse(null);
+        SubastaUsuario buscado = subastaUsuarioRepo.findById(1).orElse(null);
         Assertions.assertNull(buscado);
     }
 
-    //metodo que prueba el actualizar una subasta
+    //metodo que prueba el actualizar una subastaUsuario
     @Test
-    public void actualizarSubastaTest()
+    public void actualizarSubastaUsuarioTest()
     {
         //se inicializa la ciudad
         Ciudad c = new Ciudad("milan");
@@ -147,18 +186,29 @@ public class SubastaUsuarioTest
         //Guardamos el registro
         Ciudad reg = ciudadRepo.save(c);
 
-        //se inicializa el vendedor del producto
+        //se inicializa el comprador del producto
         Usuario u = new Usuario();
-        u.setNombre("laura");                              //se define el nombre del vendedor
-        u.setEmail("laura@correo.com");                    //se define el correo del vendedor
-        u.setPassword("laura123");                         //se define la contraseña del vendedor
-        u.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+        u.setNombre("laura");                              //se define el nombre del que hace la puja
+        u.setEmail("laura@correo.com");                    //se define el correo del que hace la puja
+        u.setPassword("laura123");                         //se define la contraseña del que hace la puja
+        u.setCiudad(c);                                    //se define la ciudad de residencia del que hace la puja
 
         //Guardamos el registro
         Usuario reg1 = usuarioRepo.save(u);
 
+        //se inicializa el vendedor del producto
+        Usuario u1 = new Usuario();
+        u1.setNombre("Gabriela");                           //se define el nombre del vendedor
+        u1.setEmail("gabriela@correo.com");                 //se define el correo del vendedor
+        u1.setPassword("gabriela123");                      //se define la contraseña del vendedor
+        u1.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+
+        //Guardamos el registro
+        Usuario reg2 = usuarioRepo.save(u1);
+
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -169,12 +219,12 @@ public class SubastaUsuarioTest
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
         p.setDescuento(0);                                 //se define el descuento del producto
-        p.setVendedor(u);                                  //se define el vendedor del producto
+        p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
 
         //Guardamos el registro
-        Producto reg2 = productoRepo.save(p);
+        Producto reg3 = productoRepo.save(p);
 
         //se inicializa una subasta
         Subasta subast = new Subasta();
@@ -182,17 +232,27 @@ public class SubastaUsuarioTest
         subast.setFechaLimite(LocalDateTime.of(2022, 9, 29,12,0,0));                       //se define la fecha de cierre de la subasta
 
         //Guardamos el registro
-        Subasta guardado = subastaRepo.save(subast);
+        Subasta reg4 = subastaRepo.save(subast);
 
-        //Modificamos la cantidad de productos a vender
-        guardado.setFechaLimite(LocalDateTime.of(2023, 9, 29,12,0,0));
+        //se inicializa la subasta usuario
+        SubastaUsuario subUsuario = new SubastaUsuario();
+        subUsuario.setUsuario(u);                          //se define el usuario que pujo
+        subUsuario.setSubasta(subast);                     //se define la subasta en la que se pujo
+        subUsuario.setFecha(null);                         //se define la fecha en la que se pujo
+        subUsuario.setValor(1100000.0);                    //se define el valor de la puja
 
         //Guardamos el registro
-        subastaRepo.save(guardado);
+        SubastaUsuario guardado = subastaUsuarioRepo.save(subUsuario);
+
+        //Modificamos la fecha de la puja
+        guardado.setFecha(LocalDateTime.of(2023, 9, 29,12,0,0));
+
+        //Guardamos el registro
+        subastaUsuarioRepo.save(guardado);
 
         //Por último, verificamos que si haya quedado actualizado
-        Subasta buscado = subastaRepo.findById(1).orElse(null);
-        Assertions.assertEquals(LocalDateTime.of(2023, 9, 29,12,0,0), buscado.getFechaLimite());
+        SubastaUsuario buscado = subastaUsuarioRepo.findById(1).orElse(null);
+        Assertions.assertEquals(LocalDateTime.of(2023, 9, 29,12,0,0), buscado.getFecha());
     }
 
     //metodo que prueba el listar las suabstas
@@ -205,18 +265,29 @@ public class SubastaUsuarioTest
         //Guardamos el registro
         Ciudad reg = ciudadRepo.save(c);
 
-        //se inicializa el vendedor del producto
+        //se inicializa el comprador del producto
         Usuario u = new Usuario();
-        u.setNombre("laura");                              //se define el nombre del vendedor
-        u.setEmail("laura@correo.com");                    //se define el correo del vendedor
-        u.setPassword("laura123");                         //se define la contraseña del vendedor
-        u.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+        u.setNombre("laura");                              //se define el nombre del que hace la puja
+        u.setEmail("laura@correo.com");                    //se define el correo del que hace la puja
+        u.setPassword("laura123");                         //se define la contraseña del que hace la puja
+        u.setCiudad(c);                                    //se define la ciudad de residencia del que hace la puja
 
         //Guardamos el registro
         Usuario reg1 = usuarioRepo.save(u);
 
+        //se inicializa el vendedor del producto
+        Usuario u1 = new Usuario();
+        u1.setNombre("Gabriela");                           //se define el nombre del vendedor
+        u1.setEmail("gabriela@correo.com");                 //se define el correo del vendedor
+        u1.setPassword("gabriela123");                      //se define la contraseña del vendedor
+        u1.setCiudad(c);                                    //se define la ciudad de residencia del vendedor
+
+        //Guardamos el registro
+        Usuario reg2 = usuarioRepo.save(u1);
+
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -227,12 +298,12 @@ public class SubastaUsuarioTest
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
         p.setDescuento(0);                                 //se define el descuento del producto
-        p.setVendedor(u);                                  //se define el vendedor del producto
+        p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
 
         //Guardamos el registro
-        Producto reg2 = productoRepo.save(p);
+        Producto reg3 = productoRepo.save(p);
 
         //se inicializa una subasta
         Subasta subast = new Subasta();
@@ -240,15 +311,25 @@ public class SubastaUsuarioTest
         subast.setFechaLimite(LocalDateTime.of(2022, 9, 29,12,0,0));                       //se define la fecha de cierre de la subasta
 
         //Guardamos el registro
-        Subasta guardado = subastaRepo.save(subast);
+        Subasta reg4 = subastaRepo.save(subast);
 
-        //Obtenemos la lista de todas las subastas
-        List<Subasta> lista = subastaRepo.findAll();
+        //se inicializa la subasta usuario
+        SubastaUsuario subUsuario = new SubastaUsuario();
+        subUsuario.setUsuario(u);                          //se define el usuario que pujo
+        subUsuario.setSubasta(subast);                     //se define la subasta en la que se pujo
+        subUsuario.setFecha(null);                         //se define la fecha en la que se pujo
+        subUsuario.setValor(1100000.0);                    //se define el valor de la puja
+
+        //Guardamos el registro
+        SubastaUsuario guardado = subastaUsuarioRepo.save(subUsuario);
+
+        //Obtenemos la lista de todas las subastaUsuario
+        List<SubastaUsuario> lista = subastaUsuarioRepo.findAll();
 
         //Imprimimos la lista
-        for (Subasta subt : lista)
+        for (SubastaUsuario subtUsr : lista)
         {
-            System.out.println(subt);
+            System.out.println(subtUsr);
         }
     }
 }

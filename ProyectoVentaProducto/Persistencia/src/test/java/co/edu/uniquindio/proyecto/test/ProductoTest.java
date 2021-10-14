@@ -49,6 +49,7 @@ public class ProductoTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -92,6 +93,7 @@ public class ProductoTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -139,6 +141,7 @@ public class ProductoTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
@@ -189,6 +192,7 @@ public class ProductoTest
 
         //se inicializa la lista de imagenes
         List<String> imagenes = new ArrayList<String>();
+
         //se almacena la imagen del producto
         imagenes.add("http//external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fqph.fs.quoracdn.net%2Fmain-qimg-27dcd2ab5609c7c1271d610c16418919-c&f=1&nofb=1");
 
