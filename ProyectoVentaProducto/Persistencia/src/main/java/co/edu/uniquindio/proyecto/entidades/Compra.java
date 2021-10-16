@@ -40,6 +40,7 @@ public class Compra implements Serializable
 
     //relacion inversa detalleCompra Compra(compra a detallar)
     @OneToMany(mappedBy = "productoComprar")
+    @ToString.Exclude
     private List<DetalleCompra> detalleCompra;
 
     //metodo super

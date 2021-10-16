@@ -25,7 +25,7 @@ public class Subasta implements Serializable
     private Integer codigo;
 
     //fecha limite de la subasta
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Future
     private LocalDateTime fechaLimite;
 
@@ -36,6 +36,7 @@ public class Subasta implements Serializable
 
     //relacion inversa subastausuario subasta(pujas del producto)
     @OneToMany(mappedBy = "subasta")
+    @ToString.Exclude
     private List<SubastaUsuario> pujasSubasta;
 
     //metodo super

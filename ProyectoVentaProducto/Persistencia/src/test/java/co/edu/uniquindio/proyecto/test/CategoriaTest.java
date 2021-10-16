@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.entidades.Administrador;
 import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
 import org.junit.jupiter.api.Assertions;
@@ -33,6 +34,21 @@ public class CategoriaTest
         Assertions.assertNotNull(guardado);
     }
 
+    //metodo que prueba el crear una categoria
+    @Test
+    @Sql("classpath:Categorias.sql")
+    public void registrarCategoriaTestSql()
+    {
+        //se inicializa la categoria
+        Categoria c = new Categoria("Hogar");
+
+        //Guardamos el registro
+        Categoria guardado = categoriaRepo.save(c);
+
+        //Comprobamos que si haya quedado
+        Assertions.assertNotNull(guardado);
+    }
+
     //metodo que prueba el eliminar una categoria
     @Test
     public void eliminarCategoriaTest()
@@ -45,6 +61,22 @@ public class CategoriaTest
 
         //Luego lo eliminamos
         categoriaRepo.delete(guardado);
+
+        //Por último, verificamos que si haya quedado borrado
+        Categoria buscado = categoriaRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
+    }
+
+    //metodo que prueba el eliminar una categoria
+    @Test
+    @Sql("classpath:Categorias.sql")
+    public void eliminarCategoriaTestSql()
+    {
+        //Buscamos la categoria a eliminar
+        Categoria eliminar = categoriaRepo.findById(1).orElse(null);
+
+        //Luego lo eliminamos
+        categoriaRepo.delete(eliminar);
 
         //Por último, verificamos que si haya quedado borrado
         Categoria buscado = categoriaRepo.findById(1).orElse(null);
@@ -68,8 +100,25 @@ public class CategoriaTest
         categoriaRepo.save(guardado);
 
         //Por último, verificamos que si haya quedado actualizado
-        Categoria buscado = categoriaRepo.findById(1).orElse(null);
-        Assertions.assertEquals("tecnologia", buscado.getNombre());
+        Assertions.assertEquals("tecnologia", guardado.getNombre());
+    }
+
+    //metodo que prueba el actualizar una categoria
+    @Test
+    @Sql("classpath:Categorias.sql")
+    public void actualizarCategoriaTestSql()
+    {
+        //Buscamos la categoria a actualizar
+        Categoria actualizar = categoriaRepo.findById(1).orElse(null);
+
+        //Modificamos el nombre
+        actualizar.setNombre("Hogar");
+
+        //Con save guardamos el registro modificado
+        categoriaRepo.save(actualizar);
+
+        //Por último, verificamos que si haya quedado actualizado
+        Assertions.assertEquals("Hogar", actualizar.getNombre());
     }
 
     //metodo que lista las categorias almacenadas

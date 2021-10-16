@@ -7,3 +7,6 @@ insert into usuario(codigo, email, nombre, password, ciudad_codigo_ciudad) value
 insert into usuario_telefonos(usuario_codigo, telefonos, telefonos_key) values (2, "3133333332", "celular");
 insert into usuario(codigo, email, nombre, password, ciudad_codigo_ciudad) values(3, "daniela@hotmail", "daniela", "daniela1", 3);
 insert into usuario_telefonos(usuario_codigo, telefonos, telefonos_key) values (3, "3133333333", "celular");
+insert into producto(codigo_producto, cantidad, descripcion, descuento, fecha, nombre, precio, ciudad_codigo_ciudad, vendedor_codigo) values (1, 1, "Televisor 45 pulgadas", 0, null, "televisor", 1000000, 1, 1);
+insert into producto(codigo_producto, cantidad, descripcion, descuento, fecha, nombre, precio, ciudad_codigo_ciudad, vendedor_codigo) values (2, 1, "papa phone 7", 0, null, "celular", 1000000, 2, 2);
+insert into producto(codigo_producto, cantidad, descripcion, descuento, fecha, nombre, precio, ciudad_codigo_ciudad, vendedor_codigo) values (3, 1, "2x1.5", 0, null, "cama", 700000, 3, 3);

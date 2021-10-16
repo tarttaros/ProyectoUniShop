@@ -119,8 +119,7 @@ public class UsuarioTest
         usuarioRepo.save(guardado);
 
         //Por último, verificamos que si haya quedado actualizado
-        Usuario buscado = usuarioRepo.findById(1).orElse(null);
-        Assertions.assertEquals("laurita", buscado.getNombre());
+        Assertions.assertEquals("laurita", guardado.getNombre());
     }
 
     //metodo que prueba el listar los usuario almacenados
@@ -167,9 +166,6 @@ public class UsuarioTest
         List<Usuario> lista = usuarioRepo.findAll();
 
         //Imprimimos la lista
-        for (Usuario user : lista)
-        {
-            System.out.println(user);
-        }
+        lista.forEach( usr -> System.out.println(usr));
     }
 }

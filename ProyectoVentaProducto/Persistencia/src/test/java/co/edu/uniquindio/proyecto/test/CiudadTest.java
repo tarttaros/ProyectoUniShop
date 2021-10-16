@@ -68,8 +68,7 @@ public class CiudadTest
         ciudadRepo.save(guardado);
 
         //Por último, verificamos que si haya quedado actualizado
-        Ciudad buscado = ciudadRepo.findById(1).orElse(null);
-        Assertions.assertEquals("florencia", buscado.getNombreCiudad());
+        Assertions.assertEquals("florencia", guardado.getNombreCiudad());
     }
 
     //metodo que prueba el Listar las ciudades

@@ -72,18 +72,22 @@ public class Producto implements Serializable
 
     //relacion inversa de prodcuto chats(chats de un producto)
     @OneToMany(mappedBy = "productoComprar")
+    @ToString.Exclude
     private List<Chat> chatsProducto;
 
     //relacion inversa detalleCompra producto(producto a vender)
     @OneToMany(mappedBy = "productoComprar")
+    @ToString.Exclude
     private List<DetalleCompra> detallesVenta;
 
     //relacion inversa comentario producto(comentarios hechos al producto)
     @OneToMany(mappedBy = "producto")
+    @ToString.Exclude
     private List<Comentario> comentarios;
 
     //relacion inversa subasta producto(subastas del producto)
     @OneToMany(mappedBy = "producto")
+    @ToString.Exclude
     private List<Subasta> subastasProducto;
 
     //usuarios que tienen al producto de favorito

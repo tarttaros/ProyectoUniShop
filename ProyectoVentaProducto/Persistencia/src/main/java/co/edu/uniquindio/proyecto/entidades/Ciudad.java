@@ -28,10 +28,12 @@ public class Ciudad implements Serializable
 
     //relacion inversa persona ciudad(usuarios en una ciudad)
     @OneToMany(mappedBy = "ciudad")
+    @ToString.Exclude
     private List<Usuario> usuarios;
 
     //relacion inversa producto ciudad(productos vendidos en una ciudad)
     @OneToMany(mappedBy = "ciudad")
+    @ToString.Exclude
     private List<Producto> productos;
 
     //metodo super

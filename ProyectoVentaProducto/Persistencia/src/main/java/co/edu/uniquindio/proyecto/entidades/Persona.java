@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS )
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 public class Persona implements Serializable
 {
@@ -31,7 +31,7 @@ public class Persona implements Serializable
     private String email;
 
     //pasword de la persona
-    @Column(length = 13, nullable = false, unique = true)
+    @Column(length = 13, nullable = false)
     private String password;
 
     //metodo super

@@ -34,6 +34,7 @@ public class Chat implements Serializable
 
     //relacion inversa de chat con mensajes(mensajes del chat)
     @OneToMany(mappedBy = "codigoChat")
+    @ToString.Exclude
     private List<Mensaje> mensajes;
 
     //metodo super

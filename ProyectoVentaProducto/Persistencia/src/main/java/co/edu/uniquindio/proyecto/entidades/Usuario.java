@@ -27,26 +27,32 @@ public class Usuario extends Persona implements Serializable
 
     //relacion inversa usuario chatComprador(chats del usuario)
     @OneToMany(mappedBy = "usuarioComprador")
+    @ToString.Exclude
     private List<Chat> chatsComprador;
 
     //relacion inversa compra usuarios(compras que realiza el usuario)
     @OneToMany(mappedBy = "codigoUsuario")
+    @ToString.Exclude
     private List<Compra> compras;
 
     //relacion inversa producto usuario(productos que vende el usuario)
     @OneToMany(mappedBy = "vendedor")
+    @ToString.Exclude
     private List<Producto> productos;
 
     //relacion inversa comentario usuario(comentarios hechos por el usuario)
     @OneToMany(mappedBy = "usuario")
+    @ToString.Exclude
     private List<Comentario> comentarios;
 
     //relacion inversa subastasUsuario usuario(pujas del usuario)
     @OneToMany(mappedBy = "usuario")
+    @ToString.Exclude
     private List<SubastaUsuario> pujasUsuario;
 
     //productos favoritos del usuario
     @ManyToMany
+    @ToString.Exclude
     private List<Producto> productosFavoritos;
 
     //metodo super

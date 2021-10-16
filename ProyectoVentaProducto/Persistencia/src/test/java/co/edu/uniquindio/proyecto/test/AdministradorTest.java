@@ -36,6 +36,24 @@ public class AdministradorTest
         Assertions.assertNotNull(guardado);
     }
 
+    //metodo que prueba el crear un administrador
+    @Test
+    @Sql("classpath:Administradores.sql")
+    public void registrarAdministradorTestSql()
+    {
+        //se inicializa el administrador
+        Administrador a = new Administrador();
+        a.setNombre("paola");                           //se define un nombre
+        a.setEmail("paola@correo.com");                 //se define un correo
+        a.setPassword("paola123");                      //se define una contraseña
+
+        //Guardamos el registro
+        Administrador guardado = administradorRepo.save(a);
+
+        //Comprobamos que si haya quedado
+        Assertions.assertNotNull(guardado);
+    }
+
     //metodo que prueba la eliminacion de un administrador
     @Test
     public void eliminarAdministradorTest()
@@ -55,6 +73,22 @@ public class AdministradorTest
         //Por último, verificamos que si haya quedado borrado
         Administrador buscado = administradorRepo.findById(1).orElse(null);
         Assertions.assertNull(buscado);
+    }
+
+    //metodo que prueba la eliminacion de un administrador
+    @Test
+    @Sql("classpath:Administradores.sql")
+    public void eliminarAdministradorTestSql()
+    {
+        //Buscamos el administrador a eliminar
+        Administrador eliminar = administradorRepo.findById(1).orElse(null);
+
+        //Luego lo eliminamos
+        administradorRepo.delete(eliminar);
+
+        //Por último, verificamos que si haya quedado borrado
+        Administrador buscar = administradorRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscar);
     }
 
     //metodo que prueba la actualizacion de informacion de un administrador
@@ -77,8 +111,25 @@ public class AdministradorTest
         administradorRepo.save(registrado);
 
         //Por último, verificamos que si haya quedado actualizado
-        Administrador buscado = administradorRepo.findById(1).orElse(null);
-        Assertions.assertEquals("laurita", buscado.getNombre());
+        Assertions.assertEquals("laurita", registrado.getNombre());
+    }
+
+    //metodo que prueba la actualizacion de informacion de un administrador
+    @Test
+    @Sql("classpath:Administradores.sql")
+    public void actualizarAdministradorTestSql()
+    {
+        //Buscamos el administrador a actualizar
+        Administrador actualizar = administradorRepo.findById(1).orElse(null);
+
+        //Modificamos el nombre
+        actualizar.setNombre("laurita");
+
+        //Con save guardamos el registro modificado
+        administradorRepo.save(actualizar);
+
+        //Por último, verificamos que si haya quedado actualizado
+        Assertions.assertEquals("laurita", actualizar.getNombre());
     }
 
     //metodo que lista los administradores almacenados
