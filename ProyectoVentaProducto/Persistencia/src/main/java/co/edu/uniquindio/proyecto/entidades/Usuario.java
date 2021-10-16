@@ -12,7 +12,7 @@ import java.util.Map;
 @Getter
 @Setter
 @Entity
-@ToString(callSuper=true)
+@ToString(callSuper = true)
 public class Usuario extends Persona implements Serializable
 {
     //relacion usuario ciudad
@@ -40,7 +40,7 @@ public class Usuario extends Persona implements Serializable
     @ToString.Exclude
     private List<Producto> productos;
 
-    //relacion inversa comentario usuario(comentarios hechos por el usuario)
+    //relacion inversa comentario usuario(comentarios hechos por el usuari
     @OneToMany(mappedBy = "usuario")
     @ToString.Exclude
     private List<Comentario> comentarios;
