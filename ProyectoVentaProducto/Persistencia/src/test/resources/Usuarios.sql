@@ -1,4 +1,4 @@
-insert into ciudad(codigo_ciudad, nombre_ciudad) values(1, "Toscana");
+insert into ciudad(codigo_ciudad, nombre_ciudad) values(1, "London");
 insert into ciudad(codigo_ciudad, nombre_ciudad) values(2, "Milan");
 insert into ciudad(codigo_ciudad, nombre_ciudad) values(3, "Rennes");
 insert into usuario(codigo, email, nombre, password, ciudad_codigo_ciudad) values(1, "laura@hotmail", "laura", "laura1", 1);
