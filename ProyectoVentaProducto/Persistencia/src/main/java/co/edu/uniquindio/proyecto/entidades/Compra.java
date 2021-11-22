@@ -4,6 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
@@ -27,6 +29,7 @@ public class Compra implements Serializable
     //codigo usuario que realiza la compra
     @JoinColumn(nullable = false)
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario codigoUsuario;
 
     //fecha de compra

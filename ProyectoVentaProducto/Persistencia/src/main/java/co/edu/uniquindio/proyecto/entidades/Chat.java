@@ -4,6 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,11 +27,13 @@ public class Chat implements Serializable
     //relacion chat usuarioComprador
     @JoinColumn(nullable = false)
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuarioComprador;
 
     //relacion chat Producto(producto a comprar)
     @JoinColumn(nullable = false)
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Producto productoComprar;
 
     //relacion inversa de chat con mensajes(mensajes del chat)

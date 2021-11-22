@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.entidades.Chat;
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
@@ -312,6 +309,132 @@ public class ProductoTest
         for (Producto produc : lista)
         {
             System.out.println(produc);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void productoMasVendido()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Object[]> lista = productoRepo.productoVendido("Ropa");
+
+        //Imprimimos la lista
+        for (Object[] produc : lista)
+        {
+            System.out.println(produc[0]+"-------"+produc[1]);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void productoSubasta()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Object[]> lista = productoRepo.productoSubasta();
+
+        //Imprimimos la lista
+        for (Object[] produc : lista)
+        {
+            System.out.println(produc[0]+"-------"+produc[1]);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void chatsVendedor()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Object[]> lista = productoRepo.chatsVendedor("laura");
+
+        //Imprimimos la lista
+        for (Object[] produc : lista)
+        {
+            System.out.println(produc[0]+"-------"+produc[1]);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void comprasMedioPago()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Object[]> lista = productoRepo.comprasMedioPago();
+
+        //Imprimimos la lista
+        for (Object[] produc : lista)
+        {
+            System.out.println(produc[0]+"-------"+produc[1]);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void subastasCategoriaEspecifica()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Subasta> lista = productoRepo.subastasCategoriaEspecifica("Ropa");
+
+        //Imprimimos la lista
+        for (Subasta produc : lista)
+        {
+            System.out.println(produc);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void comentariosNoRespuesta()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Comentario> lista = productoRepo.comentariosNoRespuesta("televisor");
+
+        //Imprimimos la lista
+        for (Comentario produc : lista)
+        {
+            System.out.println(produc);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void productoRango()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Producto> lista = productoRepo.productoRango(1,5);
+
+        //Imprimimos la lista
+        for (Producto produc : lista)
+        {
+            System.out.println(produc);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void buscar()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Usuario> lista = productoRepo.buscar(2);
+
+        //Imprimimos la lista
+        for (Usuario produc : lista)
+        {
+            System.out.println(produc);
+        }
+    }
+
+    @Test
+    @Sql("classpath:Productos.sql")
+    public void busqueda2()
+    {
+        //Obtenemos la lista de todos los productos
+        List<Object[]> lista = productoRepo.busqueda2("vanessa");
+
+        //Imprimimos la lista
+        for (Object[] produc : lista)
+        {
+            System.out.println(produc[0]+"-------"+produc[1]);
         }
     }
 }

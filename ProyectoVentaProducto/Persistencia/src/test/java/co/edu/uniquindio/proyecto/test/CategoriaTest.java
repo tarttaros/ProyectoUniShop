@@ -155,4 +155,20 @@ public class CategoriaTest
             System.out.println(categ);
         }
     }
+
+    //solucion 2 del ejercicio de consultas JPQL
+    @Test
+    @Sql("classpath:Categorias.sql")
+    public void punto2Jpql()
+    {
+        List<Object[]> lista = categoriaRepo.categoriaCalificacion();
+        //lista.forEach(System.out::println);
+
+        for(Object[] i  : lista)
+        {
+            System.out.println("1: "+i[0]+" 2: "+i[1]);
+            //System.out.println(i);
+        }
+
+    }
 }
