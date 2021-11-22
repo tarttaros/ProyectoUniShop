@@ -20,7 +20,7 @@ public class Persona implements Serializable
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer Codigo;
+    private Integer codigo;
 
     //nombre de la persona
     @Column(length = 50, nullable = false)

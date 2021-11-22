@@ -32,6 +32,13 @@ public class UsuarioServicioImplementation implements UsuarioServicio
         {
             throw new Exception("El email del usuario ya existe");
         }
+
+        buscado = usuarioRepo.findByNombre(u.getNombre());
+        if(buscado.isPresent())
+        {
+            throw new Exception("El nombre del usuario ya existe");
+        }
+
         return usuarioRepo.save(u);
     }
 
