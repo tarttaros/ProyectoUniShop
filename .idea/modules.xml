@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ProyectoVentaProducto/Persistencia/Persistencia.iml" filepath="$PROJECT_DIR$/ProyectoVentaProducto/Persistencia/Persistencia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ProyectoUniShop.iml" filepath="$PROJECT_DIR$/.idea/ProyectoUniShop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProyectoVentaProducto/negocio/negocio.iml" filepath="$PROJECT_DIR$/ProyectoVentaProducto/negocio/negocio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProyectoVentaProducto/proyecto-venta.iml" filepath="$PROJECT_DIR$/ProyectoVentaProducto/proyecto-venta.iml" />
+    </modules>
+  </component>
+</project>
