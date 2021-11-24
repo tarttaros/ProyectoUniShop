@@ -52,10 +52,4 @@ public class Persona implements Serializable
         this.email = email;
         this.password = password;
     }
-    public Persona(String userName,String nombre, String email, String password) {
-        this.nombre = nombre;
-        this.email = email;
-        this.password = password;
-        this.userName=userName;
-    }
 }

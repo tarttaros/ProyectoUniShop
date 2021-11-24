@@ -12,9 +12,13 @@ public interface UsuarioServicio
 
     Usuario actualizarUsuario(Usuario u) throws Exception;
 
+    Usuario obtenerUsuario(Integer codigo) throws Exception;
+
     void eliminarUsuario(Integer codigo) throws Exception;
 
     List<Usuario> listarUsuarios();
 
     List<Producto> listarProductosFavoritos(String email) throws Exception;
+
+    public Usuario iniciarSesion(String email, String password) throws Exception;
 }

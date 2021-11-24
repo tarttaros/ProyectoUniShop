@@ -3,7 +3,6 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,6 +63,18 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     }
 
     @Override
+    public Usuario obtenerUsuario(Integer codigo) throws Exception
+    {
+        Optional<Usuario> buscado = usuarioRepo.findById(codigo);
+        if(buscado.isEmpty())
+        {
+            throw new Exception("El usuario no existe");
+        }
+
+        return buscado.get();
+    }
+
+    @Override
     public void eliminarUsuario(Integer codigo) throws Exception
     {
         Optional<Usuario> buscado = usuarioRepo.findById(codigo);
@@ -81,7 +92,6 @@ public class UsuarioServicioImplementation implements UsuarioServicio
         return usuarioRepo.findAll();
     }
 
-
     @Override
     public List<Producto> listarProductosFavoritos(String email) throws Exception
     {
@@ -90,15 +100,15 @@ public class UsuarioServicioImplementation implements UsuarioServicio
         {
             throw new Exception("El usuario no existe");
         }
-
         return usuarioRepo.obtenerProductosFavoritos(email);
     }
 
     @Override
-    public Usuario iniciarSesion(String email, String password) throws Exception {
+    public Usuario iniciarSesion(String email, String password) throws Exception
+    {
        Optional<Usuario> usuario= usuarioRepo.findByEmailAndPassword(email,password);
-
-       if(usuario.isEmpty()){
+       if(usuario.isEmpty())
+       {
            throw new Exception("Los datos de autenticacion son incorrectos");
        }
         return usuario.get();

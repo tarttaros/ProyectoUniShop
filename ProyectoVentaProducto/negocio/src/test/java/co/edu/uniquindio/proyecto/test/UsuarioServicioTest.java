@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.NegocioApplication;
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import org.junit.jupiter.api.Assertions;
@@ -7,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @SpringBootTest(classes = NegocioApplication.class)
 @Transactional
@@ -33,15 +36,13 @@ public class UsuarioServicioTest
     @Test
     public void actualizarUsuarioTest()
     {
-        Usuario u = new Usuario(1, "Juanita","juana@mail.com","juana1",null);
-        //u.setCodigo(1);
         try {
-            Usuario guardado = usuarioServicio.registrarUsuario(u);
+            Usuario u = usuarioServicio.obtenerUsuario(1);
             //Guardamos el registro
             u.setEmail("juana@mail.com");
             Usuario actualizar = usuarioServicio.actualizarUsuario(u);
             //Comprobamos que si haya quedado
-            Assertions.assertNotNull(guardado);
+            Assertions.assertEquals("pepe@mail.com",actualizar.getEmail());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -59,6 +60,23 @@ public class UsuarioServicioTest
         {
             e.printStackTrace();
             Assertions.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void listarUsuariosTest()
+    {
+        List<Usuario> lista = usuarioServicio.listarUsuarios();
+    }
+
+    @Test
+    public void listarProductosFavoritosTest()
+    {
+        try
+        {
+            List<Producto> lista = usuarioServicio.listarProductosFavoritos("maria@mail.com");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

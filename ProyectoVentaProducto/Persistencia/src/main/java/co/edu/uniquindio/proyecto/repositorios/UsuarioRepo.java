@@ -21,5 +21,4 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Integer>
 
     @Query("select producto from Usuario usuario, in (usuario.productosFavoritos) producto where usuario.email = ?1 ")
     List<Producto> obtenerProductosFavoritos(String email);
-
 }
