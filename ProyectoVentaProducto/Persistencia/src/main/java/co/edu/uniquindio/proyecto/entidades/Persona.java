@@ -22,6 +22,10 @@ public class Persona implements Serializable
     @EqualsAndHashCode.Include
     private Integer codigo;
 
+
+    @Column(length = 100, unique=true)
+    private  String userName;
+
     //nombre de la persona
     @Column(length = 50, nullable = false)
     private String nombre;
@@ -45,5 +49,11 @@ public class Persona implements Serializable
         this.nombre = nombre;
         this.email = email;
         this.password = password;
+    }
+    public Persona(String userName,String nombre, String email, String password) {
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.userName=userName;
     }
 }

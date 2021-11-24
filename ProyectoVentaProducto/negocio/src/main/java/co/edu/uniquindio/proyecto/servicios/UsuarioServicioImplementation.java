@@ -110,4 +110,14 @@ public class UsuarioServicioImplementation implements UsuarioServicio
         }
         return buscado.get();
     }
+
+    @Override
+    public Usuario iniciarSesion(String email, String password) throws Exception {
+       Optional<Usuario> usuario= usuarioRepo.findByEmailAndPassword(email,password);
+
+       if(usuario.isEmpty()){
+           throw new Exception("Los datos de autenticacion son incorrectos");
+       }
+        return usuario.get();
+    }
 }
