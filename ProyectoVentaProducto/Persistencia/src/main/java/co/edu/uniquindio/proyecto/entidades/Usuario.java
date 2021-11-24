@@ -18,12 +18,12 @@ import java.util.Map;
 public class Usuario extends Persona implements Serializable
 {
     //relacion usuario ciudad
-    @JoinColumn(nullable = false)
+    //@JoinColumn(nullable = false)
     @ManyToOne
     private Ciudad ciudad;
 
     //lista de telefonos
-    @Column(nullable = false)
+    //@Column(nullable = false)
     @ElementCollection
     private Map<String,String> telefonos;
 
@@ -64,9 +64,9 @@ public class Usuario extends Persona implements Serializable
     }
 
     //metodo constructor
-    public Usuario(String nombre, String email, String password, Ciudad ciudad)
+    public Usuario(Integer codigo, String nombre, String email, String password, Ciudad ciudad)
     {
-        super(nombre, email, password);
+        super(codigo,nombre, email, password);
         this.ciudad = ciudad;
     }
 }

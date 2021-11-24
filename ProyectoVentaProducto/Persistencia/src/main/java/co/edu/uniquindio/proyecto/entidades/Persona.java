@@ -18,7 +18,7 @@ public class Persona implements Serializable
 {
     //primary key
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    //@GeneratedValue(strategy=GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
@@ -41,7 +41,9 @@ public class Persona implements Serializable
     }
 
     //metodo constructor
-    public Persona(String nombre, String email, String password) {
+    public Persona(Integer  codigo, String nombre, String email, String password)
+    {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.email = email;
         this.password = password;

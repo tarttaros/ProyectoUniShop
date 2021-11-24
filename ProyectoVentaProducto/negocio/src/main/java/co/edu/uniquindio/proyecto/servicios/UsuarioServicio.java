@@ -5,7 +5,6 @@ import co.edu.uniquindio.proyecto.entidades.Usuario;
 
 import java.util.List;
 
-
 public interface UsuarioServicio
 {
 
@@ -15,8 +14,7 @@ public interface UsuarioServicio
 
     void eliminarUsuario(Integer codigo) throws Exception;
 
-    List<Usuario> listarUsuarios() ;
-    List<Producto> listarFavoritos(String email)throws Exception;
-    Usuario obtenerUsuario(int codigo) throws Exception;
-}
+    List<Usuario> listarUsuarios();
 
+    List<Producto> listarProductosFavoritos(String email) throws Exception;
+}
