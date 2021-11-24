@@ -1,8 +1,10 @@
 package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.NegocioApplication;
-import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.repositorios.CiudadRepo;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,71 +15,101 @@ import java.util.List;
 
 @SpringBootTest(classes = NegocioApplication.class)
 @Transactional
-public class UsuarioServicioTest
-{
+public class UsuarioServicioTest {
+
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-    @Test
-    public void registrarUsuarioTest()
-    {
-        Usuario u = new Usuario(1, "Juanita","juana@mail.com","juana1",null);
-        //u.setCodigo(1);
-        try {
-        //Guardamos el registro
-            Usuario guardado = usuarioServicio.registrarUsuario(u);
-        //Comprobamos que si haya quedado
-            Assertions.assertNotNull(guardado);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+    @Autowired
+    private CiudadRepo ciudadRepo;
 
     @Test
-    public void actualizarUsuarioTest()
-    {
-        try {
-            Usuario u = usuarioServicio.obtenerUsuario(1);
-            //Guardamos el registro
-            u.setEmail("juana@mail.com");
-            Usuario actualizar = usuarioServicio.actualizarUsuario(u);
-            //Comprobamos que si haya quedado
-            Assertions.assertEquals("pepe@mail.com",actualizar.getEmail());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+    public void registrarUsuarioTest() {
+        Ciudad c = new Ciudad("toscana");
+        Ciudad reg = ciudadRepo.save(c);
+        Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c,"juancho");
+        u.setCodigo(1);
 
-    @Test
-    public void eliminarUsuarioTest()
-    {
-        try
-        {
-            usuarioServicio.eliminarUsuario(1);
-            Assertions.assertTrue(true);
-        }
-        catch (Exception e)
-        {
+        try {
+            Usuario respuesta = usuarioServicio.registrarUsuario(u);
+            Assertions.assertNotNull(respuesta);
+        } catch (Exception e) {
             e.printStackTrace();
             Assertions.assertTrue(false);
         }
     }
 
     @Test
-    public void listarUsuariosTest()
-    {
-        List<Usuario> lista = usuarioServicio.listarUsuarios();
+    public void eliminarUsuarioTest() {
+        try {
+            Ciudad c = new Ciudad("toscana");
+            Ciudad reg = ciudadRepo.save(c);
+            Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c,"juancho");
+            u.setCodigo(1);
+            usuarioServicio.registrarUsuario(u);
+            usuarioServicio.eliminarUsuario(23);
+            Assertions.assertTrue(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+    }
+    @Test
+    public void listar() throws Exception {
+        try {
+            Ciudad c = new Ciudad("toscana");
+            Ciudad reg = ciudadRepo.save(c);
+
+            Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c, "user");
+            u.setCodigo(1);
+            usuarioServicio.registrarUsuario(u);
+
+            List<Usuario> lista = usuarioServicio.listarUsuarios();
+            lista.forEach( System.out::println );
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+    }
+    @Test
+    public void actualizar(){
+
+        try{
+            Ciudad c = new Ciudad("toscana");
+            Ciudad reg = ciudadRepo.save(c);
+
+            Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c, "user");
+            u.setCodigo(1);
+            usuarioServicio.registrarUsuario(u);
+            Usuario b= usuarioServicio.obtenerUsuario(1);
+            b.setPassword("&(/_2732");
+            Usuario respuesta = usuarioServicio.actualizarUsuario(b);
+            Assertions.assertNotNull(respuesta);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Test
-    public void listarProductosFavoritosTest()
-    {
-        try
-        {
-            List<Producto> lista = usuarioServicio.listarProductosFavoritos("maria@mail.com");
-        } catch (Exception e) {
+    public void loginTest(){
+        try {
+            Ciudad c = new Ciudad("toscana");
+            Ciudad reg = ciudadRepo.save(c);
+
+            Usuario u = new Usuario( "juan", "Juan@gmail.com", "1234", c, "user");
+            u.setCodigo(1);
+            usuarioServicio.registrarUsuario(u);
+            Usuario log=usuarioServicio.iniciarSesion("Juan@gmail.com","1234");
+            Assertions.assertNotNull(log);
+
+        }catch (Exception e){
             e.printStackTrace();
+
+            Assertions.assertTrue(false,e.getMessage());
         }
     }
 
 }
+

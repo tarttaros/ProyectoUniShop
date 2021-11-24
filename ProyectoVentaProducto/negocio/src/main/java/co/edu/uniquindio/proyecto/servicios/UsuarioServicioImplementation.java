@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     @Override
     public Usuario registrarUsuario(Usuario u) throws Exception
     {
-
+        System.out.println(u.getCodigo());
         Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
         if(buscado.isPresent())
         {
@@ -34,57 +35,56 @@ public class UsuarioServicioImplementation implements UsuarioServicio
         {
             throw new Exception("El email del usuario ya existe");
         }
-
-        buscado = usuarioRepo.findByNombre(u.getNombre());
+        buscado = usuarioRepo.findByUserName(u.getUserName());
         if(buscado.isPresent())
         {
-            throw new Exception("El nombre del usuario ya existe");
+            throw new Exception("El email del usuario ya existe");
         }
-
         return usuarioRepo.save(u);
     }
 
     @Override
     public Usuario actualizarUsuario(Usuario u) throws Exception
     {
-        Optional<Usuario> buscado = usuarioRepo.findByEmail(u.getEmail());
-        if(buscado.isPresent())
-        {
-            throw new Exception("El email del usuario ya existe");
+        Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
+        if(buscado.isEmpty()){
+            throw new Exception("usuario no existe");
         }
-
-        buscado = usuarioRepo.findByNombre(u.getNombre());
-        if(buscado.isPresent())
-        {
-            throw new Exception("El nombre del usuario ya existe");
-        }
-
         return usuarioRepo.save(u);
     }
-
-    @Override
-    public Usuario obtenerUsuario(Integer codigo) throws Exception
-    {
-        Optional<Usuario> buscado = usuarioRepo.findById(codigo);
-        if(buscado.isEmpty())
-        {
-            throw new Exception("El usuario no existe");
+    private Usuario buscarUsuario(Usuario u) throws Exception {
+        Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
+        if(buscado.isPresent() ) {
+            throw new Exception("EL código del ysuarie ya existe");
         }
+        buscado = buscarPorEmail(u.getEmail());
 
-        return buscado.get();
+        if(buscado.isPresent() ) {
+            throw new Exception("EL email del ysuario ya existe");
+        }
+        buscado = usuarioRepo.findByUserName(u.getUserName());
+        if(buscado.isPresent() ) {
+            throw new Exception("EL username del ysuario ya existe");
+        }
+        return usuarioRepo.save(u);
+    }
+    private Optional<Usuario> buscarPorEmail (String email){
+        return usuarioRepo.findByEmail(email);
     }
 
     @Override
     public void eliminarUsuario(Integer codigo) throws Exception
     {
         Optional<Usuario> buscado = usuarioRepo.findById(codigo);
+        System.out.println(codigo);
+
         if(buscado.isEmpty())
         {
-            throw new Exception("El usuario no existe");
+            throw new Exception("El codigo del usuario no existe");
         }
-
         usuarioRepo.deleteById(codigo);
     }
+
 
     @Override
     public List<Usuario> listarUsuarios()
@@ -93,24 +93,31 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     }
 
     @Override
-    public List<Producto> listarProductosFavoritos(String email) throws Exception
-    {
-        Optional<Usuario> buscado = usuarioRepo.findByEmail(email);
+    public List<Producto> listarFavoritos(String email) throws Exception {
+        Optional<Usuario> buscado = buscarPorEmail((email));
         if(buscado.isEmpty())
         {
-            throw new Exception("El usuario no existe");
+            throw new Exception("El correo no existe");
         }
-        return usuarioRepo.obtenerProductosFavoritos(email);
+        return usuarioRepo.obtenerFavoritos(email);
     }
 
     @Override
-    public Usuario iniciarSesion(String email, String password) throws Exception
-    {
-       Optional<Usuario> usuario= usuarioRepo.findByEmailAndPassword(email,password);
-       if(usuario.isEmpty())
-       {
-           throw new Exception("Los datos de autenticacion son incorrectos");
-       }
+    public Usuario obtenerUsuario(int codigo) throws Exception {
+        Optional<Usuario> buscado = usuarioRepo.findById(codigo);
+        if(buscado.isPresent() ) {
+            throw new Exception("EL Usuario NO existe");
+        }
+        return buscado.get();
+    }
+
+    @Override
+    public Usuario iniciarSesion(String email, String password) throws Exception {
+        Optional<Usuario> usuario= usuarioRepo.findByEmailAndPassword(email,password);
+
+        if(usuario.isEmpty()){
+            throw new Exception("Los datos de autenticacion son incorrectos");
+        }
         return usuario.get();
     }
 }

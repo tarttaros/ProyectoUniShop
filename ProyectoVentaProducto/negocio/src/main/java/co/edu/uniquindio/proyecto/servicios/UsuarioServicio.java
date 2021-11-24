@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.entidades.Usuario;
 
 import java.util.List;
 
+
 public interface UsuarioServicio
 {
 
@@ -12,13 +13,12 @@ public interface UsuarioServicio
 
     Usuario actualizarUsuario(Usuario u) throws Exception;
 
-    Usuario obtenerUsuario(Integer codigo) throws Exception;
-
     void eliminarUsuario(Integer codigo) throws Exception;
 
-    List<Usuario> listarUsuarios();
+    Usuario iniciarSesion(String email, String password) throws Exception;
 
-    List<Producto> listarProductosFavoritos(String email) throws Exception;
-
-    public Usuario iniciarSesion(String email, String password) throws Exception;
+    List<Usuario> listarUsuarios() ;
+    List<Producto> listarFavoritos(String email)throws Exception;
+    Usuario obtenerUsuario(int codigo) throws Exception;
 }
+
