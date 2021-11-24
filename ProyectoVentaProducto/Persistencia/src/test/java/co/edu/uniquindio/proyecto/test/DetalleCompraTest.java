@@ -70,7 +70,7 @@ public class DetalleCompraTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -143,7 +143,7 @@ public class DetalleCompraTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -215,7 +215,7 @@ public class DetalleCompraTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -307,7 +307,7 @@ public class DetalleCompraTest
         p.setCantidad(9);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -403,7 +403,7 @@ public class DetalleCompraTest
         p.setCantidad(9);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto

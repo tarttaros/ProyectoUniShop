@@ -8,10 +8,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,15 +27,17 @@ public class Producto implements Serializable
     private Integer codigoProducto;
 
     //nombre del producto a vender
+    @NotBlank(message = "El nombre del producto es obligatorio")
     @Column(length = 50, nullable = false)
     private String nombre;
 
     //cantidad de unidades del producto
     @Column(nullable = false)
-    @Positive
+    @PositiveOrZero
     private Integer cantidad;
 
     //descripcion del producto
+    @NotBlank
     @Column(length = 100, nullable = false)
     private String descripcion;
 
@@ -48,6 +47,7 @@ public class Producto implements Serializable
     private Double precio;
 
     //fecha de publicacion del produto
+    @Future
     @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fecha;
 
@@ -55,7 +55,7 @@ public class Producto implements Serializable
     @Column(nullable = true)
     @Min(0)
     @Max(99)
-    private Integer descuento;
+    private Double descuento;
 
     //usuario que vende el producto
     @JoinColumn(nullable = false)
@@ -109,7 +109,7 @@ public class Producto implements Serializable
     }
 
     //metodo constructor
-    public Producto(String nombre, Integer cantidad, String descripcion, Double precio, Integer descuento, Usuario vendedor, Ciudad ciudad) {
+    public Producto(String nombre, Integer cantidad, String descripcion, Double precio,Double descuento, Usuario vendedor, Ciudad ciudad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.descripcion = descripcion;

@@ -4,8 +4,10 @@ import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoExcepcion;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductoServicio {
 
@@ -18,7 +20,7 @@ public interface ProductoServicio {
 
     void eliminarProducto(Integer codigo) throws  Exception;
 
-    Producto obtenerProducto(Integer codigo) throws Exception;
+    Optional<Producto> obtenerProducto(Integer codigo) throws ProductoNoEncontradoExcepcion;
 
     List<Producto> listarProducto(Categoria categoria);
 

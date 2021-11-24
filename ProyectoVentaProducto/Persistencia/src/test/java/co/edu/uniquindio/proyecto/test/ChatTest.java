@@ -71,7 +71,7 @@ public class ChatTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -134,7 +134,7 @@ public class ChatTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -196,7 +196,7 @@ public class ChatTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -278,7 +278,7 @@ public class ChatTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -292,7 +292,7 @@ public class ChatTest
         p1.setCantidad(1);                                  //se define la cantidad a vender
         p1.setDescripcion("televisor de 95 pulgadas");      //se define la descripcion del producto
         p1.setPrecio(3900000.0);                            //se define el percio del producto
-        p1.setDescuento(0);                                 //se define el descuento del producto
+        p1.setDescuento(0.0);                                 //se define el descuento del producto
         p1.setVendedor(u1);                                 //se define el vendedor del producto
         p1.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p1.setImagenes(imagenes);                           //se definen las imagenes del producto
@@ -394,7 +394,7 @@ public class ChatTest
         p.setCantidad(1);                                  //se define la cantidad a vender
         p.setDescripcion("televisor de 65 pulgadas");      //se define la descripcion del producto
         p.setPrecio(1900000.0);                            //se define el percio del producto
-        p.setDescuento(0);                                 //se define el descuento del producto
+        p.setDescuento(0.0);                                 //se define el descuento del producto
         p.setVendedor(u1);                                 //se define el vendedor del producto
         p.setCiudad(c);                                    //se define la ciudad donde se encuentra el producto
         p.setImagenes(imagenes);                           //se definen las imagenes del producto
