@@ -12,6 +12,20 @@
     <title>Página de Inicio</title>
 </h:head>
 <h:body>
-    <h1>#{inicioBean.mensaje}</h1>
+    <div id="header">
+        <h1>Unishop</h1>
+        <ul>
+            <li><a href="index.xhtml">inicio</a> </li>
+            <li><a href="registrar_usuario.xhtml">Registrar usuario</a> </li>
+            <li><a href="crear_producto.xhtml">Crear producto</a> </li>
+        </ul>
+        <h:form>
+            <p:inputText placeholder="Que producto esta buscando?" required="true" value="#{busquedaBean.busqueda}"></p:inputText>
+            <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form"></p:commandButton>
+        </h:form>
+    </div>
+    <div id="content">
+
+    </div>
 </h:body>
 </html>
