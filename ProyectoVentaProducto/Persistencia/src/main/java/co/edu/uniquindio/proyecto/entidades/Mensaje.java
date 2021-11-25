@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -26,11 +27,14 @@ public class Mensaje implements Serializable
     private Integer codigoMensaje;
 
     //mensaje a enviar
+    @Lob
     @Column(length = 333, nullable = false)
+    @NotBlank(message = "Se debe enviar un mensaje")
     private String mensaje;
 
     //quien manda el mensaje
     @Column(length = 50, nullable = false)
+    @NotBlank(message = "Debe establecer un emisor")
     private String emisor;
 
     //fecha del mensaje
@@ -41,7 +45,6 @@ public class Mensaje implements Serializable
     //relacion mensaje chat
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Chat codigoChat;
 
     //metodo super

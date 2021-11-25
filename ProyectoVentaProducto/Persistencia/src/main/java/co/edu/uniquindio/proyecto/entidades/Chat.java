@@ -27,13 +27,11 @@ public class Chat implements Serializable
     //relacion chat usuarioComprador
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuarioComprador;
 
     //relacion chat Producto(producto a comprar)
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Producto productoComprar;
 
     //relacion inversa de chat con mensajes(mensajes del chat)

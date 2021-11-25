@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Getter
@@ -24,14 +25,17 @@ public class Persona implements Serializable
 
     //nombre de la persona
     @Column(length = 50, nullable = false)
+    @NotBlank(message = "Se debe establecer un nombre")
     private String nombre;
 
     //correo de la persona
     @Column(length = 50, nullable = false, unique = true)
+    @NotBlank(message = "Se debe establecer un correo")
     private String email;
 
     //pasword de la persona
     @Column(length = 13, nullable = false)
+    @NotBlank(message = "Se debe establecer una contraseña")
     private String password;
 
     //metodo super

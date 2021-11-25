@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,7 +30,6 @@ public class Compra implements Serializable
     //codigo usuario que realiza la compra
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario codigoUsuario;
 
     //fecha de compra
@@ -39,10 +39,11 @@ public class Compra implements Serializable
 
     //medio de pago
     @Column(length = 50)
+    @NotBlank(message = "Se debe establecer un medio de pago")
     private String medioDPago;
 
     //relacion inversa detalleCompra Compra(compra a detallar)
-    @OneToMany(mappedBy = "productoComprar")
+    @OneToMany(mappedBy = "productoComprar", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<DetalleCompra> detalleCompra;
 

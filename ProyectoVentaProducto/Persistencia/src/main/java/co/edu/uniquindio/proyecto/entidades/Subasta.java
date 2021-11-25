@@ -34,11 +34,10 @@ public class Subasta implements Serializable
     //producto a subastar
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Producto producto;
 
     //relacion inversa subastausuario subasta(pujas del producto)
-    @OneToMany(mappedBy = "subasta")
+    @OneToMany(mappedBy = "subasta", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<SubastaUsuario> pujasSubasta;
 

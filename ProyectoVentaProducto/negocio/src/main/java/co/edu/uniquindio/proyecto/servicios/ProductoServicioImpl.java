@@ -25,7 +25,8 @@ public class ProductoServicioImpl implements ProductoServicio {
         {
             return productoRepo.save(p);
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             throw new Exception(e.getMessage());
         }
     }
@@ -38,6 +39,7 @@ public class ProductoServicioImpl implements ProductoServicio {
         {
             throw new Exception("El producto no existe");
         }
+
         return productoRepo.save(p);
     }
 
@@ -47,10 +49,22 @@ public class ProductoServicioImpl implements ProductoServicio {
         Optional<Producto> producto= productoRepo.findById(codigo);
         if(producto.isEmpty())
         {
-            throw  new Exception("El codigo del producto no existe");
+            throw  new Exception("El producto no existe");
 
         }
+
         productoRepo.deleteById(codigo);
+    }
+
+    @Override
+    public Optional<Producto> obtenerProducto(Integer codigo) throws ProductoNoEncontradoExcepcion
+    {
+        Optional<Producto> producto= productoRepo.findById(codigo);
+        if(producto.isEmpty())
+        {
+            throw new ProductoNoEncontradoExcepcion("El codigo del producto no es valido");
+        }
+        return producto;
     }
 
     @Override
@@ -90,20 +104,8 @@ public class ProductoServicioImpl implements ProductoServicio {
     }
 
     @Override
-    public List<Producto> productosUsuario(Integer codigo) throws Exception
+    public List<Producto> productosUsuario (Integer codigo) throws Exception
     {
         return null;
     }
-
-    @Override
-    public Optional<Producto> obtenerProducto(Integer codigo) throws ProductoNoEncontradoExcepcion
-    {
-        Optional<Producto> producto= productoRepo.findById(codigo);
-        if(producto.isEmpty())
-        {
-            throw new ProductoNoEncontradoExcepcion("El codigo del producto no es valido");
-        }
-        return producto;
-    }
-
 }

@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -29,21 +30,23 @@ public class Comentario implements Serializable
     //usuario que comenta el producto
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuario;
 
     //producto comentado por el usuario
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Producto producto;
 
     //mensaje que se postea en el comentario
+    @Lob
     @Column(length = 333)
+    @NotBlank(message = "Se debe poner un comentario")
     private String mensaje;
 
     //respuesta al comentario
+    @Lob
     @Column(length = 333)
+    @NotBlank(message = "Se debe respopnder al comentario")
     private String respuesta;
 
     //fecha del comentario

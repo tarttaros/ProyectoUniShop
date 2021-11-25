@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class Categoria implements Serializable
 
     //nombre de la categoria
     @Column(length = 50 , nullable = false, unique = true)
+    @NotBlank(message = "la categoria debe tener un nombre")
     private String nombre;
 
     //productos de una categoria

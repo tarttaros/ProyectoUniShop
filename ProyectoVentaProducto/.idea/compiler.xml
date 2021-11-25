@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="negocio" />
+        <module name="web" />
         <module name="Persistencia" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Persistencia" options="-parameters" />
       <module name="negocio" options="-parameters" />
+      <module name="web" options="-parameters" />
     </option>
   </component>
 </project>

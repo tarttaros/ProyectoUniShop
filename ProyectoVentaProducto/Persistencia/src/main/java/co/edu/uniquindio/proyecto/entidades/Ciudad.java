@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,15 +25,16 @@ public class Ciudad implements Serializable
 
     //nombre de la ciudad
     @Column(length = 50, nullable = false, unique = true)
+    @NotBlank(message = "Es obligatorio el nombre de la ciudad")
     private String nombreCiudad;
 
     //relacion inversa persona ciudad(usuarios en una ciudad)
-    @OneToMany(mappedBy = "ciudad")
+    @OneToMany(mappedBy = "ciudad", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<Usuario> usuarios;
 
     //relacion inversa producto ciudad(productos vendidos en una ciudad)
-    @OneToMany(mappedBy = "ciudad")
+    @OneToMany(mappedBy = "ciudad", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<Producto> productos;
 

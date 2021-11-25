@@ -37,8 +37,10 @@ public class Producto implements Serializable
     private Integer cantidad;
 
     //descripcion del producto
+    @Lob
     @NotBlank
     @Column(length = 100, nullable = false)
+    @NotBlank(message = "Se debe establecer una descripcion")
     private String descripcion;
 
     //precio del producto
@@ -60,13 +62,11 @@ public class Producto implements Serializable
     //usuario que vende el producto
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario vendedor;
 
     //ciudad donde se vende el producto
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Ciudad ciudad;
 
     //imagenes de un producto
@@ -75,22 +75,22 @@ public class Producto implements Serializable
     private List<String> imagenes;
 
     //relacion inversa de prodcuto chats(chats de un producto)
-    @OneToMany(mappedBy = "productoComprar")
+    @OneToMany(mappedBy = "productoComprar", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<Chat> chatsProducto;
 
     //relacion inversa detalleCompra producto(producto a vender)
-    @OneToMany(mappedBy = "productoComprar")
+    @OneToMany(mappedBy = "productoComprar", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<DetalleCompra> detallesVenta;
 
     //relacion inversa comentario producto(comentarios hechos al producto)
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<Comentario> comentarios;
 
     //relacion inversa subasta producto(subastas del producto)
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<Subasta> subastasProducto;
 

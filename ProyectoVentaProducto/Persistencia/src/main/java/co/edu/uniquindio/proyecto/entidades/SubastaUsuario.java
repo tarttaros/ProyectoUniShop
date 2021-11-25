@@ -29,13 +29,11 @@ public class SubastaUsuario implements Serializable
     //subasta del usuario
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Subasta subasta;
 
     //usuario que subasta
     @JoinColumn(nullable = false)
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuario;
 
     //valor de la puja
