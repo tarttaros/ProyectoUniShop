@@ -3,7 +3,6 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -106,7 +105,7 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     public Usuario obtenerUsuario(int codigo) throws Exception {
         Optional<Usuario> buscado = usuarioRepo.findById(codigo);
         if(buscado.isPresent() ) {
-            throw new Exception("EL Usuario NO existe");
+            throw new Exception("EL Usuario no existe");
         }
         return buscado.get();
     }

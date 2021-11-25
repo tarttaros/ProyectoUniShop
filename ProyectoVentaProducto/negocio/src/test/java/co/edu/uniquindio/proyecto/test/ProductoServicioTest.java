@@ -18,7 +18,8 @@ import java.time.LocalDateTime;
 
 @SpringBootTest(classes = NegocioApplication.class)
 @Transactional
-public class ProductoServicioTest {
+public class ProductoServicioTest
+{
 
     @Autowired
     private ProductoServicio productoServicio;
@@ -29,10 +30,9 @@ public class ProductoServicioTest {
     @Autowired
     private CiudadRepo ciudadRepo;
 
-
-
     @Test
-    public void obtenerProductoTest() throws Exception {
+    public void obtenerProductoTest() throws Exception
+    {
 
         Ciudad c = new Ciudad("toscana");
         Ciudad reg = ciudadRepo.save(c);

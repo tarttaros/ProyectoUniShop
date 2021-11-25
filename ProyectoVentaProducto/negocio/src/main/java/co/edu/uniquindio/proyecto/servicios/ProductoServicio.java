@@ -1,39 +1,34 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.Categoria;
+import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.entidades.Usuario;
-import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoExcepcion;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductoServicio {
+public interface ProductoServicio
+{
+    Producto publicarProducto(Producto producto) throws Exception;
 
+    Producto actualizarProducto(Producto producto) throws Exception;
 
+    Optional<Producto> obtenerProducto(Integer codigo) throws Exception;
 
-    Producto publicarProducto(Producto p) throws  Exception;
+    void eliminarProducto(Integer codigo) throws Exception;
 
+    void comentarProducto(Comentario comentario) throws Exception;
 
-    void actualizarProducto(Producto p) throws Exception;
+    void guardarProductoFavorito(Producto producto) throws Exception;
 
-    void eliminarProducto(Integer codigo) throws  Exception;
+    void eliminarProductoFavorito(Producto producto) throws Exception;
 
-    Optional<Producto> obtenerProducto(Integer codigo) throws ProductoNoEncontradoExcepcion;
+    void comprarProducto(Compra compra) throws Exception;
 
-    List<Producto> listarProducto(Categoria categoria);
+    List<Producto> listaProductos(Categoria categoria) throws Exception;
 
-    void comentarProducto (String mensaje, Integer calificacion, Usuario usuario, Producto producto) throws  Exception;
+    List<Producto> buscarProducto(String nombre, String[] filtros);
 
-    void guardarProductoFavorito(Producto producto,Usuario usuario)throws Exception;
-
-    void eliminarProductoFavorito (Producto producto,Usuario usuario)throws  Exception;
-
-    void comprarProductos (Compra compra) throws  Exception;
-
-    List<Producto> buscarProductos(String nombreProducto, String[] filtros);
-
-    List<Producto> listarProductos(Integer codigoUsuario)throws Exception;
-
+    List<Producto> productosUsuario(Integer codigo) throws Exception;
 }
