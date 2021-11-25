@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 @SpringBootTest(classes = NegocioApplication.class)
-//@Transactional
+@Transactional
 public class ProductoServicioTest
 {
 

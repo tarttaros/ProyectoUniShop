@@ -34,28 +34,37 @@ public class UsuarioServicioImplementation implements UsuarioServicio
             throw new Exception("El email del usuario ya existe");
         }
 
-        buscado = usuarioRepo.findByNombre(u.getUserName());
+        buscado = usuarioRepo.findByNombre(u.getNombre());
         if(buscado.isPresent())
         {
             throw new Exception("El nombre del usuario ya existe");
         }
+
         return usuarioRepo.save(u);
     }
 
     @Override
     public Usuario actualizarUsuario(Usuario u) throws Exception
     {
+        /*
         Optional<Usuario> buscado = usuarioRepo.findByEmail(u.getEmail());
         if(buscado.isPresent())
         {
             throw new Exception("El email del usuario ya existe");
         }
 
-        buscado = usuarioRepo.findByNombre(u.getUserName());
+        buscado = usuarioRepo.findByNombre(u.getNombre());
         if(buscado.isPresent())
         {
             throw new Exception("El nombre del usuario ya existe");
         }
+         */
+        Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
+        if(buscado.isEmpty())
+        {
+            throw new Exception("El usuario no existe");
+        }
+
         return usuarioRepo.save(u);
     }
 
@@ -111,11 +120,7 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     @Override
     public Usuario iniciarSesion(String email, String password) throws Exception
     {
-        Optional<Usuario> usuario = usuarioRepo.findByEmailAndPassword(email,password);
-        if(usuario.isEmpty())
-        {
-            throw new Exception("Los datos de autenticacion son incorrectos");
-        }
+        Optional<Usuario> usuario = Optional.ofNullable(usuarioRepo.findByEmailAndPassword(email, password).orElseThrow(() -> new Exception("Los datos de autenticacion son incorrectos")));
         return usuario.get();
     }
 }
