@@ -48,7 +48,8 @@ public class Chat implements Serializable
     }
 
     //metodo constructor
-    public Chat(Usuario usuarioComprador, Producto productoComprar) {
+    public Chat(Usuario usuarioComprador, Producto productoComprar)
+    {
         this.usuarioComprador = usuarioComprador;
         this.productoComprar = productoComprar;
     }

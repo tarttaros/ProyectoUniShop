@@ -43,7 +43,8 @@ public class Ciudad implements Serializable
     }
 
     //metodo constructor
-    public Ciudad(String nombreCiudad) {
+    public Ciudad(String nombreCiudad)
+    {
         this.nombreCiudad = nombreCiudad;
     }
 }

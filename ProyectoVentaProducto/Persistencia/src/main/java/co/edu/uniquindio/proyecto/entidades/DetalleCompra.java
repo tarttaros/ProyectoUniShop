@@ -53,7 +53,8 @@ public class DetalleCompra implements Serializable
     }
 
     //metodo constructor
-    public DetalleCompra(Compra codigoCompra, Producto productoComprar, Integer unidades, Double precio) {
+    public DetalleCompra(Compra codigoCompra, Producto productoComprar, Integer unidades, Double precio)
+    {
         this.codigoCompra = codigoCompra;
         this.productoComprar = productoComprar;
         this.unidades = unidades;

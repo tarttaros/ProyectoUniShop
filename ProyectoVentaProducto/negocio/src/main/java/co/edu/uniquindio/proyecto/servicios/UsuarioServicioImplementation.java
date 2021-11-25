@@ -22,7 +22,6 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     @Override
     public Usuario registrarUsuario(Usuario u) throws Exception
     {
-        System.out.println(u.getCodigo());
         Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
         if(buscado.isPresent())
         {
@@ -34,10 +33,11 @@ public class UsuarioServicioImplementation implements UsuarioServicio
         {
             throw new Exception("El email del usuario ya existe");
         }
-        buscado = usuarioRepo.findByUserName(u.getUserName());
+
+        buscado = usuarioRepo.findByNombre(u.getUserName());
         if(buscado.isPresent())
         {
-            throw new Exception("El email del usuario ya existe");
+            throw new Exception("El nombre del usuario ya existe");
         }
         return usuarioRepo.save(u);
     }
@@ -45,29 +45,27 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     @Override
     public Usuario actualizarUsuario(Usuario u) throws Exception
     {
-        Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
-        if(buscado.isEmpty()){
-            throw new Exception("usuario no existe");
+        Optional<Usuario> buscado = usuarioRepo.findByEmail(u.getEmail());
+        if(buscado.isPresent())
+        {
+            throw new Exception("El email del usuario ya existe");
         }
-        return usuarioRepo.save(u);
-    }
-    private Usuario buscarUsuario(Usuario u) throws Exception {
-        Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
-        if(buscado.isPresent() ) {
-            throw new Exception("EL código del ysuarie ya existe");
-        }
-        buscado = buscarPorEmail(u.getEmail());
 
-        if(buscado.isPresent() ) {
-            throw new Exception("EL email del ysuario ya existe");
-        }
-        buscado = usuarioRepo.findByUserName(u.getUserName());
-        if(buscado.isPresent() ) {
-            throw new Exception("EL username del ysuario ya existe");
+        buscado = usuarioRepo.findByNombre(u.getUserName());
+        if(buscado.isPresent())
+        {
+            throw new Exception("El nombre del usuario ya existe");
         }
         return usuarioRepo.save(u);
     }
-    private Optional<Usuario> buscarPorEmail (String email){
+
+    private Optional<Usuario> buscarPorEmail (String email) throws Exception
+    {
+        Optional<Usuario> buscado = usuarioRepo.findByEmail(email);
+        if(buscado.isPresent())
+        {
+            throw new Exception("El email del usuario ya existe");
+        }
         return usuarioRepo.findByEmail(email);
     }
 
@@ -75,15 +73,12 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     public void eliminarUsuario(Integer codigo) throws Exception
     {
         Optional<Usuario> buscado = usuarioRepo.findById(codigo);
-        System.out.println(codigo);
-
         if(buscado.isEmpty())
         {
             throw new Exception("El codigo del usuario no existe");
         }
         usuarioRepo.deleteById(codigo);
     }
-
 
     @Override
     public List<Usuario> listarUsuarios()
@@ -92,29 +87,33 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     }
 
     @Override
-    public List<Producto> listarFavoritos(String email) throws Exception {
-        Optional<Usuario> buscado = buscarPorEmail((email));
+    public List<Producto> listarFavoritos(String email) throws Exception
+    {
+        Optional<Usuario> buscado = buscarPorEmail(email);
         if(buscado.isEmpty())
         {
             throw new Exception("El correo no existe");
         }
-        return usuarioRepo.obtenerFavoritos(email);
+        return usuarioRepo.obtenerProductosFavoritos(email);
     }
 
     @Override
-    public Usuario obtenerUsuario(int codigo) throws Exception {
+    public Usuario obtenerUsuario(int codigo) throws Exception
+    {
         Optional<Usuario> buscado = usuarioRepo.findById(codigo);
-        if(buscado.isPresent() ) {
+        if(buscado.isEmpty())
+        {
             throw new Exception("EL Usuario no existe");
         }
         return buscado.get();
     }
 
     @Override
-    public Usuario iniciarSesion(String email, String password) throws Exception {
-        Optional<Usuario> usuario= usuarioRepo.findByEmailAndPassword(email,password);
-
-        if(usuario.isEmpty()){
+    public Usuario iniciarSesion(String email, String password) throws Exception
+    {
+        Optional<Usuario> usuario = usuarioRepo.findByEmailAndPassword(email,password);
+        if(usuario.isEmpty())
+        {
             throw new Exception("Los datos de autenticacion son incorrectos");
         }
         return usuario.get();

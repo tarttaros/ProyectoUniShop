@@ -69,10 +69,11 @@ public class Usuario extends Persona implements Serializable
         super(codigo,nombre, email, password);
         this.ciudad = ciudad;
     }
+    /*
     public Usuario(String nombre, String email, String password, Ciudad ciudad,String userName)
     {
         super(nombre, email, password,userName);
         this.ciudad = ciudad;
     }
-
+    */
 }

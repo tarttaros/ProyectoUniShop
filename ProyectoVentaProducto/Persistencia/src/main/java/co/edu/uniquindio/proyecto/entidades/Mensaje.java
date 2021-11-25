@@ -51,7 +51,8 @@ public class Mensaje implements Serializable
     }
 
     //metodo constructor
-    public Mensaje(String mensaje, String emisor, Chat codigoChat) {
+    public Mensaje(String mensaje, String emisor, Chat codigoChat)
+    {
         this.mensaje = mensaje;
         this.emisor = emisor;
         this.codigoChat = codigoChat;

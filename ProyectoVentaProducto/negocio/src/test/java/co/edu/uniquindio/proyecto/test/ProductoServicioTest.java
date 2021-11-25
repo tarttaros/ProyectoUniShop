@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 @SpringBootTest(classes = NegocioApplication.class)
-@Transactional
+//@Transactional
 public class ProductoServicioTest
 {
 
@@ -37,8 +37,7 @@ public class ProductoServicioTest
         Ciudad c = new Ciudad("toscana");
         Ciudad reg = ciudadRepo.save(c);
 
-        Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c, "user");
-        u.setCodigo(1);
+        Usuario u = new Usuario(1,"juan", "Juan@gmail.com", "1234", null);
         Usuario r =usuarioServicio.registrarUsuario(u);
         LocalDateTime ldt =LocalDateTime.of(2021,12,22,20,10);
         Producto producto= new Producto("Televisor LG",4,"LG 22 pulgadas",1000000.0,0.0,r,reg);

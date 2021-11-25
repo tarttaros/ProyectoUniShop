@@ -26,14 +26,19 @@ public class ProductoServicioImpl implements ProductoServicio {
             return productoRepo.save(p);
         }
         catch (Exception e) {
-            throw  new Exception(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
     @Override
     public Producto actualizarProducto(Producto p) throws Exception
     {
-        return null;
+        Optional<Producto> buscado = productoRepo.findById(p.getCodigoProducto());
+        if(buscado.isEmpty())
+        {
+            throw new Exception("El producto no existe");
+        }
+        return productoRepo.save(p);
     }
 
     @Override
@@ -94,7 +99,8 @@ public class ProductoServicioImpl implements ProductoServicio {
     public Optional<Producto> obtenerProducto(Integer codigo) throws ProductoNoEncontradoExcepcion
     {
         Optional<Producto> producto= productoRepo.findById(codigo);
-        if(producto.isEmpty()){
+        if(producto.isEmpty())
+        {
             throw new ProductoNoEncontradoExcepcion("El codigo del producto no es valido");
         }
         return producto;

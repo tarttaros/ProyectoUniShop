@@ -49,7 +49,8 @@ public class Subasta implements Serializable
     }
 
     //metodo constructor
-    public Subasta(LocalDateTime fechaLimite, Producto producto) {
+    public Subasta(LocalDateTime fechaLimite, Producto producto)
+    {
         this.fechaLimite = fechaLimite;
         this.producto = producto;
     }

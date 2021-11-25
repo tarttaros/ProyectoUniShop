@@ -27,7 +27,7 @@ public class UsuarioServicioTest {
     public void registrarUsuarioTest() {
         Ciudad c = new Ciudad("toscana");
         Ciudad reg = ciudadRepo.save(c);
-        Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c,"juancho");
+        Usuario u = new Usuario(1,"juan", "Juan@gmail.com", "1234", null);
         u.setCodigo(1);
 
         try {
@@ -44,7 +44,7 @@ public class UsuarioServicioTest {
         try {
             Ciudad c = new Ciudad("toscana");
             Ciudad reg = ciudadRepo.save(c);
-            Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c,"juancho");
+            Usuario u = new Usuario(1,"juan", "Juan@gmail.com", "1234", null);
             u.setCodigo(1);
             usuarioServicio.registrarUsuario(u);
             usuarioServicio.eliminarUsuario(23);
@@ -60,7 +60,7 @@ public class UsuarioServicioTest {
             Ciudad c = new Ciudad("toscana");
             Ciudad reg = ciudadRepo.save(c);
 
-            Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c, "user");
+            Usuario u = new Usuario(1,"juan", "Juan@gmail.com", "1234", null);
             u.setCodigo(1);
             usuarioServicio.registrarUsuario(u);
 
@@ -78,7 +78,7 @@ public class UsuarioServicioTest {
             Ciudad c = new Ciudad("toscana");
             Ciudad reg = ciudadRepo.save(c);
 
-            Usuario u = new Usuario("juan", "Juan@gmail.com", "1234", c, "user");
+            Usuario u = new Usuario(1,"juan", "Juan@gmail.com", "1234", null);
             u.setCodigo(1);
             usuarioServicio.registrarUsuario(u);
             Usuario b= usuarioServicio.obtenerUsuario(1);
@@ -98,7 +98,7 @@ public class UsuarioServicioTest {
             Ciudad c = new Ciudad("toscana");
             Ciudad reg = ciudadRepo.save(c);
 
-            Usuario u = new Usuario( "juan", "Juan@gmail.com", "1234", c, "user");
+            Usuario u = new Usuario(1,"juan", "Juan@gmail.com", "1234", null);
             u.setCodigo(1);
             usuarioServicio.registrarUsuario(u);
             Usuario log=usuarioServicio.iniciarSesion("Juan@gmail.com","1234");

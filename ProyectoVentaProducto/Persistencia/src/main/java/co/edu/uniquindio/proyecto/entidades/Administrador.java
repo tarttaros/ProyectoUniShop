@@ -20,7 +20,8 @@ public class Administrador extends Persona implements Serializable
     }
 
     //metodo constructor
-    public Administrador(Integer codigo, String nombre, String email, String password) {
+    public Administrador(Integer codigo, String nombre, String email, String password)
+    {
         super(codigo, nombre, email, password);
     }
 

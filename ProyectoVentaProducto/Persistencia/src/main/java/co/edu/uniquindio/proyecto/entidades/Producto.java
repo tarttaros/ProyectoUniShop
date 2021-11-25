@@ -109,7 +109,8 @@ public class Producto implements Serializable
     }
 
     //metodo constructor
-    public Producto(String nombre, Integer cantidad, String descripcion, Double precio,Double descuento, Usuario vendedor, Ciudad ciudad) {
+    public Producto(String nombre, Integer cantidad, String descripcion, Double precio, Double descuento, Usuario vendedor, Ciudad ciudad)
+    {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.descripcion = descripcion;

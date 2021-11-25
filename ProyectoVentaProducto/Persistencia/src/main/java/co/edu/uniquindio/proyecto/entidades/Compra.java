@@ -53,7 +53,8 @@ public class Compra implements Serializable
     }
 
     //metodo constructor
-    public Compra(Usuario codigoUsuario, String medioDPago) {
+    public Compra(Usuario codigoUsuario, String medioDPago)
+    {
         this.codigoUsuario = codigoUsuario;
         this.medioDPago = medioDPago;
     }

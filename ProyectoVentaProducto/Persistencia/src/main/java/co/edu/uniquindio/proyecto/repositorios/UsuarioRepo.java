@@ -12,22 +12,16 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepo extends JpaRepository<Usuario, Integer>
 {
-
+    //para loggin
     Optional<Usuario> findByEmailAndPassword (String email, String password);
 
-    Optional<Usuario> findByEmail (String email);
-
+    //registro y actualizacion usuario
     Optional<Usuario> findByNombre (String nombre);
 
-    Optional<Usuario> findByUserName(String username);
+    //busca un usuario por email
+    Optional<Usuario> findByEmail (String email);
 
-//   @Query("select new co.edu.uniquindio.proyecto.dto.UsuarioYproducto(u.email,u.nombre,p) from Usuario u left join u.productosVenta P")
-// List<UsuarioYProducto> listarUsuariosYProductos();
-
-
+    //para listar productos favoritos
     @Query("select producto from Usuario usuario, in (usuario.productosFavoritos) producto where usuario.email = ?1 ")
     List<Producto> obtenerProductosFavoritos(String email);
-
-    @Query("select p from Usuario u, IN (u.productosFavoritos) p where  u.email =:email")
-    List<Producto> obtenerFavoritos(String email);
 }

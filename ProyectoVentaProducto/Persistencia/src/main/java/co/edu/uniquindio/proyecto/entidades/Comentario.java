@@ -63,11 +63,11 @@ public class Comentario implements Serializable
     }
 
     //metodo constructor
-    public Comentario(Usuario usuario, Producto producto, String mensaje, String respuesta, Integer calificacion) {
+    public Comentario(Usuario usuario, Producto producto, String mensaje, Integer calificacion)
+    {
         this.usuario = usuario;
         this.producto = producto;
         this.mensaje = mensaje;
-        this.respuesta = respuesta;
         this.calificacion = calificacion;
     }
 }

@@ -38,7 +38,8 @@ public class Categoria implements Serializable
     }
 
     //metodo constructor
-    public Categoria(String nombre) {
+    public Categoria(String nombre)
+    {
         this.nombre = nombre;
     }
 }

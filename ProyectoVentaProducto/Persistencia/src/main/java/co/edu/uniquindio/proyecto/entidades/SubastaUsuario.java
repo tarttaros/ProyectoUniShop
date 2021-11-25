@@ -55,7 +55,8 @@ public class SubastaUsuario implements Serializable
     }
 
     //metodo constructor
-    public SubastaUsuario(Subasta subasta, Usuario usuario, Double valor) {
+    public SubastaUsuario(Subasta subasta, Usuario usuario, Double valor)
+    {
         this.subasta = subasta;
         this.usuario = usuario;
         this.valor = valor;
