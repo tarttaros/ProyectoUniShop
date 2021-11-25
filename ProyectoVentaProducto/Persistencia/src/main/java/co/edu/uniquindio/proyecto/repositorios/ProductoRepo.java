@@ -50,5 +50,8 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer>
     @Query("select sum(detalleCompra.unidades * detalleCompra.precio), compra.codigoUsuario from Compra compra, in (compra.detalleCompra) detalleCompra where compra.codigoUsuario.nombre = ?1 group by compra.Codigo")
     List<Object[]> busqueda2(String nombreUsuario);
 
+    //busqueda de producto por nombre
+    @Query("select p from Producto p where p.nombre like concat('%', :nombre, '%' ) ")
+    List<Producto> buscarProductoNombre(String nombre);
 
 }
