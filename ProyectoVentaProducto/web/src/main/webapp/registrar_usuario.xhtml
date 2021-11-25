@@ -31,7 +31,8 @@
     <p:inputText id="ciudad_usuario" value="#{usuarioBean.usuario.ciudad}"/>
 
 </h:panelGrid>
-<p:commandButton action="#{usuarioBean.registrarUsuario}" value="Registrar" update="@form" />
+    <p:growl showDetail="true"></p:growl>
+<p:commandButton action="#{usuarioBean.registrarUsuario}" value="Registrar usuario" update="@form" />
 </h:form>
 
 </h:body>
