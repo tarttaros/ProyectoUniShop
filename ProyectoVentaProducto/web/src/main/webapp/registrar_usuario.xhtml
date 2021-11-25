@@ -13,6 +13,7 @@
     <title>Crear nuevo usuario</title>
 </h:head>
 <h:body>
+    <p:panel header="registrar usuarios">
 <h:form>
 <h:panelGrid columns="2" cellpadding="5">
     <p:outputLabel for="codigo_usuario" value="codigo:" />
@@ -35,5 +36,6 @@
 <p:commandButton action="#{usuarioBean.registrarUsuario}" value="Registrar usuario" update="@form" />
 </h:form>
 
+    </p:panel>
 </h:body>
 </html>
