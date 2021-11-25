@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 
@@ -29,8 +31,12 @@ public class UsuarioBean implements Serializable {
 
     public void registrarUsuario(){
         try {
+            FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Registro exitoso");
+            FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             usuarioServicio.registrarUsuario(usuario);
         } catch (Exception e) {
+            FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             e.printStackTrace();
         }
     }
