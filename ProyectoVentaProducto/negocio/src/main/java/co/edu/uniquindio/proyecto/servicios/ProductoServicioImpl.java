@@ -100,7 +100,7 @@ public class ProductoServicioImpl implements ProductoServicio {
     @Override
     public List<Producto> buscarProducto(String nombre, String[] filtros)
     {
-        return null;
+        return productoRepo.buscarProductoNombre(nombre);
     }
 
     @Override
@@ -108,4 +108,5 @@ public class ProductoServicioImpl implements ProductoServicio {
     {
         return null;
     }
+
 }
