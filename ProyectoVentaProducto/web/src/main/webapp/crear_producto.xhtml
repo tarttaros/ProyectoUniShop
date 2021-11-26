@@ -31,6 +31,10 @@
                 <p:outputLabel for="fecha_producto" value="fecha:" />
                 <p:datePicker id="fecha_producto" value="#{productoBean.producto.fecha}" required="true" />
 
+                <p:outputLabel value="Imágenes" for="imagen_p"/>
+                <p:fileUpload id="imagen_p" listener="#{productoBean.subirImagenes}" mode="advanced"  multiple="true" sizeLimit="1000000" fileLimit="5"
+                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"/>
+
                 <p:outputLabel for="descripcion_producto" value="descripcion:" />
                 <p:inputText id="descripcion_producto" value="#{productoBean.producto.descripcion}" required="true"/>
 
