@@ -4,7 +4,8 @@ import co.edu.uniquindio.proyecto.entidades.Categoria;
 
 import java.util.List;
 
-public interface CategoriaServicio {
+public interface CategoriaServicio
+{
 
     List<Categoria> listarCategorias();
 

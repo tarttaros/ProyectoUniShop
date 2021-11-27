@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoServicioImpl implements ProductoServicio {
+public class ProductoServicioImpl implements ProductoServicio
+{
 
     private final ProductoRepo productoRepo;
 
@@ -113,7 +114,8 @@ public class ProductoServicioImpl implements ProductoServicio {
     }
 
     @Override
-    public List<Producto> listarTodosProducto() throws Exception {
+    public List<Producto> listarTodosProducto() throws Exception
+    {
         return productoRepo.findAll();
     }
 

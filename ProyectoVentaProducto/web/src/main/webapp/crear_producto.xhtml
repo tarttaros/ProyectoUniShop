@@ -37,11 +37,11 @@
                 <p:outputLabel for="ciudad_producto" value="Ciudad: " />
                 <p:selectOneMenu id="ciudad_producto" value="#{productoBean.producto.ciudad}" converter="#{ciudadConverter}" >
                     <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" />
-                    <f:selectItems var="ciudad" itemLabel="#{ciudad.nombreCiudad}" value="#{productoBean.ciudades}" />
+                    <f:selectItems var="ciudad" itemLabel="#{ciudad.nombreCiudad}" value="#{productoBean.ciudades}"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Imágenes" for="imagen_p"/>
-                <p:fileUpload id="imagen_p" listener="#{productoBean.subirImagenes}" mode="advanced"  multiple="true" sizeLimit="1000000" fileLimit="5"
+                <p:fileUpload id="imagen_p" listener="#{productoBean.subirImagenes}" mode="advanced"  multiple="true" sizeLimit="2000000" fileLimit="5"
                               allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"/>
 
                 <p:outputLabel for="descripcion_producto" value="descripcion:" />

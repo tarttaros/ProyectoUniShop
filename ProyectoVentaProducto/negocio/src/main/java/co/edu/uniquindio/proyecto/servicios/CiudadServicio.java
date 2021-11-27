@@ -4,7 +4,8 @@ import co.edu.uniquindio.proyecto.entidades.Ciudad;
 
 import java.util.List;
 
-public interface CiudadServicio {
+public interface CiudadServicio
+{
 
     List<Ciudad> listarCiudades();
 

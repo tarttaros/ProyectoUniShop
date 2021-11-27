@@ -66,15 +66,18 @@ public class ProductoBean implements Serializable {
     private String urlUploads;
 
     @PostConstruct
-    public void inicializar(){
+    public void inicializar()
+    {
         this.producto=new Producto();
         this.imagenes=new ArrayList<>();
         categorias = categoriaServicio.listarCategorias();
         ciudades = ciudadServicio.listarCiudades();
     }
 
-    public void crearProducto(){
-        try {
+    public void crearProducto()
+    {
+        try
+        {
             // usuario quemado borrar cuando se llegue a sesiones
             // nose si colocar la fecha en el formulario
             if(!imagenes.isEmpty()) {
@@ -83,18 +86,19 @@ public class ProductoBean implements Serializable {
                 producto.setFecha(LocalDateTime.now().plusMonths(1));
                 productoServicio.publicarProducto(producto);
 
-
                 FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto creado satisfactoriamente");
                 FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 
             }
-            else{
-
+            else
+            {
                 FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es necesario subir al menos una imagen");
                 FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             }
 
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             e.printStackTrace();
@@ -102,21 +106,27 @@ public class ProductoBean implements Serializable {
 
     }
 
-    public void subirImagenes(FileUploadEvent event) {
+    public void subirImagenes(FileUploadEvent event)
+    {
         UploadedFile imagen = event.getFile();
         String nombreImagen = subirImagen(imagen);
-        if (nombreImagen != null) {
+        if (nombreImagen != null)
+        {
             imagenes.add(nombreImagen);
         }
     }
 
-    public String subirImagen(UploadedFile imagen) {
-        try {
+    public String subirImagen(UploadedFile imagen)
+    {
+        try
+        {
             File archivo = new File(urlUploads + "/" + imagen.getFileName());
             OutputStream outputStream = new FileOutputStream(archivo);
             IOUtils.copy(imagen.getInputStream(), outputStream);
             return imagen.getFileName();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;

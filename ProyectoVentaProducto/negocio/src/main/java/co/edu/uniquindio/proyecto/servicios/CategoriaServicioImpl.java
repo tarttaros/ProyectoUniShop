@@ -8,18 +8,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoriaServicioImpl implements  CategoriaServicio{
+public class CategoriaServicioImpl implements  CategoriaServicio
+{
 
     @Autowired
     private CategoriaRepo categoriaRepo;
 
     @Override
-    public List<Categoria> listarCategorias() {
+    public List<Categoria> listarCategorias()
+    {
         return  categoriaRepo.findAll();
     }
 
     @Override
-    public Categoria obtenerCategoria(Integer id) throws Exception {
+    public Categoria obtenerCategoria(Integer id) throws Exception
+    {
         return  categoriaRepo.findById(id).orElseThrow(() -> new Exception("el id no corresponde a ninguna ciudad"));
     }
 }

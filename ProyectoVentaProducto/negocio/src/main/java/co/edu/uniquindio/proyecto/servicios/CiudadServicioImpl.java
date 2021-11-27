@@ -8,19 +8,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CiudadServicioImpl implements CiudadServicio{
+public class CiudadServicioImpl implements CiudadServicio
+{
 
     @Autowired
     private CiudadRepo ciudadRepo;
 
 
     @Override
-    public List<Ciudad> listarCiudades() {
+    public List<Ciudad> listarCiudades()
+    {
         return ciudadRepo.findAll();
     }
 
     @Override
-    public Ciudad obtenerCiudad(Integer id) throws Exception{
+    public Ciudad obtenerCiudad(Integer id) throws Exception
+    {
         return ciudadRepo.findById(id).orElseThrow(() -> new Exception("el id no corresponde a ninguna ciudad"));
     }
 }

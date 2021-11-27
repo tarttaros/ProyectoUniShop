@@ -31,5 +31,4 @@ public interface ProductoServicio
 
     List<Producto>  listarTodosProducto() throws Exception;
 
-
 }
