@@ -11,11 +11,13 @@ import java.io.Serializable;
 @ViewScoped
 @Getter
 @Setter
-public class EjemploBean implements Serializable {
+public class EjemploBean implements Serializable
+{
 
     private String atributo1,atributo2;
 
-    public void cambiar(){
+    public void cambiar()
+    {
         String temp = atributo1;
         atributo1 = atributo2;
         atributo2 = temp;

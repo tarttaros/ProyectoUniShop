@@ -43,7 +43,7 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer>
     @Query("select usuario, subastaUsuario.valor as pujas from Subasta subasta, in  (subasta.pujasSubasta) subastaUsuario, in (subastaUsuario.usuario ) usuario where subasta.codigo= ?1 group by usuario order by pujas desc ")
     List<Usuario> buscar(Integer codigoSubasta);
 
-    //valor de la ccompra total de un usuario
+    //valor de la compra total de un usuario
     @Query("select sum(detalleCompra.unidades * detalleCompra.precio), compra.codigoUsuario from Compra compra, in (compra.detalleCompra) detalleCompra where compra.codigoUsuario.nombre = ?1 group by compra.Codigo")
     List<Object[]> busqueda2(String nombreUsuario);
 

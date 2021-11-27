@@ -15,7 +15,8 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class BusquedaBean implements Serializable {
+public class BusquedaBean implements Serializable
+{
 
     @Getter @Setter
     private String busqueda;
@@ -31,13 +32,16 @@ public class BusquedaBean implements Serializable {
     private ProductoServicio productoServicio;
 
     @PostConstruct
-    public void inicializar() {
-        if( busquedaParam!=null && !busquedaParam.isEmpty()) {
+    public void inicializar()
+    {
+        if( busquedaParam!=null && !busquedaParam.isEmpty())
+        {
             productos = productoServicio.buscarProducto(busquedaParam,null);
         }
     }
 
-    public String buscar(){
+    public String buscar()
+    {
         return "resultado_busqueda?faces-redirect=true&amp;busqueda="+busqueda;
     }
 }

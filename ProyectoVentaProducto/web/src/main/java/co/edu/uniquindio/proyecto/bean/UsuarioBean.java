@@ -18,7 +18,8 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class UsuarioBean implements Serializable {
+public class UsuarioBean implements Serializable
+{
 
     @Getter
     @Setter
@@ -37,17 +38,22 @@ public class UsuarioBean implements Serializable {
     private List<Ciudad> ciudades;
 
     @PostConstruct
-    public void inicializar(){
+    public void inicializar()
+    {
         usuario=new Usuario();
         ciudades = ciudadServicio.listarCiudades();
     }
 
-    public void registrarUsuario(){
-        try {
+    public void registrarUsuario()
+    {
+        try
+        {
             FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Registro exitoso");
             FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             usuarioServicio.registrarUsuario(usuario);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             e.printStackTrace();

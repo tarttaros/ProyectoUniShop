@@ -47,10 +47,8 @@
                 <p:outputLabel for="descripcion_producto" value="descripcion:" />
                 <p:inputText id="descripcion_producto" value="#{productoBean.producto.descripcion}" required="true"/>
 
-
-
             </h:panelGrid>
-            <p:growl showDetail="true"></p:growl>
+            <p:growl showDetail="true"/>
             <p:commandButton action="#{productoBean.crearProducto}" value="Crear producto" update="@form" />
         </h:form>
 
