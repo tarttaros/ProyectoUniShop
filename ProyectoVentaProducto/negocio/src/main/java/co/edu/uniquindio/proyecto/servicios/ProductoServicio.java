@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.servicios;
 
-import co.edu.uniquindio.proyecto.entidades.Categoria;
-import co.edu.uniquindio.proyecto.entidades.Comentario;
-import co.edu.uniquindio.proyecto.entidades.Compra;
-import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,4 +28,6 @@ public interface ProductoServicio
     List<Producto> buscarProducto(String nombre, String[] filtros);
 
     List<Producto> productosUsuario(Integer codigo) throws Exception;
+
+
 }

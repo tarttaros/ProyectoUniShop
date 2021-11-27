@@ -1,7 +1,11 @@
 package co.edu.uniquindio.proyecto.bean;
 
+import co.edu.uniquindio.proyecto.entidades.Categoria;
+import co.edu.uniquindio.proyecto.entidades.Ciudad;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.servicios.CategoriaServicio;
+import co.edu.uniquindio.proyecto.servicios.CiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -21,7 +25,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @ViewScoped
@@ -36,6 +42,24 @@ public class ProductoBean implements Serializable {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    @Autowired
+    private CategoriaServicio categoriaServicio;
+
+    @Autowired
+    private CiudadServicio ciudadServicio;
+
+    @Getter @Setter
+    private Ciudad ciudad;
+
+    @Getter @Setter
+    private List<Ciudad> ciudades;
+
+    @Getter @Setter
+    private Categoria categoria;
+
+    @Getter @Setter
+    private List<Categoria> categorias;
+
     private ArrayList<String> imagenes;
 
     @Value("${upload.url}")
@@ -45,6 +69,8 @@ public class ProductoBean implements Serializable {
     public void inicializar(){
         this.producto=new Producto();
         this.imagenes=new ArrayList<>();
+        categorias = categoriaServicio.listarCategorias();
+        ciudades = ciudadServicio.listarCiudades();
     }
 
     public void crearProducto(){
@@ -54,6 +80,7 @@ public class ProductoBean implements Serializable {
             if(!imagenes.isEmpty()) {
                 Usuario usuario = usuarioServicio.obtenerUsuario(12);
                 producto.setVendedor(usuario);
+                producto.setFecha(LocalDateTime.now().plusMonths(1));
                 productoServicio.publicarProducto(producto);
 
 
