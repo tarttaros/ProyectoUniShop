@@ -2,7 +2,9 @@ package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoExcepcion;
+import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +15,8 @@ public class ProductoServicioImpl implements ProductoServicio {
 
     private final ProductoRepo productoRepo;
 
-    public ProductoServicioImpl(ProductoRepo productoRepo)
+
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo)
     {
         this.productoRepo = productoRepo;
     }
@@ -94,7 +97,7 @@ public class ProductoServicioImpl implements ProductoServicio {
     @Override
     public List<Producto> listaProductos(Categoria categoria) throws Exception
     {
-        return null;
+        return productoRepo.listarPorCategoria(categoria);
     }
 
     @Override
@@ -108,5 +111,11 @@ public class ProductoServicioImpl implements ProductoServicio {
     {
         return null;
     }
+
+    @Override
+    public List<Producto> listarTodosProducto() throws Exception {
+        return productoRepo.findAll();
+    }
+
 
 }

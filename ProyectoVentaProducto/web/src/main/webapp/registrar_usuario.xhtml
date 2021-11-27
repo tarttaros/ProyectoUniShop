@@ -28,8 +28,11 @@
     <p:outputLabel for="password_usuario" value="password:" />
     <p:password id="password_usuario" value="#{usuarioBean.usuario.password}" required="true"/>
 
-    <p:outputLabel for="ciudad_usuario" value="ciudad:" />
-    <p:inputText id="ciudad_usuario" value="#{usuarioBean.usuario.ciudad}"/>
+    <p:outputLabel for="ciudad_usuario" value="Ciudad: " />
+    <p:selectOneMenu id="ciudad_usuario" value="#{usuarioBean.usuario.ciudad}" converter="#{ciudadConverter}" >
+        <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" />
+        <f:selectItems var="ciudad" itemLabel="#{ciudad.nombreCiudad}" value="#{usuarioBean.ciudades}" />
+    </p:selectOneMenu>
 
 </h:panelGrid>
     <p:growl showDetail="true"></p:growl>
