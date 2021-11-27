@@ -29,5 +29,7 @@ public interface ProductoServicio
 
     List<Producto> productosUsuario(Integer codigo) throws Exception;
 
+    List<Producto>  listarTodosProducto() throws Exception;
+
 
 }
