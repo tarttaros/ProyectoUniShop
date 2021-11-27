@@ -1,0 +1,14 @@
+#Archivos compilados
+*.class
+
+#Archivos temporales de Maven
+/**/target/
+
+#Archivos de inteliJ
+.iml
+/.idea
+
+#Ignora archivos del sistema
+/src
+
+web/src/main/webapp/uploads

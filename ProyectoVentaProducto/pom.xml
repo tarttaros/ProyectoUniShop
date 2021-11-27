@@ -20,8 +20,10 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <artifactId>proyecto-venta</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Proyecto Venta</name>
-    <description>Proyecto que agrupa todos los módulos correspondientes al
-        aplicativo</description>
+    <description>
+        Proyecto que agrupa todos los módulos correspondientes al
+        aplicativo
+    </description>
     <properties>
         <java.version>11</java.version>
     </properties>
