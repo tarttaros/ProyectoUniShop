@@ -118,6 +118,4 @@ public class ProductoServicioImpl implements ProductoServicio
     {
         return productoRepo.findAll();
     }
-
-
 }

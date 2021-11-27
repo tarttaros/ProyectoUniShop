@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductoRepo extends JpaRepository<Producto, Integer>
-{
+public interface ProductoRepo extends JpaRepository<Producto, Integer> {
 
     //cantidad de productos vendidos por categoria
     @Query("select producto, sum( detalle.unidades ) as total from  Categoria categoria , in (categoria.listaProductos) producto, in (producto.detallesVenta) detalle where categoria.nombre = ?1 group by producto order by total desc ")

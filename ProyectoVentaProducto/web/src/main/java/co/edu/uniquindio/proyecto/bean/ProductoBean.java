@@ -81,7 +81,7 @@ public class ProductoBean implements Serializable {
             // usuario quemado borrar cuando se llegue a sesiones
             // nose si colocar la fecha en el formulario
             if(!imagenes.isEmpty()) {
-                Usuario usuario = usuarioServicio.obtenerUsuario(12);
+                Usuario usuario = usuarioServicio.obtenerUsuario(1);
                 producto.setVendedor(usuario);
                 producto.setFecha(LocalDateTime.now().plusMonths(1));
                 productoServicio.publicarProducto(producto);

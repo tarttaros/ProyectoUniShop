@@ -27,8 +27,13 @@ public class inicioBean implements Serializable
     private List<Producto> productos;
 
     @PostConstruct
-    public void inicializar() throws Exception {
+    public void inicializar() throws Exception
+    {
+        this.productos = productoServicio.listarTodosProducto() ;
+    }
 
-        this.productos=productoServicio.listarTodosProducto() ;
+    public String irADetalle(String id)
+    {
+        return "/detalle_producto?faces-redirect=true&amp;producto="+id;
     }
 }

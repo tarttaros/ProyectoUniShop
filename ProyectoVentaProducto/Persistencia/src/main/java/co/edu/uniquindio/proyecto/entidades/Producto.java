@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -71,7 +72,7 @@ public class Producto implements Serializable
 
     //imagenes de un producto
     @Column(nullable = false)
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> imagenes;
 
     //relacion inversa de prodcuto chats(chats de un producto)
@@ -118,5 +119,14 @@ public class Producto implements Serializable
         this.descuento = descuento;
         this.vendedor = vendedor;
         this.ciudad = ciudad;
+    }
+
+    public String getImagenPrincipal()
+    {
+        if(imagenes != null && !imagenes.isEmpty())
+        {
+            return imagenes.get(0);
+        }
+        return "default.png";
     }
 }

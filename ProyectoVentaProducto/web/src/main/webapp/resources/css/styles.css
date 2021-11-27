@@ -10,3 +10,15 @@
     justify-content: center;
     flex-direction: column;
 }
+
+.imagen-producto
+{
+    max-width: 150px;
+}
+
+
+.list-pro
+{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
