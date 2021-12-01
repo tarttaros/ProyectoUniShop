@@ -3,10 +3,11 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoExcepcion;
 import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
+import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,10 +17,13 @@ public class ProductoServicioImpl implements ProductoServicio
 
     private final ProductoRepo productoRepo;
 
+    private final ComentarioRepo comentarioRepo;
 
-    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo)
+
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, ComentarioRepo comentarioRepo)
     {
         this.productoRepo = productoRepo;
+        this.comentarioRepo = comentarioRepo;
     }
 
     @Override
@@ -61,20 +65,22 @@ public class ProductoServicioImpl implements ProductoServicio
     }
 
     @Override
-    public Optional<Producto> obtenerProducto(Integer codigo) throws ProductoNoEncontradoExcepcion
+    public Producto obtenerProducto(Integer codigo) throws ProductoNoEncontradoExcepcion
     {
         Optional<Producto> producto= productoRepo.findById(codigo);
         if(producto.isEmpty())
         {
             throw new ProductoNoEncontradoExcepcion("El codigo del producto no es valido");
         }
-        return producto;
+        Producto produc =productoRepo.obtenerProductoPorId(codigo);
+        return produc;
     }
 
     @Override
     public void comentarProducto(Comentario comentario) throws Exception
     {
-
+        comentario.setFecha(LocalDateTime.now());
+        comentarioRepo.save(comentario);
     }
 
     @Override

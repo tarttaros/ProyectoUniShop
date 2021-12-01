@@ -13,6 +13,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -46,7 +47,6 @@ public class Comentario implements Serializable
     //respuesta al comentario
     @Lob
     @Column(length = 333)
-    @NotBlank(message = "Se debe respopnder al comentario")
     private String respuesta;
 
     //fecha del comentario
@@ -64,6 +64,7 @@ public class Comentario implements Serializable
     {
         super();
     }
+
 
     //metodo constructor
     public Comentario(Usuario usuario, Producto producto, String mensaje, Integer calificacion)

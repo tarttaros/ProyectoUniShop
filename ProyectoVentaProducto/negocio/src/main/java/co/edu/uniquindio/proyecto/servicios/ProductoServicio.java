@@ -11,7 +11,7 @@ public interface ProductoServicio
 
     Producto actualizarProducto(Producto producto) throws Exception;
 
-    Optional<Producto> obtenerProducto(Integer codigo) throws Exception;
+    Producto obtenerProducto(Integer codigo) throws Exception;
 
     void eliminarProducto(Integer codigo) throws Exception;
 

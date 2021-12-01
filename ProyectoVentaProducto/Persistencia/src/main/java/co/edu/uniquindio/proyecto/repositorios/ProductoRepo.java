@@ -52,4 +52,7 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer> {
 
     @Query("select p from Producto p where :categoria member of p.categoriasProducto")
     List<Producto> listarPorCategoria(Categoria categoria);
+
+    @Query("select p from Producto p where p.codigoProducto=?1")
+    Producto obtenerProductoPorId(Integer codigo);
 }
