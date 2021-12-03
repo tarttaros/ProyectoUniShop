@@ -52,7 +52,15 @@
 
                 <ui:define name="content">
             <h1>Lista de productos</h1>
-            <h:form>
+                    <h1> #{seguridadBean.valor} </h1>
+                    <h:form>
+                    <h:inputText values="#{seguridadBean.valor}" />
+                        <h:commandButton value="Evento" action="#{seguridadBean.cambiarDato}" update="@form" />
+
+                    </h:form>
+
+                    <h:form>
+
                 <p:dataView value="#{inicioBean.productos}" paginator="true" rows="13" var="pro" gridIcon="pi pi-th-large" listIcon="pi pi-bars">
                     <p:dataViewGridItem>
                         <div class="card" >
