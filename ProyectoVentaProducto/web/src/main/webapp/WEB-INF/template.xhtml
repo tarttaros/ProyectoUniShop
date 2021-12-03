@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unishop | <ui:insert name="title">Plantilla</ui:insert></title>
+    <h:outputStylesheet library="css"  name ="bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="styles.css" />
+    <h:outputScript library="js" name="bootstrap.bundle.min.js"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+</h:head>
+<h:body>
+    <div id="header">
+        <header>
+            <div class="px-3 py-2 bg-dark text-white">
+                <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                            <span class="material-icons-outlined" style="font-size: 2rem ; margin-right: 5px">payment</span>
+                            <span class="fs-4" style="margin-left: 2px"> Unishop</span>
+                        </a>
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"  >
+                            <li>
+                                <a href="crear_producto.xhtml" class="nav-link text-white">
+                                    <i class="material-icons icono" style="font-size: 2rem">create_new_folder</i>
+                                    <p>Crear producto</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="registrar_usuario.xhtml" class="nav-link text-white">
+                                    <i class="material-icons icono" style="font-size: 2rem">app_registration</i>
+                                    <p>Registrarse</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="registrar_usuario.xhtml" class="nav-link text-white">
+                                    <span class="material-icons icono" style="font-size: 2rem">person</span>
+                                    <p>Iniciar sesion</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand"></a>
+                    <h:form style="margin-right: 95px">
+                        <p:inputText style="width:300px " placeholder="Que producto esta buscando?" required="true" value="#{busquedaBean.busqueda}" />
+                        <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form" />
+                    </h:form>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <div id="content">
+        <div class="container">
+            <ui:insert name="content">Contenido</ui:insert>
+        </div>
+    </div>
+    <div id="footer" class="footer mt-4">
+        <ui:insert name="footer">
+            <div class="py-4 bg-light" align="center">
+                <div class="justify-content-center" >
+                    <div class="col-10" >
+                        <span>Universidad del Quindío - Programación avanzada - 2021</span>
+                    </div>
+                </div>
+            </div>
+        </ui:insert>
+    </div>
+</h:body>
+</html>
