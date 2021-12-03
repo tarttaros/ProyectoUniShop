@@ -65,6 +65,9 @@ public class ProductoBean implements Serializable {
     @Value("${upload.url}")
     private String urlUploads;
 
+    @Value("#{SeguridadBean.usuarioSesion}")
+    private Usuario usuarioSesion;
+
     @PostConstruct
     public void inicializar()
     {
@@ -80,15 +83,17 @@ public class ProductoBean implements Serializable {
         {
             // usuario quemado borrar cuando se llegue a sesiones
             // nose si colocar la fecha en el formulario
-            if(!imagenes.isEmpty()) {
-                Usuario usuario = usuarioServicio.obtenerUsuario(1);
-                producto.setVendedor(usuario);
-                producto.setFecha(LocalDateTime.now().plusMonths(1));
-                productoServicio.publicarProducto(producto);
+            if(usuarioSesion!=null) {
+                if (!imagenes.isEmpty()) {
 
-                FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto creado satisfactoriamente");
-                FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+                    producto.setVendedor(usuarioSesion);
+                    producto.setFecha(LocalDateTime.now().plusMonths(1));
+                    productoServicio.publicarProducto(producto);
 
+                    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto creado satisfactoriamente");
+                    FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+
+                }
             }
             else
             {

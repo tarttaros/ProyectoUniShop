@@ -16,13 +16,13 @@
                         </a>
                         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"  >
                             <li>
-                                <a href="crear_producto.xhtml" class="nav-link text-white">
+                                <a href="/usuario/crear_producto.xhtml" class="nav-link text-white">
                                     <i class="material-icons icono" style="font-size: 2rem">create_new_folder</i>
                                     <p>Crear producto</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="registrar_usuario.xhtml" class="nav-link text-white">
+                                <a href="/usuario/registrar_usuario.xhtml" class="nav-link text-white">
                                     <i class="material-icons icono" style="font-size: 2rem">app_registration</i>
                                     <p>Registrarse</p>
                                 </a>
@@ -52,12 +52,7 @@
 
                 <ui:define name="content">
             <h1>Lista de productos</h1>
-                    <h1> #{seguridadBean.valor} </h1>
-                    <h:form>
-                    <h:inputText values="#{seguridadBean.valor}" />
-                        <h:commandButton value="Evento" action="#{seguridadBean.cambiarDato}" update="@form" />
 
-                    </h:form>
 
                     <h:form>
 

@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.Comentario;
 import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -53,12 +54,15 @@ public class DetalleProductoBean {
         }
     }
 
+    @Value("#{seguridadBean.usuarioSesion}")
+    private Usuario usuarioSesion;
+
     public void crearComentario(){
 
         try {
 
             nuevoComentario.setProducto(producto);
-            nuevoComentario.setUsuario( usuarioServicio.obtenerUsuario(12));
+            nuevoComentario.setUsuario(usuarioSesion);
             productoServicio.comentarProducto(nuevoComentario);
             this.comentarios.add(nuevoComentario);
             this.nuevoComentario = new Comentario();

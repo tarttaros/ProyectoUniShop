@@ -24,7 +24,7 @@ public class Usuario extends Persona implements Serializable
 
     //lista de telefonos
     //@Column(nullable = false)
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String,String> telefonos;
 
     //relacion inversa usuario chatComprador(chats del usuario)
