@@ -48,6 +48,12 @@
                                     <p>Iniciar sesion</p>
                                 </a>
                             </li>
+                            <li jsf:rendered="#{seguridadBean.autenticado}">
+                                <a href="/usuario/carrito.xhtml" class="nav-link text-white">
+                                    <i class="pi pi-shopping-cart b di-block mx-auto mb- icon-menu" style="font-size: 2rem"></i>
+                                    <p>Carrito</p>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

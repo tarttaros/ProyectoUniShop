@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.bean;
 
+import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -8,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Component
 @Scope("session")
@@ -27,6 +30,19 @@ public class SeguridadBean implements Serializable {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
+
+    @Getter @Setter
+    private ArrayList<ProductoCarrito> productosCarrito;
+    @Getter @Setter
+    private double subtotal;
+
+    @PostConstruct
+    public  void inicializar(){
+        this.subtotal=0F;
+        this.productosCarrito=new ArrayList<>();
+
+    }
+
 
     public String iniciarSesion(){
 
@@ -52,5 +68,26 @@ public class SeguridadBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";
         }
+
+    public void agregarAlCarrito(Integer id,Double precio,String nombre,String imagen){
+
+        ProductoCarrito pc=new ProductoCarrito(id,nombre,imagen,precio,1);
+        if(!productosCarrito.contains(pc)){
+            productosCarrito.add(pc);
+            subtotal+=precio;
+
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"alerta","Producto agregado al carrito");
+            FacesContext.getCurrentInstance().addMessage("add-cart",fm);
+
+        }
+
     }
+
+    public void eliminarDelCarrito(int indice){
+
+        productosCarrito.remove(indice);
+
+    }
+
+}
 
