@@ -36,22 +36,28 @@
                                     <p>Crear producto</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="registrar_usuario.xhtml" class="nav-link text-white">
+                            <li jsf:rendered="#{seguridadBean.autenticado}">
+                                <a href="/usuario/mis_productos.xhtml" class="nav-link text-white">
                                     <i class="material-icons icono" style="font-size: 2rem">app_registration</i>
-                                    <p>Registrarse</p>
+                                    <p>Mis productos</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="registrar_usuario.xhtml" class="nav-link text-white">
+                            <li jsf:rendered="#{seguridadBean.autenticado}">
+                                <a href="/usuario/perfil.xhtml" class="nav-link text-white">
                                     <span class="material-icons icono" style="font-size: 2rem">person</span>
-                                    <p>Iniciar sesion</p>
+                                    <p>Perfil</p>
                                 </a>
                             </li>
                             <li jsf:rendered="#{seguridadBean.autenticado}">
                                 <a href="/usuario/carrito.xhtml" class="nav-link text-white">
                                     <i class="pi pi-shopping-cart b di-block mx-auto mb- icon-menu" style="font-size: 2rem"></i>
                                     <p>Carrito</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.xhtml" class="nav-link text-white">
+                                    <span class="material-icons icono" style="font-size: 2rem">person</span>
+                                    <p>Iniciar como adm</p>
                                 </a>
                             </li>
                         </ul>
