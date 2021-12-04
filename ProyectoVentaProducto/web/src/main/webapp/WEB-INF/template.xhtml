@@ -60,10 +60,16 @@
                                     <p>Subasta</p>
                                 </a>
                             </li>
-                            <li jsf:rendered="#{!seguridadBean.autenticado}">
-                                <a href="index.xhtml" class="nav-link text-white">
+                            <li jsf:rendered="#{!seguridadBean.autenticadoAdm}">
+                                <a class="nav-link text-white" onclick="PF('loginA').show()">
                                     <i class="material-icons icono" style="font-size: 2rem">lock</i>
                                     <p>Iniciar como adm</p>
+                                </a>
+                            </li>
+                            <li jsf:rendered="#{seguridadBean.autenticadoAdm}">
+                                <a href="/administrador/gestion_usuarios.xhtml" class="nav-link text-white">
+                                    <i class="material-icons icono" style="font-size: 2rem">person</i>
+                                    <p>Gestion de usuarios</p>
                                 </a>
                             </li>
                         </ul>
@@ -80,15 +86,23 @@
 
                 <div class="botonComand" style="margin: 10px">
                     <h:form rendered="#{!seguridadBean.autenticado}" >
+                    <h:form rendered="#{!seguridadBean.autenticadoAdm}" >
                         <p:commandButton value="Login" class="" styleClass="btn btn-primary"  onclick="PF('login').show()" icon="pi pi-sign-in"/>
+                    </h:form>
                     </h:form>
                 </div>
                 <div class="botonComand" style="margin: 10px">
-                    <h:form rendered="#{!seguridadBean.autenticado}" >
+                    <h:form rendered="#{!seguridadBean.autenticado and !seguridadBean.autenticadoAdm}" >
                         <p:commandButton value="Registrarse" styleClass="btn btn-primary" action="registrar_usuario?faces-redirect=true" icon="pi pi-user-plus"/>
                     </h:form>
                     <div id="info-sesion" jsf:rendered="#{seguridadBean.autenticado}">
                         <h5>Hola, #{seguridadBean.usuarioSesion.nombre}</h5>
+                        <h:form>
+                            <p:commandButton value="cerrar sesion" styleClass="btn btn-primary" action="#{seguridadBean.cerrarSesion}"/>
+                        </h:form>
+                    </div>
+                    <div id="info-sesionAdm" jsf:rendered="#{seguridadBean.autenticadoAdm}">
+                        <h5>Hola, #{seguridadBean.administradorSesion.nombre}</h5>
                         <h:form>
                             <p:commandButton value="cerrar sesion" styleClass="btn btn-primary" action="#{seguridadBean.cerrarSesion}"/>
                         </h:form>
@@ -112,6 +126,22 @@
                          styleClass="mt-4" update="@form" icon="pi pi-sign-in" iconPos="left" />
         <p:growl for="login-bean" showDetail="true" />
     </h:form>
+    </p:dialog>
+    <p:dialog header="Iniciar sesión Administrador" showEffect="fade" widgetVar="loginA" modal="true"
+              rendered="#{!seguridadBean.autenticadoAdm}" >
+        <h:form >
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="email_loginA" value="Email:" />
+                <p:inputText id="email_loginA" value="#{seguridadBean.email}" required="true" />
+                <p:message for="email_loginA" />
+                <p:outputLabel for="password_loginA" value="Password:" />
+                <p:password id="password_loginA" value="#{seguridadBean.password}" required="true"/>
+                <p:message for="password_loginA" />
+            </h:panelGrid>
+            <p:commandButton value="Iniciar Sesión Administrador" action="#{seguridadBean.iniciarSesionAdm}"
+                             styleClass="mt-4" update="@form" icon="pi pi-sign-in" iconPos="left" />
+            <p:growl for="login-bean" showDetail="true" />
+        </h:form>
     </p:dialog>
 
     <p:growl for="msj-bean" showDetail="true" />

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="title">Mis productos</ui:define>
+    <ui:define name="content">
+        <p:panel header="Registrar un usuarios">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="codigo_usuario" value="codigo:" />
+                    <p:inputText id="codigo_usuario" value="#{usuarioBean.usuario.codigo}" required="true"/>
+
+                    <p:outputLabel for="nombre_usuario" value="Nombre:" />
+                    <p:inputText id="nombre_usuario" value="#{usuarioBean.usuario.nombre}" required="true"/>
+
+                    <p:outputLabel for="email_usuario" value="Email:" />
+                    <p:inputText id="email_usuario" value="#{usuarioBean.usuario.email}" required="true"/>
+
+                    <p:outputLabel for="password_usuario" value="password:" />
+                    <p:password id="password_usuario" value="#{usuarioBean.usuario.password}" required="true"/>
+
+                    <p:outputLabel for="ciudad_usuario" value="Ciudad: " />
+                    <p:selectOneMenu id="ciudad_usuario" value="#{usuarioBean.usuario.ciudad}" converter="#{ciudadConverter}" required="true">
+                        <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" />
+                        <f:selectItems var="ciudad" itemLabel="#{ciudad.nombreCiudad}" value="#{usuarioBean.ciudades}" />
+                    </p:selectOneMenu>
+
+                </h:panelGrid>
+                <p:growl showDetail="true"></p:growl>
+                <p:commandButton action="#{usuarioBean.registrarUsuario}" value="Registrar un usuario" update="@form" />
+            </h:form>
+
+        </p:panel>
+
+        <p:panel header="Lista Usuarios">
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+                <div class="card">
+
+                    <p:dataTable id="listusuarios" var="liusuarios" value="#{usuarioBean.usuariosA}" editable="true"
+                                 style="margin-bottom:20px">
+
+                        <p:ajax event="rowEdit" listener="#{usuarioBean.onRowEdit}" update=":form:msgs"/>
+                        <p:ajax event="rowEditCancel" listener="#{usuarioBean.onRowCancel}" update=":form:msgs"/>
+
+                        <p:column headerText="Codigo">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{liusuarios.codigo}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="modelInput" value="#{liusuarios.codigo}" style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{liusuarios.nombre}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{liusuarios.nombre}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Email">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{liusuarios.email}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{liusuarios.email}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Ciudad">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{liusuarios.ciudad}" converter="#{ciudadCoverter2}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <h:selectOneMenu value="#{usuarioBean.usuario.ciudad}" >
+                                        <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" />
+                                        <f:selectItems var="ciudad" itemLabel="#{ciudad.nombreCiudad}" value="#{usuarioBean.ciudades}"   />
+                                    </h:selectOneMenu>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column style="width:6rem">
+                            <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </h:form>
+        </p:panel>
+    </ui:define>
+</ui:composition>
+</html>

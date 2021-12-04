@@ -27,6 +27,17 @@
 #info-sesion>h5{
     margin-bottom: 0;
 }
+#info-sesionAdm{
+    position: relative;
+}
+#info-sesionAdm > *{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+#info-sesionAdm>h5{
+    margin-bottom: 0;
+}
 
 .botonComand{
     display: inline-block;

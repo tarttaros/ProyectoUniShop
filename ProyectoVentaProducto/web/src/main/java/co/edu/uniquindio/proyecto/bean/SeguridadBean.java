@@ -1,7 +1,9 @@
 package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
+import co.edu.uniquindio.proyecto.entidades.Administrador;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.servicios.AdminServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -24,13 +26,22 @@ public class SeguridadBean implements Serializable {
     private boolean autenticado;
 
     @Getter @Setter
+    private boolean autenticadoAdm;
+
+    @Getter @Setter
     private String email,password;
 
     @Getter @Setter
     Usuario usuarioSesion;
 
+    @Getter @Setter
+    Administrador administradorSesion;
+
     @Autowired
     private UsuarioServicio usuarioServicio;
+
+    @Autowired
+    private AdminServicio adminServicio;
 
     @Autowired
     private ProductoServicio productoServicio;
@@ -67,6 +78,25 @@ public class SeguridadBean implements Serializable {
             }
             return null;
         }
+    public String iniciarSesionAdm(){
+
+        System.out.println(email+":"+password);
+
+        if(!email.isEmpty()&&!password.isEmpty()){
+
+            try {
+                System.out.println(email+":"+password);
+                administradorSesion = adminServicio.iniciarSesionAdm(email, password);
+                autenticadoAdm = true;
+                return "/index?faces-redirect=true";
+
+            }catch (Exception e){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR,"alerta",e.getMessage());
+                FacesContext.getCurrentInstance().addMessage("msj-bean",fm);
+            }
+        }
+        return null;
+    }
 
         public String cerrarSesion(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
