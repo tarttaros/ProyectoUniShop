@@ -13,6 +13,18 @@
 }
 
 #info-sesion{
+    position: relative;
+}
+#info-sesion > *{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+#info-sesion>h5{
+    margin-bottom: 0;
+}
+
+.botonComand{
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;

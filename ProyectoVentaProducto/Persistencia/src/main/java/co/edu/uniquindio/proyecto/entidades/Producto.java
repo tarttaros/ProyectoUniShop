@@ -129,4 +129,11 @@ public class Producto implements Serializable
         }
         return "default.png";
     }
+    public String obtenerCategorias(List<Categoria> categorias){
+        String a="";
+        for (int i=0;i<categorias.size();i++){
+            a=categorias.get(i).getNombre()+","+a;
+        }
+        return a;
+    }
 }

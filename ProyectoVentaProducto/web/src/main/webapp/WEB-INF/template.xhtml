@@ -66,17 +66,21 @@
                     <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form" />
                 </h:form>
 
-                <div class="text-end">
+                <div class="botonComand">
                     <h:form rendered="#{!seguridadBean.autenticado}" >
-                        <p:commandButton value="Login" styleClass="btn btn-primary"  onclick="PF('login').show()" icon="pi pi-sign-in"/>
+                        <p:commandButton value="Login" class="" styleClass="btn btn-primary"  onclick="PF('login').show()" icon="pi pi-sign-in"/>
+                    </h:form>
+                </div>
+                <div class="botonComand">
+                    <h:form rendered="#{!seguridadBean.autenticado}" >
                         <p:commandButton value="Registrarse" styleClass="btn btn-primary" action="registrar_usuario?faces-redirect=true" icon="pi pi-user-plus"/>
                     </h:form>
-                     <div id="info-sesion" jsf:rendered="#{seguridadBean.autenticado}">
-                         <span>#{seguridadBean.usuarioSesion.nombre}</span>
-                         <h:form>
+                    <div id="info-sesion" jsf:rendered="#{seguridadBean.autenticado}">
+                        <h5>Hola,#{seguridadBean.usuarioSesion.nombre}</h5>
+                        <h:form>
                             <p:commandButton value="cerrar sesion" styleClass="btn btn-primary" action="#{seguridadBean.cerrarSesion}"/>
-                         </h:form>
-                     </div>
+                        </h:form>
+                    </div>
                 </div>
             </div>
         </div>

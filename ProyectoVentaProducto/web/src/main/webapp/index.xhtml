@@ -82,7 +82,7 @@
                                         <h:outputText value="Precio:" />
                                         <h:outputText value="$ #{pro.precio}" />
                                         <h:outputText value="Categorías:" />
-                                        <h:outputText value="#{pro.categoriasProducto}" />
+                                        <h:outputText value="#{pro.obtenerCategorias(pro.categoriasProducto)}" />
                                         <h:outputText value="Descripción:" />
                                         <h:outputText value="#{pro.descripcion}" />
                                     </h:panelGrid>

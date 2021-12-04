@@ -27,7 +27,7 @@
 
 
                 <p:outputLabel  value="Categorias: " for="categoria_producto" />
-                <p:selectManyMenu id="categoria_producto" value="#{productoBean.producto.categoriasProducto}" showCheckbox="true" converter="#{categoriaConverter}">
+                <p:selectManyMenu id="categoria_producto" value="#{productoBean.producto.categoriasProducto}" showCheckbox="true" converter="#{categoriaConverter}" required="true">
                     <f:selectItems itemLabel="#{Categoria.nombre}" value="#{productoBean.categorias}" var="Categoria"/>
                 </p:selectManyMenu>
 

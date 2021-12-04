@@ -60,12 +60,13 @@ public class ProductoBean implements Serializable {
     @Getter @Setter
     private List<Categoria> categorias;
 
+    @Getter @Setter
     private ArrayList<String> imagenes;
 
     @Value("${upload.url}")
     private String urlUploads;
 
-    @Value("#{SeguridadBean.usuarioSesion}")
+    @Value("#{seguridadBean.usuarioSesion}")
     private Usuario usuarioSesion;
 
     @PostConstruct
@@ -88,6 +89,7 @@ public class ProductoBean implements Serializable {
 
                     producto.setVendedor(usuarioSesion);
                     producto.setFecha(LocalDateTime.now().plusMonths(1));
+                    producto.setImagenes(imagenes);
                     productoServicio.publicarProducto(producto);
 
                     FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto creado satisfactoriamente");
@@ -136,4 +138,5 @@ public class ProductoBean implements Serializable {
         }
         return null;
     }
+
 }

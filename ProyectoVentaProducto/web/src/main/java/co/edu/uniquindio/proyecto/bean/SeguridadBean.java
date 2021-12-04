@@ -88,7 +88,7 @@ public class SeguridadBean implements Serializable {
     }
 
     public void eliminarDelCarrito(int indice){
-        subtotal-=productosCarrito.get(indice).getPrecio();
+        subtotal-=productosCarrito.get(indice).getPrecio()*productosCarrito.get(indice).getUnidades();
         productosCarrito.remove(indice);
 
     }
