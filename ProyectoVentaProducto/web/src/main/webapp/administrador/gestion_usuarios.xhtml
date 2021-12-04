@@ -101,6 +101,17 @@
                 </div>
             </h:form>
         </p:panel>
+        <p:panel header="Eliminar usuarios">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="codigoeliminar_usuario" value="codigo:" />
+                    <p:inputText id="codigoeliminar_usuario" value="#{usuarioBean.usuario.codigo}" required="true"/>
+                </h:panelGrid>
+                <p:growl showDetail="true"></p:growl>
+                <p:commandButton action="#{usuarioBean.eliminarUsuario}" value="Eliminar usuario" update="@form" />
+            </h:form>
+
+        </p:panel>
     </ui:define>
 </ui:composition>
 </html>

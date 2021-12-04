@@ -138,5 +138,7 @@ public class ProductoBean implements Serializable {
         }
         return null;
     }
-
+    public void eliminarProducto() throws Exception {
+        productoServicio.eliminarProducto(producto.getCodigoProducto());
+    }
 }

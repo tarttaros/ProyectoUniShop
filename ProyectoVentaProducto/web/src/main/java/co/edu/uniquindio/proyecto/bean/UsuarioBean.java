@@ -137,5 +137,9 @@ public class UsuarioBean implements Serializable
         FacesMessage msg = new FacesMessage("Usuario Editado", String.valueOf(event.getObject().getCodigoProducto()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
+    public void eliminarUsuario() throws Exception {
+        usuarioServicio.eliminarUsuario(usuario.getCodigo());
+    }
     }
 
