@@ -34,7 +34,7 @@ public class Compra implements Serializable
 
     //fecha de compra
     @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Future
+
     private LocalDateTime fecha;
 
     //medio de pago

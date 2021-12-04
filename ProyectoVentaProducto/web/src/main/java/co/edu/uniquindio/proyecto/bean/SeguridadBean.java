@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,9 @@ public class SeguridadBean implements Serializable {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
+
+    @Autowired
+    private ProductoServicio productoServicio;
 
     @Getter @Setter
     private ArrayList<ProductoCarrito> productosCarrito;
@@ -84,8 +88,33 @@ public class SeguridadBean implements Serializable {
     }
 
     public void eliminarDelCarrito(int indice){
-
+        subtotal-=productosCarrito.get(indice).getPrecio();
         productosCarrito.remove(indice);
+
+    }
+    public void actualizarSubtotal(){
+        subtotal=0;
+        for(ProductoCarrito p:productosCarrito){
+
+            subtotal+=p.getPrecio()*p.getUnidades();
+        }
+    }
+    public void comprar() throws Exception {
+        if(usuarioSesion!=null&&!productosCarrito.isEmpty()){
+            try{
+                productoServicio.comprarProductos(usuarioSesion,productosCarrito,"PSE");
+                productosCarrito.clear();
+                subtotal=0;
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"alerta","Compra realizada satisfactoriamente");
+                FacesContext.getCurrentInstance().addMessage("compra-msj",fm);
+            }
+            catch (Exception e){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR,"alerta",e.getMessage());
+                FacesContext.getCurrentInstance().addMessage("compra-msj",fm);
+            }
+
+        }
+
 
     }
 

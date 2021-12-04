@@ -46,7 +46,9 @@
                                 </td>
                                 <td >#{producto.precio}</td>
                                 <td >
-                                    <p:spinner value="#{producto.unidades}" min="1" />
+                                    <p:spinner value="#{producto.unidades}" min="1" >
+                                        <p:ajax listener="#{seguridadBean.actualizarSubtotal}" update="form:subtotal-carrito"/>
+                                    </p:spinner>
                                 </td>
                                 <td class="actions">
                                     <div class="text-right">
@@ -61,19 +63,18 @@
                     </table>
                     <div class="text-end">
                         <h4>Subtotal:</h4>
-                        <h1>#{seguridadBean.subtotal}</h1>
+                        <h1 jsf:id="subtotal-carrito">#{seguridadBean.subtotal}</h1>
                     </div>
                 </h:form>
             </div>
 
         </div>
-        <div class="row mt-4 d-flex align-items-center">
-            <div class="col-sm-6 order-md-2 text-right">
-                <h:form >
-                    <p:commandButton value="Comprar" update="@form"/>
-                </h:form>
+        <div class="row mt-4 d-flex">
 
-            </div>
+                <h:form styleClass="text-center" >
+                    <p:commandButton value="Comprar" update="@form" icon="pi pi-check" styleClass="font-size: 20px" action="#{seguridadBean.comprar}"/>
+                    <p:growl for="compra-msj" showDetail="true"/>
+                </h:form>
 
         </div>
 

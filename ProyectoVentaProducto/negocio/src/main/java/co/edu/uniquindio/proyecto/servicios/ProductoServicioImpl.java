@@ -1,13 +1,15 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.excepciones.ProductoNoEncontradoExcepcion;
-import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
-import co.edu.uniquindio.proyecto.repositorios.ComentarioRepo;
-import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
+import co.edu.uniquindio.proyecto.repositorios.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,12 +20,18 @@ public class ProductoServicioImpl implements ProductoServicio
     private final ProductoRepo productoRepo;
 
     private final ComentarioRepo comentarioRepo;
+    @Autowired
+    private final DetalleCompraRepo detalleCompraRepo;
+
+    private final CompraRepo compraRepo;
 
 
-    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, ComentarioRepo comentarioRepo)
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, ComentarioRepo comentarioRepo, DetalleCompraRepo detalleCompraRepo, CompraRepo compraRepo)
     {
         this.productoRepo = productoRepo;
         this.comentarioRepo = comentarioRepo;
+        this.detalleCompraRepo = detalleCompraRepo;
+        this.compraRepo = compraRepo;
     }
 
     @Override
@@ -123,5 +131,35 @@ public class ProductoServicioImpl implements ProductoServicio
     public List<Producto> listarTodosProducto() throws Exception
     {
         return productoRepo.findAll();
+    }
+
+    @Override
+    public Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito> productos, String medioPago) throws Exception {
+
+        try {
+            Compra c = new Compra();
+            c.setFecha(LocalDateTime.now(ZoneId.of("America/Bogota")));
+            c.setCodigoUsuario(usuario);
+            c.setMedioDPago(medioPago);
+
+            Compra compraGuardada = compraRepo.save(c);
+
+            DetalleCompra dc;
+            for (ProductoCarrito p : productos) {
+                dc = new DetalleCompra();
+                dc.setCodigoCompra(compraGuardada);
+                dc.setPrecio(p.getPrecio());
+                dc.setUnidades(p.getUnidades());
+                dc.setProductoComprar(productoRepo.findById(p.getId()).get());
+                detalleCompraRepo.save(dc);
+
+            }
+            return compraGuardada;
+        }catch (Exception e){
+
+            throw new Exception(e.getMessage());
+        }
+
+
     }
 }

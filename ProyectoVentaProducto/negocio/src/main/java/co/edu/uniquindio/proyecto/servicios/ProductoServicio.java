@@ -1,7 +1,9 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,5 +32,7 @@ public interface ProductoServicio
     List<Producto> productosUsuario(Integer codigo) throws Exception;
 
     List<Producto>  listarTodosProducto() throws Exception;
+
+    Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito> productos,String medioPago) throws Exception;
 
 }
