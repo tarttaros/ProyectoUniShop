@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductoRepo extends JpaRepository<Producto, Integer> {
+public interface ProductoRepo extends JpaRepository<Producto, Integer>
+{
 
     //cantidad de productos vendidos por categoria
     @Query("select producto, sum( detalle.unidades ) as total from  Categoria categoria , in (categoria.listaProductos) producto, in (producto.detallesVenta) detalle where categoria.nombre = ?1 group by producto order by total desc ")
@@ -51,8 +52,12 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer> {
     List<Producto> buscarProductoNombre(String nombre);
 
     @Query("select p from Producto p where :categoria member of p.categoriasProducto")
+    List<Producto> listarSegunUnaCategoria(Categoria categoria);
+
+    @Query("select p from Categoria c, in (c.listaProductos) p where p.cantidad > 0 and c = ?1 order by c.nombre")
     List<Producto> listarPorCategoria(Categoria categoria);
 
     @Query("select p from Producto p where p.codigoProducto=?1")
     Producto obtenerProductoPorId(Integer codigo);
+
 }

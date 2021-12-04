@@ -1,8 +1,9 @@
 package co.edu.uniquindio.proyecto.servicios;
 
+import co.edu.uniquindio.proyecto.entidades.Compra;
+import co.edu.uniquindio.proyecto.entidades.DetalleCompra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
-import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
 import org.springframework.stereotype.Service;
 
@@ -97,14 +98,21 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     }
 
     @Override
-    public List<Producto> listarFavoritos(String email) throws Exception
+    public List<Producto> listarFavoritos(String email)
     {
-        Optional<Usuario> buscado = buscarPorEmail(email);
-        if(buscado.isEmpty())
-        {
-            throw new Exception("El correo no existe");
-        }
         return usuarioRepo.obtenerProductosFavoritos(email);
+    }
+
+    @Override
+    public List<DetalleCompra> listarComprados(Usuario usuario)
+    {
+        return usuarioRepo.productoComprado(usuario);
+    }
+
+    @Override
+    public List<Producto> listarProductosUsuario(Usuario usuario)
+    {
+        return usuarioRepo.productosUsuario(usuario);
     }
 
     @Override

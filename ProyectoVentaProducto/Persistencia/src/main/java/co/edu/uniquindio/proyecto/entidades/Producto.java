@@ -4,14 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -129,9 +126,11 @@ public class Producto implements Serializable
         }
         return "default.png";
     }
-    public String obtenerCategorias(List<Categoria> categorias){
+    public String obtenerCategorias(List<Categoria> categorias)
+    {
         String a="";
-        for (int i=0;i<categorias.size();i++){
+        for (int i=0;i<categorias.size();i++)
+        {
             a=categorias.get(i).getNombre()+","+a;
         }
         return a;

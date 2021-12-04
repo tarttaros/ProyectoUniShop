@@ -1,12 +1,12 @@
 package co.edu.uniquindio.proyecto.bean;
 
-import co.edu.uniquindio.proyecto.entidades.Ciudad;
-import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.servicios.CiudadServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -37,11 +37,36 @@ public class UsuarioBean implements Serializable
     @Getter @Setter
     private List<Ciudad> ciudades;
 
+    @Getter @Setter
+    private List<Producto> productosFavoritos;
+
+    @Getter @Setter
+    private List<Producto> productosUsuario;
+
+    @Getter @Setter
+    private List<DetalleCompra> productosComprados;
+
+    @Value("#{seguridadBean.usuarioSesion}")
+    private Usuario usuarioSesion;
+
     @PostConstruct
     public void inicializar()
     {
         usuario=new Usuario();
         ciudades = ciudadServicio.listarCiudades();
+        try
+        {
+            this.productosFavoritos = usuarioServicio.listarFavoritos(usuarioSesion.getEmail());
+            this.productosComprados = usuarioServicio.listarComprados(usuarioSesion);
+            this.productosUsuario = usuarioServicio.listarProductosUsuario(usuarioSesion);
+        }
+        catch (Exception e)
+        {
+            FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+            e.printStackTrace();
+        }
+
     }
 
     public void registrarUsuario()

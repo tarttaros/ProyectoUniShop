@@ -2,6 +2,10 @@
     font-size: 1.5rem;
 }
 
+.card{
+    margin: 10px;
+}
+
 .imagen-producto{
     max-width: 180px;
     vertical-align: center;
@@ -27,7 +31,7 @@
 .botonComand{
     display: inline-block;
     vertical-align: middle;
-    margin-left: 10px;
+    margin: 10px;
 }
 
 .p-grid {
@@ -40,7 +44,7 @@
     padding: 25px 10px;
 }
 
-.box, .sample-layout>div {
+.box, .sample-layout > div {
     background-color: #f4f4f4;
     text-align: center;
     padding: 1em;
@@ -119,6 +123,7 @@
 }
 
 .blog-comment img.avatar {
+    max-width: 80px;
     position: relative;
     float: left;
     margin-left: 0;
@@ -176,20 +181,25 @@
     height: 90px;
 }
 
-.ui-datalist-item p{
+.ui-datalist-item p
+{
     font-weight: normal;
 }
 
-.btn-white{
+.btn-white
+{
     color: black !important;
 }
 
-#lista-com_content{
+#lista-com_content
+{
     border: none;
 }
 
-@media only screen and (max-width: 768px) {
-    .comentario-usuario{
+@media only screen and (max-width: 768px)
+{
+    .comentario-usuario
+    {
         width: 100%;
     }
 }

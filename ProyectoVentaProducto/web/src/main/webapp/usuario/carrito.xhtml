@@ -12,9 +12,7 @@
 <ui:composition template="../WEB-INF/template.xhtml">
     <ui:define name="title">Carrito compra</ui:define>
     <ui:define name="content">
-
         <div class="row w-100">
-
             <div class="col-lg-12 col-md-12 col-12">
                 <h:form id="form">
                     <h1>Carrito de Compra</h1>
@@ -40,7 +38,6 @@
                                         </div>
                                         <div class="col-md-10 text-left mt-sm-2">
                                             <h4>#{producto.nombre}</h4>
-                                            <p class="font-weight-light">Brand &amp; Name</p>
                                         </div>
                                     </div>
                                 </td>
@@ -57,8 +54,6 @@
                                 </td>
                             </tr>
                         </p:repeat>
-
-
                         </tbody>
                     </table>
                     <div class="text-end">
@@ -67,18 +62,13 @@
                     </div>
                 </h:form>
             </div>
-
         </div>
         <div class="row mt-4 d-flex">
-
                 <h:form styleClass="text-center" >
                     <p:commandButton value="Comprar" update="@form" icon="pi pi-check" styleClass="font-size: 20px" action="#{seguridadBean.comprar}"/>
                     <p:growl for="compra-msj" showDetail="true"/>
                 </h:form>
-
         </div>
-
-
     </ui:define>
 </ui:composition>
 

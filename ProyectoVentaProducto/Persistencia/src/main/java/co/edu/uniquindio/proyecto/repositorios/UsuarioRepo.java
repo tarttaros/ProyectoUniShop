@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
+import co.edu.uniquindio.proyecto.entidades.DetalleCompra;
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,4 +25,11 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Integer>
     //para listar productos favoritos
     @Query("select producto from Usuario usuario, in (usuario.productosFavoritos) producto where usuario.email = ?1 ")
     List<Producto> obtenerProductosFavoritos(String email);
+
+    //productos comprados por un cliente
+    @Query("select detalle from Usuario usuario, in (usuario.compras) compra , in (compra.detalleCompra) detalle where usuario = ?1 order by detalle.precio desc")
+    List<DetalleCompra> productoComprado(Usuario usuario);
+
+    @Query("select producto from Producto producto where producto.vendedor = ?1")
+    List<Producto> productosUsuario(Usuario usuario);
 }

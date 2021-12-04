@@ -29,41 +29,41 @@
                             <span class="material-icons-outlined" style="font-size: 2rem ; margin-right: 5px">payment</span>
                             <span class="fs-4" style="margin-left: 2px"> Unishop</span>
                         </a>
-                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"  >
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small" style="text-align:center" >
                             <li jsf:rendered="#{seguridadBean.autenticado}">
                                 <a href="/usuario/crear_producto.xhtml" class="nav-link text-white" >
-                                    <i class="material-icons icono" style="font-size: 2rem">create_new_folder</i>
+                                    <i class="material-icons icono" style="font-size: 2rem">app_registration</i>
                                     <p>Crear producto</p>
                                 </a>
                             </li>
                             <li jsf:rendered="#{seguridadBean.autenticado}">
                                 <a href="/usuario/mis_productos.xhtml" class="nav-link text-white">
-                                    <i class="material-icons icono" style="font-size: 2rem">app_registration</i>
+                                    <i class="material-icons icono" style="font-size: 2rem">folder</i>
                                     <p>Mis productos</p>
                                 </a>
                             </li>
                             <li jsf:rendered="#{seguridadBean.autenticado}">
                                 <a href="/usuario/perfil.xhtml" class="nav-link text-white">
-                                    <span class="material-icons icono" style="font-size: 2rem">person</span>
+                                    <i class="material-icons icono" style="font-size: 2rem">person</i>
                                     <p>Perfil</p>
                                 </a>
                             </li>
                             <li jsf:rendered="#{seguridadBean.autenticado}">
                                 <a href="/usuario/carrito.xhtml" class="nav-link text-white">
-                                    <i class="pi pi-shopping-cart b di-block mx-auto mb- icon-menu" style="font-size: 2rem"></i>
+                                    <i class="material-icons icono" style="font-size: 2rem">shopping_cart</i>
                                     <p>Carrito</p>
                                 </a>
                             </li>
-                            <li>
+                            <li jsf:rendered="#{seguridadBean.autenticado}">
                                 <a href="index.xhtml" class="nav-link text-white">
-                                    <span class="material-icons icono" style="font-size: 2rem">person</span>
-                                    <p>Iniciar como adm</p>
+                                    <i class="material-icons icono" style="font-size: 2rem">storefront</i>
+                                    <p>Subasta</p>
                                 </a>
                             </li>
-                            <li>
+                            <li jsf:rendered="#{!seguridadBean.autenticado}">
                                 <a href="index.xhtml" class="nav-link text-white">
-                                    <i class="pi pi-shopping-cart b di-block mx-auto mb- icon-menu" style="font-size: 2rem"></i>
-                                    <p>Subasta</p>
+                                    <i class="material-icons icono" style="font-size: 2rem">lock</i>
+                                    <p>Iniciar como adm</p>
                                 </a>
                             </li>
                         </ul>
@@ -78,17 +78,17 @@
                     <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form" />
                 </h:form>
 
-                <div class="botonComand">
+                <div class="botonComand" style="margin: 10px">
                     <h:form rendered="#{!seguridadBean.autenticado}" >
                         <p:commandButton value="Login" class="" styleClass="btn btn-primary"  onclick="PF('login').show()" icon="pi pi-sign-in"/>
                     </h:form>
                 </div>
-                <div class="botonComand">
+                <div class="botonComand" style="margin: 10px">
                     <h:form rendered="#{!seguridadBean.autenticado}" >
                         <p:commandButton value="Registrarse" styleClass="btn btn-primary" action="registrar_usuario?faces-redirect=true" icon="pi pi-user-plus"/>
                     </h:form>
                     <div id="info-sesion" jsf:rendered="#{seguridadBean.autenticado}">
-                        <h5>Hola,#{seguridadBean.usuarioSesion.nombre}</h5>
+                        <h5>Hola, #{seguridadBean.usuarioSesion.nombre}</h5>
                         <h:form>
                             <p:commandButton value="cerrar sesion" styleClass="btn btn-primary" action="#{seguridadBean.cerrarSesion}"/>
                         </h:form>

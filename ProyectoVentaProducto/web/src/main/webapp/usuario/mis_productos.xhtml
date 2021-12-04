@@ -2,11 +2,89 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../WEB-INF/template.xhtml">
+<ui:define name="title">Mis productos</ui:define>
+<ui:define name="content">
+<p:panel header="Mis producto">
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
 
-</body>
+        <div class="card">
+            <p:dataTable id="products1" var="product" value="#{usuarioBean.productosUsuario}" editable="true" style="margin-bottom:20px">
+
+                <p:ajax event="rowEdit" listener="#{usuarioBean.productosUsuario}" update=":form:msgs"/>
+                <p:ajax event="rowEditCancel" listener="#{usuarioBean.productosUsuario.onRowCancel}" update=":form:msgs"/>
+
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{product.nombre}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText  value="#{product.nombre}" style="width:100%" label="Nombre"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Cantidad">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{product.cantidad}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText id="modelInput" value="#{product.cantidad}" style="width:100%" label="Cantidad"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{product.precio}">
+                                <f:convertNumber type="currency" currencySymbol="$"/>
+                            </h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputNumber value="#{product.precio}" style="width:100%" label="Precio" symbol="$"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Descuento">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{product.descuento}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{product.descuento}" style="width:100%" label="Descuento"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Descripcion">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{product.descripcion}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText  value="#{product.descripcion}" style="width:100%" label="Descripcion"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:6rem">
+                    <p:rowEditor editTitle="Editar" cancelTitle="Cancelar" saveTitle="Guardar"/>
+                </p:column>
+            </p:dataTable>
+        </div>
+
+    </h:form>
+</p:panel>
+</ui:define>
+</ui:composition>
 </html>

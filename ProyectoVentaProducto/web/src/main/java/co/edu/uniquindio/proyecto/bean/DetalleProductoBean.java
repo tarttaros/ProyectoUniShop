@@ -19,7 +19,8 @@ import java.util.Optional;
 
 @Component
 @ViewScoped
-public class DetalleProductoBean {
+public class DetalleProductoBean
+{
 
     @Autowired
     private ProductoServicio productoServicio;
@@ -42,31 +43,51 @@ public class DetalleProductoBean {
     @Setter
     private List<Comentario> comentarios;
 
+    @Getter
+    @Setter
+    private Integer calificacion;
+
 
     @PostConstruct
-    public void inicializar() throws Exception {
+    public void inicializar() throws Exception
+    {
         nuevoComentario=new Comentario();
-        if(codigoProducto!=null && !codigoProducto.isEmpty()){
-
+        if(codigoProducto!=null && !codigoProducto.isEmpty())
+        {
             Integer codigo = Integer.parseInt(codigoProducto);
             producto = productoServicio.obtenerProducto(codigo);
-            this.comentarios= producto.getComentarios();
+            this.comentarios = producto.getComentarios();
+            Integer califi = 0;
+            Comentario comentar = new Comentario();
+            if(producto.getComentarios().size() > 0)
+            {
+                for (int i = 0; i < producto.getComentarios().size(); i++)
+                {
+                    comentar = producto.getComentarios().get(i);
+                    califi += comentar.getCalificacion();
+                }
+                this.calificacion = califi / producto.getComentarios().size();
+            }
         }
     }
 
     @Value("#{seguridadBean.usuarioSesion}")
     private Usuario usuarioSesion;
 
-    public void crearComentario(){
-
-        try {
-
+    public void crearComentario()
+    {
+        try
+        {
             nuevoComentario.setProducto(producto);
             nuevoComentario.setUsuario(usuarioSesion);
             productoServicio.comentarProducto(nuevoComentario);
             this.comentarios.add(nuevoComentario);
+            this.calificacion = (calificacion+nuevoComentario.getCalificacion()) / comentarios.size();
             this.nuevoComentario = new Comentario();
-        }catch (Exception e){
+
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
 
