@@ -136,6 +136,7 @@ public class ProductoServicioImpl implements ProductoServicio
     @Override
     public Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito> productos, String medioPago) throws Exception {
 
+        Producto aux;
         try {
             Compra c = new Compra();
             c.setFecha(LocalDateTime.now(ZoneId.of("America/Bogota")));
@@ -152,6 +153,9 @@ public class ProductoServicioImpl implements ProductoServicio
                 dc.setUnidades(p.getUnidades());
                 dc.setProductoComprar(productoRepo.findById(p.getId()).get());
                 detalleCompraRepo.save(dc);
+                aux= productoRepo.findById(p.getId()).get();
+                aux.setCantidad(productoRepo.findById(p.getId()).get().getCantidad()-p.getUnidades());
+                productoRepo.save(aux);
 
             }
             return compraGuardada;
