@@ -86,7 +86,7 @@
                                     <h:outputText value="#{liusuarios.ciudad}" converter="#{ciudadCoverter2}" />
                                 </f:facet>
                                 <f:facet name="input">
-                                    <h:selectOneMenu value="#{usuarioBean.usuario.ciudad}" >
+                                    <h:selectOneMenu value="#{usuarioBean.usuario.ciudad}" converter="#{ciudadConverter}">
                                         <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" />
                                         <f:selectItems var="ciudad" itemLabel="#{ciudad.nombreCiudad}" value="#{usuarioBean.ciudades}"   />
                                     </h:selectOneMenu>

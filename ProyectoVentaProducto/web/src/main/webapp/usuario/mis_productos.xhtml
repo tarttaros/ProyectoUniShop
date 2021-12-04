@@ -17,8 +17,8 @@
         <div class="card">
             <p:dataTable id="products1" var="product" value="#{usuarioBean.productosUsuario}" editable="true" style="margin-bottom:20px">
 
-                <p:ajax event="rowEdit" listener="#{usuarioBean.productosUsuario}" update=":form:msgs"/>
-                <p:ajax event="rowEditCancel" listener="#{usuarioBean.productosUsuario.onRowCancel}" update=":form:msgs"/>
+                <p:ajax event="rowEdit" listener="#{usuarioBean.onRowEditPro}" update=":form:msgs"/>
+                <p:ajax event="rowEditCancel" listener="#{usuarioBean.onRowCancelPro}" update=":form:msgs"/>
 
                 <p:column headerText="Nombre">
                     <p:cellEditor>

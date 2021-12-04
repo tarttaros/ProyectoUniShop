@@ -100,13 +100,15 @@ public class UsuarioBean implements Serializable
 
 
     public void onRowEdit(RowEditEvent<Usuario> event) throws Exception {
-        FacesMessage msg = new FacesMessage("Product Edited", String.valueOf(event.getObject().getCodigo()));
+        FacesMessage msg = new FacesMessage("Usuario Editado", String.valueOf(event.getObject().getCodigo()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
         Usuario u = usuarioServicio.obtenerUsuario(event.getObject().getCodigo());
-        Ciudad c= ciudadServicio.obtenerCiudad(event.getObject().getCodigo());
+        Ciudad c= ciudadServicio.obtenerCiudad(event.getObject().getCiudad().getCodigoCiudad());
         u.setNombre(event.getObject().getNombre());
         u.setEmail(event.getObject().getEmail());
         u.setCiudad(event.getObject().getCiudad());
+        System.out.println(event.getObject().getCiudad());
+        System.out.println(event.getObject().getNombre());
         usuarioServicio.actualizarUsuario(u);
     }
 
@@ -114,6 +116,7 @@ public class UsuarioBean implements Serializable
         FacesMessage msg = new FacesMessage("Edit Cancelled", String.valueOf(event.getObject().getCodigo()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
 
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
@@ -124,4 +127,15 @@ public class UsuarioBean implements Serializable
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
-}
+    public void onRowCancelPro(RowEditEvent<Producto> event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled", String.valueOf(event.getObject().getCodigoProducto()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+
+    public void onRowEditPro(RowEditEvent<Producto> event) throws Exception {
+        FacesMessage msg = new FacesMessage("Usuario Editado", String.valueOf(event.getObject().getCodigoProducto()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    }
+
