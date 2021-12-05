@@ -25,6 +25,12 @@ import java.util.List;
 public class SeguridadBean implements Serializable {
 
     @Getter @Setter
+    private  String metodoDePago;
+
+    @Getter @Setter
+    List<String> metodosPago;
+
+    @Getter @Setter
     private boolean autenticado;
 
     @Getter @Setter
@@ -58,7 +64,10 @@ public class SeguridadBean implements Serializable {
     {
         this.subtotal=0F;
         this.productosCarrito=new ArrayList<>();
-
+        this.metodosPago=new ArrayList<>() ;
+        this.metodosPago.add("Efectivo");
+        this.metodosPago.add("Tarjeta");
+        this.metodoDePago = "";
     }
 
 
@@ -153,7 +162,8 @@ public class SeguridadBean implements Serializable {
             if(validarUnidades==true){
 
                 try{
-                    productoServicio.comprarProductos(usuarioSesion,productosCarrito,"SFE");
+                    System.out.println(metodoDePago);
+                    productoServicio.comprarProductos(usuarioSesion,productosCarrito,metodoDePago);
                     productosCarrito.clear();
                     subtotal=0;
                     FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"alerta","Compra realizada satisfactoriamente");
@@ -167,6 +177,12 @@ public class SeguridadBean implements Serializable {
         }
 
 
+    }
+    public void setearEfectivo(){
+        metodoDePago="Efectivo";
+    }
+    public void setearTarjeta(){
+        metodoDePago="Tarjeta de credito";
     }
 
 
