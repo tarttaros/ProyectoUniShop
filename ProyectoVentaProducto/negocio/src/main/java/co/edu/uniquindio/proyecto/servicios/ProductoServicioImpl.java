@@ -26,12 +26,13 @@ public class ProductoServicioImpl implements ProductoServicio
     private final CompraRepo compraRepo;
 
 
-    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, ComentarioRepo comentarioRepo, DetalleCompraRepo detalleCompraRepo, CompraRepo compraRepo)
+    public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, ComentarioRepo comentarioRepo, DetalleCompraRepo detalleCompraRepo, CompraRepo compraRepo, SubastaRepo subastaRepo)
     {
         this.productoRepo = productoRepo;
         this.comentarioRepo = comentarioRepo;
         this.detalleCompraRepo = detalleCompraRepo;
         this.compraRepo = compraRepo;
+        this.subastaRepo = subastaRepo;
     }
 
     @Override

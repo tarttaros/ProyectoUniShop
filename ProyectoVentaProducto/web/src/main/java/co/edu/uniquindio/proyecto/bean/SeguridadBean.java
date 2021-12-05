@@ -54,7 +54,8 @@ public class SeguridadBean implements Serializable {
     private double subtotal;
 
     @PostConstruct
-    public  void inicializar(){
+    public  void inicializar()
+    {
         this.subtotal=0F;
         this.productosCarrito=new ArrayList<>();
 
@@ -150,7 +151,6 @@ public class SeguridadBean implements Serializable {
             }
 
             if(validarUnidades==true){
-
 
                 try{
                     productoServicio.comprarProductos(usuarioSesion,productosCarrito,"SFE");

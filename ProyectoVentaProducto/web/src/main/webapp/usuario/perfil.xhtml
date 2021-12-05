@@ -58,18 +58,8 @@
                 </p:column>
             </p:dataTable>
         </div>
-        <div class="container d-flex flex-wrap">
-            <h:form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="producto" value="codigo:" />
-                    <p:inputText id="producto" value="#{detalleProductoBean.codigo}" required="true"/>
-                </h:panelGrid>
-                <p:growl showDetail="true"></p:growl>
-                <h:form>
-                    <p:commandButton value="Eliminar Favorito" styleClass="btn btn-primary" action="#{detalleProductoBean.eliminarFavorito}" update="@form" />
-                </h:form>
-            </h:form>
-        </div>
+        <p:inputText style="width:300px " placeholder="Codigo del favorito a eliminar" required="true" value="#{detalleProductoBean.codigo}" />
+        <p:commandButton icon="pi pi-trash" action="#{detalleProductoBean.eliminarFavorito}" update="@form" />
     </h:form>
 </p:panel>
 </ui:define>

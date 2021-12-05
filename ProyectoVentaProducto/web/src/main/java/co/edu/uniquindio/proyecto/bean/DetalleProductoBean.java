@@ -124,7 +124,6 @@ public class DetalleProductoBean
             if(usuarioSesion != null)
             {
                 producto = productoServicio.obtenerProducto(Integer.parseInt(codigo));
-                System.out.println("el hijo de su re ptm codigo= "+codigo);
                 Usuario user = usuarioServicio.obtenerUsuario(usuarioSesion.getCodigo());
                 usuarioServicio.eliminarFavorito(producto, user);
             }
