@@ -15,6 +15,10 @@
         <div class="card">
             <h5>Comprados</h5>
             <p:dataTable var="detalle" value="#{usuarioBean.productosComprados}" showGridlines="true">
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{detalle.productoComprar.codigoProducto}" />
+                </p:column>
+
                 <p:column headerText="Nombre">
                     <h:outputText value="#{detalle.productoComprar.nombre}" />
                 </p:column>
@@ -24,7 +28,7 @@
                 </p:column>
 
                 <p:column headerText="Categorias">
-                    <h:outputText value="#{detalle.productoComprar.categoriasProducto}" />
+                    <h:outputText value="#{detalle.productoComprar.obtenerCategorias(detalle.productoComprar.categoriasProducto)}" />
                 </p:column>
 
                 <p:column headerText="Cantidad">
@@ -37,6 +41,10 @@
         <div class="card">
             <h5>Favoritos</h5>
             <p:dataTable var="product" value="#{usuarioBean.productosFavoritos}" showGridlines="true">
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{product.codigoProducto}" />
+                </p:column>
+
                 <p:column headerText="Nombre">
                     <h:outputText value="#{product.nombre}" />
                 </p:column>
@@ -46,9 +54,21 @@
                 </p:column>
 
                 <p:column headerText="Categorias">
-                    <h:outputText value="#{product.categoriasProducto}" />
+                    <h:outputText value="#{product.obtenerCategorias(product.categoriasProducto)}" />
                 </p:column>
             </p:dataTable>
+        </div>
+        <div class="container d-flex flex-wrap">
+            <h:form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="producto" value="codigo:" />
+                    <p:inputText id="producto" value="#{detalleProductoBean.codigo}" required="true"/>
+                </h:panelGrid>
+                <p:growl showDetail="true"></p:growl>
+                <h:form>
+                    <p:commandButton value="Eliminar Favorito" styleClass="btn btn-primary" action="#{detalleProductoBean.eliminarFavorito}" update="@form" />
+                </h:form>
+            </h:form>
         </div>
     </h:form>
 </p:panel>

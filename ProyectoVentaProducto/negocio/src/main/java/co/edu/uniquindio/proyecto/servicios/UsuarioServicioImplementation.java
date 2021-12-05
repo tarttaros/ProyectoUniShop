@@ -46,6 +46,40 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     }
 
     @Override
+    public Usuario añadirFavorito(Producto p, Usuario u) throws Exception
+    {
+        Optional<Producto> buscado = usuarioRepo.obtenerUnProductoFavorito(u, p);
+        if(buscado.isPresent())
+        {
+            throw new Exception("El producto ya esta en favoritos");
+        }
+        else
+        {
+            List<Producto> producto = u.getProductosFavoritos();
+            producto.add(p);
+            u.setProductosFavoritos(producto);
+        }
+        return usuarioRepo.save(u);
+    }
+
+    @Override
+    public Usuario eliminarFavorito(Producto p, Usuario u) throws Exception
+    {
+        Optional<Producto> buscado = usuarioRepo.obtenerUnProductoFavorito(u, p);
+        if(buscado.isEmpty())
+        {
+            throw new Exception("El producto no esta en favoritos");
+        }
+        else
+        {
+            List<Producto> producto = u.getProductosFavoritos();
+            producto.remove(p);
+            u.setProductosFavoritos(producto);
+        }
+        return usuarioRepo.save(u);
+    }
+
+    @Override
     public Usuario actualizarUsuario(Usuario u) throws Exception
     {
         /*

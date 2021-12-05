@@ -85,17 +85,18 @@
 
     </h:form>
 </p:panel>
-    <p:panel header="Eliminar Productos">
-        <h:form>
+    <div id="eliminar-producto" >
+        <h:form class="input-group">
             <h:panelGrid columns="2" cellpadding="5">
-                <p:outputLabel for="codigoeliminar_usuario" value="codigo:" />
-                <p:inputText id="codigoeliminar_usuario" value="#{productoBean.producto.codigoProducto}" required="true"/>
+            <p:outputLabel for="codigoeliminar_usuario" value="codigo:" />
+            <p:inputText id="codigoeliminar_usuario" value="#{productoBean.producto.codigoProducto}" required="true"/>
             </h:panelGrid>
             <p:growl showDetail="true"></p:growl>
-            <p:commandButton action="#{productoBean.eliminarProducto}" value="Eliminar usuario" update="@form" />
+            <h:form>
+                <p:commandButton value="Eliminar Producto" styleClass="btn btn-primary" action="#{productoBean.eliminarProducto}" update="@form" />
+            </h:form>
         </h:form>
-
-    </p:panel>
+    </div>
 </ui:define>
 </ui:composition>
 </html>

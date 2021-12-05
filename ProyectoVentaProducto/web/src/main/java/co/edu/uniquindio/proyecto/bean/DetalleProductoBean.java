@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,13 @@ public class DetalleProductoBean
 
     @Value("#{param['producto']}")
     private String codigoProducto;
+
+    @Value("#{seguridadBean.usuarioSesion}")
+    private Usuario usuarioSesion;
+
+    @Getter
+    @Setter
+    private String codigo;
 
     @Getter
     @Setter
@@ -71,9 +80,6 @@ public class DetalleProductoBean
         }
     }
 
-    @Value("#{seguridadBean.usuarioSesion}")
-    private Usuario usuarioSesion;
-
     public void crearComentario()
     {
         try
@@ -91,5 +97,43 @@ public class DetalleProductoBean
             e.printStackTrace();
         }
 
+    }
+
+    public void añadirFavorito()
+    {
+        try
+        {
+            if(usuarioSesion != null)
+            {
+                Usuario user = usuarioServicio.obtenerUsuario(usuarioSesion.getCodigo());
+                usuarioServicio.añadirFavorito(producto, user);
+            }
+        }
+        catch (Exception e)
+        {
+            FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarFavorito()
+    {
+        try
+        {
+            if(usuarioSesion != null)
+            {
+                producto = productoServicio.obtenerProducto(Integer.parseInt(codigo));
+                System.out.println("el hijo de su re ptm codigo= "+codigo);
+                Usuario user = usuarioServicio.obtenerUsuario(usuarioSesion.getCodigo());
+                usuarioServicio.eliminarFavorito(producto, user);
+            }
+        }
+        catch (Exception e)
+        {
+            FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+            e.printStackTrace();
+        }
     }
 }

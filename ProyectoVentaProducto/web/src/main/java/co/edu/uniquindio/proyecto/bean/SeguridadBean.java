@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.Administrador;
+import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.AdminServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
@@ -17,6 +18,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Scope("session")
@@ -129,17 +131,16 @@ public class SeguridadBean implements Serializable {
             subtotal+=p.getPrecio()*p.getUnidades();
         }
     }
-    public void comprar() throws Exception {
 
-
-
-
-        if(usuarioSesion!=null&&!productosCarrito.isEmpty()){
+    public void comprar() throws Exception
+    {
+        if(usuarioSesion!=null&&!productosCarrito.isEmpty())
+        {
 
             boolean validarUnidades=true;
 
-            for (ProductoCarrito p : productosCarrito) {
-
+            for (ProductoCarrito p : productosCarrito)
+            {
 
                 if(productoServicio.obtenerProducto(p.getId()).getCantidad()< p.getUnidades()){
                     validarUnidades=false;

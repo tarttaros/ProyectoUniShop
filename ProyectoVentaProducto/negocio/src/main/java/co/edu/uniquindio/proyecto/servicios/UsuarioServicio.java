@@ -11,6 +11,10 @@ public interface UsuarioServicio
 {
     Usuario registrarUsuario(Usuario u) throws Exception;
 
+    Usuario añadirFavorito(Producto p, Usuario u) throws Exception;
+
+    Usuario eliminarFavorito(Producto p, Usuario u) throws Exception;
+
     Usuario actualizarUsuario(Usuario u) throws Exception;
 
     Usuario obtenerUsuario(int codigo) throws Exception;

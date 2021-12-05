@@ -2,12 +2,10 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.servicios.CiudadServicio;
-import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
-import jdk.jfr.Name;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.service.spi.InjectService;
+
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +15,12 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.NamedEvent;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
 @Component
 @ViewScoped
-@Name("dtEditView")
 public class UsuarioBean implements Serializable
 {
 
@@ -70,7 +66,6 @@ public class UsuarioBean implements Serializable
             this.productosFavoritos = usuarioServicio.listarFavoritos(usuarioSesion.getEmail());
             this.productosComprados = usuarioServicio.listarComprados(usuarioSesion);
             this.productosUsuario = usuarioServicio.listarProductosUsuario(usuarioSesion);
-
         }
         catch (Exception e)
         {
@@ -138,8 +133,10 @@ public class UsuarioBean implements Serializable
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public void eliminarUsuario() throws Exception {
+    public void eliminarUsuario() throws Exception
+    {
         usuarioServicio.eliminarUsuario(usuario.getCodigo());
     }
+
     }
 
