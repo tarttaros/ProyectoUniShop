@@ -36,7 +36,7 @@ public class subastaBean implements Serializable {
 
     public String irADetalle(String id)
     {
-        return "/producto_subasta?faces-redirect=true&amp;producto="+id;
+        return "/detalle_producto_subastado?faces-redirect=true&amp;producto="+id;
     }
 }
 

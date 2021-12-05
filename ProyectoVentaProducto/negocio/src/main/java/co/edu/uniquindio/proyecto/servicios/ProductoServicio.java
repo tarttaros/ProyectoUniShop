@@ -43,4 +43,6 @@ public interface ProductoServicio
 
 
     List<Producto> buscarCategorias(Categoria busquedaParam);
+
+    Producto pujarSubasta(Producto p,Double precio) throws Exception;
 }

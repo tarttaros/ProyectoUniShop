@@ -30,6 +30,9 @@ public class DetalleProductoBean
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    @Getter @Setter
+    private Double precioNuevo;
+
     @Value("#{param['producto']}")
     private String codigoProducto;
 
@@ -60,6 +63,7 @@ public class DetalleProductoBean
     @PostConstruct
     public void inicializar() throws Exception
     {
+        precioNuevo=0.0;
         nuevoComentario=new Comentario();
         if(codigoProducto!=null && !codigoProducto.isEmpty())
         {
@@ -134,5 +138,13 @@ public class DetalleProductoBean
             FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             e.printStackTrace();
         }
+    }
+
+    public void subastarPuja() throws Exception {
+
+
+        System.out.println(precioNuevo);
+
+        productoServicio.pujarSubasta(producto, precioNuevo);
     }
 }

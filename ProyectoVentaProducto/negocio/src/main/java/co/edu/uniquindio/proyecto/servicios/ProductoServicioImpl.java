@@ -215,4 +215,19 @@ public class ProductoServicioImpl implements ProductoServicio
     public List<Producto> buscarCategorias(Categoria categoria){
         return productoRepo.listarPorCategoria(categoria);
     }
+
+    @Override
+    public Producto pujarSubasta(Producto p,Double precio) throws Exception {
+
+        Double d=p.getPrecio();
+        if(d<precio){
+            p.setPrecio(precio);
+            return productoRepo.save(p);
+
+
+
+        }
+        return productoRepo.obtenerProductoPorId(p.getCodigoProducto());
+    }
+
 }
