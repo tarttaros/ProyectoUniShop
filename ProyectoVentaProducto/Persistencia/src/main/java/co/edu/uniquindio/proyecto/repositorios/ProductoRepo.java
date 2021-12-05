@@ -61,4 +61,7 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer>
     @Query("select p from Producto p where p.codigoProducto=?1")
     Producto obtenerProductoPorId(Integer codigo);
 
+    @Query("select p From Producto p where p.fecha<?1" )
+    List<Producto> pasadosFechas(LocalDateTime actual);
+
 }

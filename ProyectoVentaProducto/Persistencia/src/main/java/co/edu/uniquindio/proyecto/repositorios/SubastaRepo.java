@@ -11,5 +11,7 @@ import java.util.List;
 @Repository
 public interface SubastaRepo extends JpaRepository<Subasta, Integer>
 {
+    @Query("Select p from Producto p inner join Subasta s on s.producto=p" )
+    List<Producto> listarProductoEnSubasta();
 
 }

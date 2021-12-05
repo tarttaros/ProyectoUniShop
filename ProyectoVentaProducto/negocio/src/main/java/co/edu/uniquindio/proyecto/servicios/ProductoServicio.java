@@ -35,5 +35,11 @@ public interface ProductoServicio
 
     Compra comprarProductos(Usuario usuario, ArrayList<ProductoCarrito> productos,String medioPago) throws Exception;
 
+    Producto publicarSubasta(Producto produto) throws Exception;
+
+    void  eliminarPorFechas();
+
+    List<Producto> listaProductosSubastados() throws Exception;
+
 
 }

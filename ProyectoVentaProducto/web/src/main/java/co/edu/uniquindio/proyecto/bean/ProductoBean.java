@@ -66,6 +66,9 @@ public class ProductoBean implements Serializable {
     @Value("${upload.url}")
     private String urlUploads;
 
+    @Setter @Getter
+    private Integer fecha;
+
     @Value("#{seguridadBean.usuarioSesion}")
     private Usuario usuarioSesion;
 
@@ -110,6 +113,44 @@ public class ProductoBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, facesMsg);
             e.printStackTrace();
         }
+
+    }
+    public void crearSubasta(){
+
+        try
+        {
+            // usuario quemado borrar cuando se llegue a sesiones
+            // nose si colocar la fecha en el formulario
+            if(usuarioSesion!=null) {
+                if (!imagenes.isEmpty()) {
+
+                    producto.setVendedor(usuarioSesion);
+                    producto.setFecha(LocalDateTime.now().plusDays(fecha));
+                    producto.setImagenes(imagenes);
+
+                    producto.setCantidad(1);
+                    productoServicio.publicarSubasta(producto);
+
+
+                    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Producto y subasta creada");
+                    FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+
+                }
+            }
+            else
+            {
+                FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es necesario subir al menos una imagen");
+                FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+            }
+
+        }
+        catch (Exception e)
+        {
+            FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+            e.printStackTrace();
+        }
+
 
     }
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="title">Crear subasta</ui:define>
+    <ui:define name="content">
+        <p:panel header="crear producto">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="nombre_producto" value="nombre:" />
+                    <p:inputText id="nombre_producto" value="#{productoBean.producto.nombre}" required="true"/>
+
+                    <p:outputLabel for="precio_producto" value="precio:" />
+                    <p:inputText id="precio_producto" value="#{productoBean.producto.precio}" required="true" type="number"/>
+
+
+                    <p:outputLabel  value="Categorias: " for="categoria_producto" />
+                    <p:selectManyMenu id="categoria_producto" value="#{productoBean.producto.categoriasProducto}" showCheckbox="true" converter="#{categoriaConverter}" required="true">
+                        <f:selectItems itemLabel="#{Categoria.nombre}" value="#{productoBean.categorias}" var="Categoria"/>
+                    </p:selectManyMenu>
+
+
+                    <p:outputLabel for="fecha_subasta" value="Dias disponibles: " />
+                    <p:inputText id="fecha_subasta" value="#{productoBean.fecha}" required="true" type="number"/>
+
+
+                    <p:outputLabel for="ciudad_producto" value="Ciudad: " />
+                    <p:selectOneMenu id="ciudad_producto" value="#{productoBean.producto.ciudad}" converter="#{ciudadConverter}" >
+                        <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true" />
+                        <f:selectItems var="ciudad" itemLabel="#{ciudad.nombreCiudad}" value="#{productoBean.ciudades}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Imágenes" for="imagen_p"/>
+                    <p:fileUpload id="imagen_p" listener="#{productoBean.subirImagenes}" mode="advanced"  multiple="true" sizeLimit="2000000" fileLimit="5"
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"/>
+
+                    <p:outputLabel for="descripcion_producto" value="descripcion:" />
+                    <p:inputText id="descripcion_producto" value="#{productoBean.producto.descripcion}" required="true"/>
+
+                </h:panelGrid>
+                <p:growl showDetail="true"/>
+                <p:commandButton action="#{productoBean.crearSubasta}" value="Crear producto" update="@form" />
+            </h:form>
+            <div>
+                <h1>Lista de productos</h1>
+                <h:form>
+                    <p:dataView value="#{subastaBean.productos}" paginator="true" rows="13" var="pro" gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+                        <p:dataViewGridItem>
+                            <div class="card" >
+                                <img src="/uploads/#{pro.imagenPrincipal}" class="card-img-top"
+                                     alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">#{pro.nombre}</h5>
+                                    <p class="card-text">#{pro.precio}</p>
+                                    <hr/>
+                                    <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{subastaBean.irADetalle(pro.codigoProducto)}"/>
+                                </div>
+                            </div>
+                        </p:dataViewGridItem>
+                        <p:dataViewListItem>
+                            <div class="row d-flex list-pro" >
+                                <div class="col-lg-2 col-md-1" style="text-align: center;vertical-align: middle;display: flex;" >
+                                    <p:graphicImage url="/uploads/#{pro.imagenPrincipal}" styleClass="imagen-producto" />
+                                </div>
+                                <div class="col-lg-8 col-md-1 align-self-center" >
+                                    <p:outputPanel>
+                                        <h:panelGrid columns="2" cellpadding="5">
+                                            <h:outputText value="Nombre:" />
+                                            <h:outputText value="#{pro.nombre}" style="font-weight:bold" />
+                                            <h:outputText value="Precio:" />
+                                            <h:outputText value="$ #{pro.precio}" />
+                                            <h:outputText value="Categorías:" />
+                                            <h:outputText value="#{pro.obtenerCategorias(pro.categoriasProducto)}" />
+                                            <h:outputText value="Descripción:" />
+                                            <h:outputText value="#{pro.descripcion}" />
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </div>
+                                <div class="col-lg-2 col-md-1 align-self-center" >
+                                    <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" action="#{subastaBean.irADetalle(pro.codigoProducto)}"/>
+                                </div>
+                            </div>
+                        </p:dataViewListItem>
+                    </p:dataView>
+                </h:form>
+            </div>
+
+        </p:panel>
+    </ui:define>
+</ui:composition>
+</html>

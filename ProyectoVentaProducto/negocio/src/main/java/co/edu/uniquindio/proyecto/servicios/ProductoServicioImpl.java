@@ -25,6 +25,9 @@ public class ProductoServicioImpl implements ProductoServicio
 
     private final CompraRepo compraRepo;
 
+    @Autowired
+    private final SubastaRepo subastaRepo ;
+
 
     public ProductoServicioImpl(ProductoRepo productoRepo, CategoriaRepo categoriaRepo, ComentarioRepo comentarioRepo, DetalleCompraRepo detalleCompraRepo, CompraRepo compraRepo, SubastaRepo subastaRepo)
     {
@@ -129,8 +132,32 @@ public class ProductoServicioImpl implements ProductoServicio
     }
 
     @Override
+    public Producto publicarSubasta(Producto p) throws Exception {
+
+        try
+        {
+            Producto pro= productoRepo.save(p);
+            Subasta subasta = new Subasta();
+            subasta.setFechaLimite(pro.getFecha());
+            subasta.setProducto(pro);
+
+
+
+            subastaRepo.save(subasta);
+            return pro;
+
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+    @Override
     public List<Producto> listarTodosProducto() throws Exception
     {
+        eliminarPorFechas();
         return productoRepo.findAll();
     }
 
@@ -165,6 +192,23 @@ public class ProductoServicioImpl implements ProductoServicio
             throw new Exception(e.getMessage());
         }
 
+
+    }
+    public List<Producto> listaProductosSubastados() throws Exception
+    {
+
+        return subastaRepo.listarProductoEnSubasta();
+    }
+
+    @Override
+    public void  eliminarPorFechas(){
+
+
+        List<Producto> pro= productoRepo.pasadosFechas(LocalDateTime.now());
+
+        for(Producto p:pro) {
+            productoRepo.delete(p);
+        }
 
     }
 }
