@@ -42,4 +42,5 @@ public interface ProductoServicio
     List<Producto> listaProductosSubastados() throws Exception;
 
 
+    List<Producto> buscarCategorias(Categoria busquedaParam);
 }

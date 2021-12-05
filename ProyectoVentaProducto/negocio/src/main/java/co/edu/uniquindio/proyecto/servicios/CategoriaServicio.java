@@ -10,4 +10,6 @@ public interface CategoriaServicio
     List<Categoria> listarCategorias();
 
     Categoria obtenerCategoria(Integer id) throws Exception;
+
+    Categoria obtenerCategoriaN(String nombre) throws Exception;
 }

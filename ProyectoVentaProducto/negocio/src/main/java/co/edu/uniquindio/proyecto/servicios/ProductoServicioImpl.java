@@ -211,4 +211,8 @@ public class ProductoServicioImpl implements ProductoServicio
         }
 
     }
+    @Override
+    public List<Producto> buscarCategorias(Categoria categoria){
+        return productoRepo.listarPorCategoria(categoria);
+    }
 }

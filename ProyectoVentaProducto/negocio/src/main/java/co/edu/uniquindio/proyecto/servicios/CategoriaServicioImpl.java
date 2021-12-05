@@ -25,4 +25,10 @@ public class CategoriaServicioImpl implements  CategoriaServicio
     {
         return  categoriaRepo.findById(id).orElseThrow(() -> new Exception("el id no corresponde a ninguna ciudad"));
     }
+
+    @Override
+    public Categoria obtenerCategoriaN(String nombre) throws Exception {
+        return  categoriaRepo.findByNombre(nombre).orElseThrow(() -> new Exception("el id no corresponde a ninguna ciudad"));
+
+    }
 }
