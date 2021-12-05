@@ -80,10 +80,6 @@
         <div class="px-3 py-2 border-bottom mb-3">
             <div class="container d-flex flex-wrap justify-content-center">
                 <h:form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-                    <p:inputText style="width:300px " placeholder="Que producto esta buscando?" required="true" value="#{busquedaBean.busqueda}" />
-                    <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form" />
-                </h:form>
-                <h:form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
                     <p:outputLabel for="ciudad_usuario" value="busqueda categoria: " />
                     <p:selectOneMenu id="ciudad_usuario" value="#{busquedaBeanC.busqueda}" converter="#{categoriaConverter}" required="true">
                         <f:selectItem itemLabel="Seleccione la Categoria" noSelectionOption="true" />

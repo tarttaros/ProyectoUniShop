@@ -7,46 +7,6 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-            <div class="px-3 py-2 bg-dark text-white">
-                <div class="container">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                            <span class="material-icons-outlined" style="font-size: 2rem ; margin-right: 5px">payment</span>
-                            <span class="fs-4" style="margin-left: 2px"> Unishop</span>
-                        </a>
-                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"  >
-                            <li>
-                                <a href="/usuario/crear_producto.xhtml" class="nav-link text-white">
-                                    <i class="material-icons icono" style="font-size: 2rem">create_new_folder</i>
-                                    <p>Crear producto</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="registrar_usuario.xhtml" class="nav-link text-white">
-                                    <i class="material-icons icono" style="font-size: 2rem">app_registration</i>
-                                    <p>Registrarse</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="registrar_usuario.xhtml" class="nav-link text-white">
-                                    <span class="material-icons icono" style="font-size: 2rem">person</span>
-                                    <p>Iniciar sesion</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand"></a>
-                    <h:form style="margin-right: 95px">
-                        <p:inputText style="width:300px " placeholder="Que producto esta buscando?" required="true" value="#{busquedaBean.busqueda}" />
-                        <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar}" update="@form" />
-                    </h:form>
-                </div>
-            </nav>
             <ui:composition template="WEB-INF/template.xhtml">
                 <ui:define name="title">Pagina de inicio</ui:define>
 

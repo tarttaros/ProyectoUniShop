@@ -45,3 +45,4 @@ public class BusquedaBean implements Serializable
         return "resultado_busqueda?faces-redirect=true&amp;busqueda="+busqueda;
     }
 }
+
