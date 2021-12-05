@@ -80,6 +80,16 @@
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
+                        <p:column headerText="Password">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{liusuarios.password}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{liusuarios.password}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
                         <p:column headerText="Ciudad">
                             <p:cellEditor>
                                 <f:facet name="output">

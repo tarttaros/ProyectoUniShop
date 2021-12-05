@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.servicios.CiudadServicio;
+import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +38,9 @@ public class UsuarioBean implements Serializable
     @Getter @Setter
     private Ciudad ciudad;
 
+    @Autowired
+    private ProductoServicio productoServicio;
+
     @Getter @Setter
     private List<Ciudad> ciudades;
 
@@ -48,6 +52,9 @@ public class UsuarioBean implements Serializable
 
     @Getter @Setter
     private List<Usuario> usuariosA;
+
+    @Getter @Setter
+    private List<Producto> subastasRealizadas;
 
     @Getter @Setter
     private List<DetalleCompra> productosComprados;
@@ -66,6 +73,7 @@ public class UsuarioBean implements Serializable
             this.productosFavoritos = usuarioServicio.listarFavoritos(usuarioSesion.getEmail());
             this.productosComprados = usuarioServicio.listarComprados(usuarioSesion);
             this.productosUsuario = usuarioServicio.listarProductosUsuario(usuarioSesion);
+            this.subastasRealizadas = usuarioServicio.listarSubastasRealizadas(usuarioSesion);
         }
         catch (Exception e)
         {
@@ -129,8 +137,14 @@ public class UsuarioBean implements Serializable
 
 
     public void onRowEditPro(RowEditEvent<Producto> event) throws Exception {
-        FacesMessage msg = new FacesMessage("Usuario Editado", String.valueOf(event.getObject().getCodigoProducto()));
+        FacesMessage msg = new FacesMessage("Producto Editado", String.valueOf(event.getObject().getCodigoProducto()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        Producto p=productoServicio.obtenerProducto(event.getObject().getCodigoProducto());
+        p.setPrecio(event.getObject().getPrecio());
+        p.setCantidad(event.getObject().getCantidad());
+        p.setDescuento(event.getObject().getDescuento());
+        p.setDescripcion(event.getObject().getDescripcion());
+        productoServicio.actualizarProducto(p);
     }
 
     public void eliminarUsuario() throws Exception

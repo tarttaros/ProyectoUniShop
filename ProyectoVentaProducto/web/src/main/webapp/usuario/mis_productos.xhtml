@@ -10,15 +10,26 @@
 <ui:composition template="../WEB-INF/template.xhtml">
 <ui:define name="title">Mis productos</ui:define>
 <ui:define name="content">
-<p:panel header="Mis producto">
-    <h:form id="form">
-        <p:growl id="msgs" showDetail="true"/>
-
+<p:panel header="Mis productos">
         <div class="card">
+            <h:form id="form">
+            <h5>Productos en venta</h5>
+            <p:growl id="msgs" showDetail="true"/>
             <p:dataTable id="products1" var="product" value="#{usuarioBean.productosUsuario}" editable="true" style="margin-bottom:20px">
 
                 <p:ajax event="rowEdit" listener="#{usuarioBean.onRowEditPro}" update=":form:msgs"/>
                 <p:ajax event="rowEditCancel" listener="#{usuarioBean.onRowCancelPro}" update=":form:msgs"/>
+
+                <p:column headerText="Codigo">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{product.codigoProducto}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{product.codigoProducto}" style="width:100%"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
                 <p:column headerText="Nombre">
                     <p:cellEditor>
@@ -78,11 +89,36 @@
                 </p:column>
 
                 <p:column style="width:6rem">
-                    <p:rowEditor editTitle="Editar" cancelTitle="Cancelar" saveTitle="Guardar"/>
+                    <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                </p:column>
+            </p:dataTable>
+            </h:form>
+        </div>
+    <h:form>
+        <div class="card">
+            <h5>Productos en subasta</h5>
+            <p:dataTable var="subast" value="#{usuarioBean.subastasRealizadas}" showGridlines="true">
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{subast.codigoProducto}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{subast.nombre}" />
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <h:outputText value="#{subast.precio}" />
+                </p:column>
+
+                <p:column headerText="Categorias">
+                    <h:outputText value="#{subast.obtenerCategorias(subast.categoriasProducto)}" />
+                </p:column>
+
+                <p:column headerText="Descripcion">
+                    <h:outputText value="#{subast.descripcion}" />
                 </p:column>
             </p:dataTable>
         </div>
-
     </h:form>
 </p:panel>
     <div id="eliminar-producto" >

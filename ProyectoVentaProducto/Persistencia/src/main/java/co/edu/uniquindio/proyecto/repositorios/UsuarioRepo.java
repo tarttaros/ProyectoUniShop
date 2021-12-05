@@ -36,4 +36,7 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Integer>
 
     @Query("select producto from Producto producto where producto.vendedor = ?1")
     List<Producto> productosUsuario(Usuario usuario);
+
+    @Query("select producto from Subasta subasta, in (subasta.producto) producto where producto.vendedor = ?1")
+    List<Producto> listarSubastasRealizadas(Usuario usuario);
 }

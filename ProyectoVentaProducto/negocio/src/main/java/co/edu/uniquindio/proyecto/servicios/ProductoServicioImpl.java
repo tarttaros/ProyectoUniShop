@@ -158,7 +158,7 @@ public class ProductoServicioImpl implements ProductoServicio
     public List<Producto> listarTodosProducto() throws Exception
     {
         eliminarPorFechas();
-        return productoRepo.findAll();
+        return productoRepo.listarProductosEnVenta();
     }
 
     @Override

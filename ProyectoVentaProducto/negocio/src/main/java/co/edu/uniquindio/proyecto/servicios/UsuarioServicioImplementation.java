@@ -126,6 +126,12 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     }
 
     @Override
+    public List<Producto> listarSubastasRealizadas(Usuario u)
+    {
+        return usuarioRepo.listarSubastasRealizadas(u);
+    }
+
+    @Override
     public List<Usuario> listarUsuarios()
     {
         return usuarioRepo.findAll();
