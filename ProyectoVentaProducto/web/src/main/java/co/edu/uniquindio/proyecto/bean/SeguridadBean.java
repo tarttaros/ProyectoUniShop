@@ -2,7 +2,6 @@ package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.Administrador;
-import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.AdminServicio;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
@@ -60,7 +59,7 @@ public class SeguridadBean implements Serializable {
     private double subtotal;
 
     @PostConstruct
-    public  void inicializar()
+    public void inicializar()
     {
         this.subtotal=0F;
         this.productosCarrito=new ArrayList<>();
@@ -142,42 +141,36 @@ public class SeguridadBean implements Serializable {
         }
     }
 
-    public void comprar() throws Exception
-    {
-        if(usuarioSesion!=null&&!productosCarrito.isEmpty())
-        {
+    public void comprar() throws Exception {
+        if (usuarioSesion != null && !productosCarrito.isEmpty()) {
 
-            boolean validarUnidades=true;
+            boolean validarUnidades = true;
 
-            for (ProductoCarrito p : productosCarrito)
-            {
+            for (ProductoCarrito p : productosCarrito) {
 
-                if(productoServicio.obtenerProducto(p.getId()).getCantidad()< p.getUnidades()){
-                    validarUnidades=false;
-                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR,"alerta","Las unidades del producto "+p.getNombre()+ " no estan disponibles");
-                    FacesContext.getCurrentInstance().addMessage("compra-msj",fm);
+                if (productoServicio.obtenerProducto(p.getId()).getCantidad() < p.getUnidades()) {
+                    validarUnidades = false;
+                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "alerta", "Las unidades del producto " + p.getNombre() + " no estan disponibles");
+                    FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
                 }
             }
 
-            if(validarUnidades==true){
+            if (validarUnidades == true) {
 
-                try{
-                    System.out.println(metodoDePago);
-                    productoServicio.comprarProductos(usuarioSesion,productosCarrito,metodoDePago);
+                try {
+                    productoServicio.comprarProductos(usuarioSesion, productosCarrito, metodoDePago);
                     productosCarrito.clear();
-                    subtotal=0;
-                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"alerta","Compra realizada satisfactoriamente");
-                    FacesContext.getCurrentInstance().addMessage("compra-msj",fm);
-                }
-                catch (Exception e){
-                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR,"alerta",e.getMessage());
-                    FacesContext.getCurrentInstance().addMessage("compra-msj",fm);
+                    subtotal = 0;
+                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "alerta", "Compra realizada satisfactoriamente");
+                    FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
+                } catch (Exception e) {
+                    FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "alerta", e.getMessage());
+                    FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
                 }
             }
         }
-
-
     }
+
     public void setearEfectivo(){
         metodoDePago="Efectivo";
     }

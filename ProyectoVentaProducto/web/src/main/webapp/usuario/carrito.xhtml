@@ -63,15 +63,11 @@
                 </h:form>
             </div>
         </div>
-        <h5 class="p-mt-0">Medio de Pago</h5>
-        <p:selectOneRadio value="#{seguridadBean.metodoDePago}" unselectable="false">
-            <f:selectItem itemLabel="Efectivo" itemValue="Efectivo"/>
-            <f:selectItem itemLabel="Tarjeta" itemValue="TarjetaCredito"/>
-        </p:selectOneRadio>
         <div class="row mt-4 d-flex">
-            <h:form styleClass="text-center" >
-                <p:commandButton value="Efectivo" action="#{seguridadBean.setearEfectivo}" styleClass="mt-4" update="@form" icon="pi pi-dollar" iconPos="left" />
-                <p:commandButton  value="TarjetaCredito" action="#{seguridadBean.setearTarjeta}" styleClass="mt-4" update="@form" icon="pi pi-credit-card" iconPos="left" />
+            <h:form styleClass="text-center">
+                <h5>Medio de pago</h5>
+                <p:commandButton value="Efectivo" action="#{seguridadBean.setearEfectivo}" styleClass="mt-4" update="@form" icon="pi pi-dollar" iconPos="left" style="margin: 10px"/>
+                <p:commandButton  value="TarjetaCredito" action="#{seguridadBean.setearTarjeta}" styleClass="mt-4" update="@form" icon="pi pi-credit-card" iconPos="left" style="margin: 10px"/>
             </h:form>
         </div>
         <div class="row mt-4 d-flex">
