@@ -119,18 +119,17 @@
                 </p:column>
             </p:dataTable>
         </div>
+
     </h:form>
 </p:panel>
     <div id="eliminar-producto" >
         <h:form class="input-group">
             <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel for="codigoeliminar_usuario" value="codigo:" />
-            <p:inputText id="codigoeliminar_usuario" value="#{productoBean.producto.codigoProducto}" required="true"/>
+                <p:outputLabel for="codigoeliminar_usuario" value="codigo:" />
+                <p:inputText id="codigoeliminar_usuario" value="#{productoBean.producto.codigoProducto}" required="true"/>
             </h:panelGrid>
             <p:growl showDetail="true"></p:growl>
-            <h:form>
                 <p:commandButton value="Eliminar Producto" styleClass="btn btn-primary" action="#{productoBean.eliminarProducto}" update="@form" />
-            </h:form>
         </h:form>
     </div>
 </ui:define>

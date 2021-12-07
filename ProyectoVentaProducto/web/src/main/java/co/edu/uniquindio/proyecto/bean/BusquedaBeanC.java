@@ -42,8 +42,12 @@ public class BusquedaBeanC implements Serializable {
 
 
         if(busquedaParam!=null) {
-            System.out.println("noooo"+busquedaParam);
-            busquedaParam = categoriaServicio.obtenerCategoriaN(busquedaParam.getNombre());
+            try {
+                System.out.println("noooo" + busquedaParam);
+                busquedaParam = categoriaServicio.obtenerCategoriaN(busquedaParam.getNombre());
+            }catch (Exception e){
+
+            }
             if (busquedaParam != null && busquedaParam.getCodigo() != null) {
 
                 System.out.println(busquedaParam);

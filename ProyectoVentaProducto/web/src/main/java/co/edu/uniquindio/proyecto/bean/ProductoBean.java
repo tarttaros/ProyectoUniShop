@@ -180,6 +180,7 @@ public class ProductoBean implements Serializable {
         return null;
     }
     public void eliminarProducto() throws Exception {
+        System.out.println("maldita sea "+producto.getCodigoProducto());
         productoServicio.eliminarProducto(producto.getCodigoProducto());
     }
 }
