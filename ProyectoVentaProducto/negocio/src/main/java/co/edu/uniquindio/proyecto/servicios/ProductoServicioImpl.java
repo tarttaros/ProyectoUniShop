@@ -201,6 +201,16 @@ public class ProductoServicioImpl implements ProductoServicio
     }
 
     @Override
+    public String productosComprados(List<ProductoCarrito> u) {
+        String c="";
+        for(int i=0;i<u.size();i++){
+            c=u.get(i).getNombre()+","+c;
+        }
+        System.out.println(c);
+        return c;
+    }
+
+    @Override
     public void  eliminarPorFechas(){
 
 

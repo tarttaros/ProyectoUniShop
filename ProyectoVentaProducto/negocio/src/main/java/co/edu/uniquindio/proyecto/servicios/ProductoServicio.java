@@ -41,6 +41,7 @@ public interface ProductoServicio
 
     List<Producto> listaProductosSubastados() throws Exception;
 
+    String productosComprados(List<ProductoCarrito> u);
 
     List<Producto> buscarCategorias(Categoria busquedaParam);
 

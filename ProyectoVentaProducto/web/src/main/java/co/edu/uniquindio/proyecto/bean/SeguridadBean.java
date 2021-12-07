@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.dto.ProductoCarrito;
 import co.edu.uniquindio.proyecto.entidades.Administrador;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.AdminServicio;
+import co.edu.uniquindio.proyecto.servicios.EmailSenderService;
 import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
@@ -22,6 +23,10 @@ import java.util.List;
 @Component
 @Scope("session")
 public class SeguridadBean implements Serializable {
+
+
+    @Autowired
+    private EmailSenderService service;
 
     @Getter @Setter
     private  String metodoDePago;
@@ -155,9 +160,15 @@ public class SeguridadBean implements Serializable {
             if (validarUnidades == true) {
 
                 try {
+
+
                     productoServicio.comprarProductos(usuarioSesion, productosCarrito, metodoDePago);
+                    service.sendSimpleEmail(usuarioSesion.getEmail(),
+                            "Los productos comprados fueron: "+productoServicio.productosComprados(productosCarrito),
+                            "Se realizaron compras con el metodo de pago: "+metodoDePago);
                     productosCarrito.clear();
                     subtotal = 0;
+
                     FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "alerta", "Compra realizada satisfactoriamente");
                     FacesContext.getCurrentInstance().addMessage("compra-msj", fm);
                 } catch (Exception e) {
