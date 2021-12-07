@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +39,7 @@ public class Persona implements Serializable
     //pasword de la persona
     @Column(length = 13, nullable = false)
     @NotBlank(message = "Se debe establecer una contraseña")
+    @JsonIgnore
     private String password;
 
     //metodo super

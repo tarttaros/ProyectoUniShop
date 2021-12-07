@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,11 +30,13 @@ public class Ciudad implements Serializable
     private String nombreCiudad;
 
     //relacion inversa persona ciudad(usuarios en una ciudad)
+    @JsonIgnore
     @OneToMany(mappedBy = "ciudad", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<Usuario> usuarios;
 
     //relacion inversa producto ciudad(productos vendidos en una ciudad)
+    @JsonIgnore
     @OneToMany(mappedBy = "ciudad", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<Producto> productos;
