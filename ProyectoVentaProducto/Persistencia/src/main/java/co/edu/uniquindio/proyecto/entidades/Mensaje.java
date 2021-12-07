@@ -60,4 +60,5 @@ public class Mensaje implements Serializable
         this.emisor = emisor;
         this.codigoChat = codigoChat;
     }
+
 }

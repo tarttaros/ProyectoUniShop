@@ -8,8 +8,7 @@ import java.util.List;
 @Projection(
         name="usuarioBase",
         types = Usuario.class
-)
-public interface UsuarioBase {
+)public interface UsuarioBase {
 
     String getNombre();
     String getEmail();

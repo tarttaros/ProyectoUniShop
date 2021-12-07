@@ -39,7 +39,7 @@ public class Persona implements Serializable
     //pasword de la persona
     @Column(length = 13, nullable = false)
     @NotBlank(message = "Se debe establecer una contraseña")
-    @JsonIgnore
+
     private String password;
 
     //metodo super

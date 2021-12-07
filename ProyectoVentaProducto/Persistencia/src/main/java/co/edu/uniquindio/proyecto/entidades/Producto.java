@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -75,29 +76,35 @@ public class Producto implements Serializable
     //relacion inversa de prodcuto chats(chats de un producto)
     @OneToMany(mappedBy = "productoComprar", cascade = CascadeType.REMOVE)
     @ToString.Exclude
+    @JsonIgnore
     private List<Chat> chatsProducto;
 
     //relacion inversa detalleCompra producto(producto a vender)
     @OneToMany(mappedBy = "productoComprar", cascade = CascadeType.REMOVE)
     @ToString.Exclude
+    @JsonIgnore
     private List<DetalleCompra> detallesVenta;
 
     //relacion inversa comentario producto(comentarios hechos al producto)
     @OneToMany(mappedBy = "producto", cascade = CascadeType.REMOVE)
     @ToString.Exclude
+    @JsonIgnore
     private List<Comentario> comentarios;
 
     //relacion inversa subasta producto(subastas del producto)
     @OneToMany(mappedBy = "producto", cascade = CascadeType.REMOVE)
     @ToString.Exclude
+    @JsonIgnore
     private List<Subasta> subastasProducto;
 
     //usuarios que tienen al producto de favorito
     @ManyToMany(mappedBy = "productosFavoritos")
+    @JsonIgnore
     private List<Usuario> usuarios;
 
     //categorias a las que pertenece un producto
     @ManyToMany
+    @JsonIgnore
     private List<Categoria> categoriasProducto;
 
     //metodo super
