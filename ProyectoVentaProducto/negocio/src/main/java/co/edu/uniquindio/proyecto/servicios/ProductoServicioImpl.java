@@ -239,5 +239,15 @@ public class ProductoServicioImpl implements ProductoServicio
         }
         return productoRepo.obtenerProductoPorId(p.getCodigoProducto());
     }
+    public List<Producto> listaProductosPrecio (Double precio1, Double precio2) throws Exception
+    {
+        return productoRepo.listarPorPrecio(precio1,precio2);
+    }
+
+    @Override
+    public List<Producto> listaProductosCiudad(String nombre) throws Exception
+    {
+        return productoRepo.listarPorCiudad(nombre);
+    }
 
 }

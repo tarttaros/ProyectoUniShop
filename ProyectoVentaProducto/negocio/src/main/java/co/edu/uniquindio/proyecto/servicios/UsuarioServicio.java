@@ -32,5 +32,9 @@ public interface UsuarioServicio
     void eliminarUsuario(Integer codigo) throws Exception;
 
     List<Producto> listarSubastasRealizadas(Usuario usuario);
+
+    boolean obtenerUsuarioC(String correo);
+
+    Usuario obtenerUsuarioEmail(String correo);
 }
 

@@ -66,4 +66,11 @@ public interface ProductoRepo extends JpaRepository<Producto, Integer>
 
     @Query("select producto from Producto producto where producto.subastasProducto is empty")
     List<Producto> listarProductosEnVenta();
+
+    @Query("select p from Producto p where p.precio>?1 and p.precio< ?2" )
+    List<Producto> listarPorPrecio(Double precio1, Double precio2);
+
+    @Query("select p from Producto p where p.ciudad.nombreCiudad=?1" )
+    List<Producto> listarPorCiudad(String nombre);
+
 }

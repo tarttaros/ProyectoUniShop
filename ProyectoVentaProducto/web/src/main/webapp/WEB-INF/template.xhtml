@@ -134,6 +134,9 @@
         <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
                          styleClass="mt-4" update="@form" icon="pi pi-sign-in" iconPos="left" />
         <p:growl for="login-bean" showDetail="true" />
+        <a href="recuperar_contra.xhtml" class="nav-link text-white">
+            <p1 style="color:#3F9FEC ;">Olvide la contraseña :C</p1>
+        </a>
     </h:form>
     </p:dialog>
     <p:dialog header="Iniciar sesión Administrador" showEffect="fade" widgetVar="loginA" modal="true"
@@ -150,6 +153,9 @@
             <p:commandButton value="Iniciar Sesión Administrador" action="#{seguridadBean.iniciarSesionAdm}"
                              styleClass="mt-4" update="@form" icon="pi pi-sign-in" iconPos="left" />
             <p:growl for="login-bean" showDetail="true" />
+            <a href="recuperar_contra.xhtml" class="nav-link text-white">
+                <p1 style="color:#3F9FEC ;">Olvide la contraseña :C</p1>
+            </a>
         </h:form>
     </p:dialog>
 

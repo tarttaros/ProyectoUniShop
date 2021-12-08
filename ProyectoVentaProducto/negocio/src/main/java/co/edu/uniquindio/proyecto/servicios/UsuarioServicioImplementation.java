@@ -132,6 +132,21 @@ public class UsuarioServicioImplementation implements UsuarioServicio
     }
 
     @Override
+    public boolean obtenerUsuarioC(String correo) {
+        System.out.println("aaaaanoooooo: "+correo);
+        if(usuarioRepo.findByEmail(correo)==null){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Usuario obtenerUsuarioEmail(String correo) {
+        Optional<Usuario> u=usuarioRepo.findByEmail(correo);
+        return u.get();
+    }
+
+    @Override
     public List<Usuario> listarUsuarios()
     {
         return usuarioRepo.findAll();

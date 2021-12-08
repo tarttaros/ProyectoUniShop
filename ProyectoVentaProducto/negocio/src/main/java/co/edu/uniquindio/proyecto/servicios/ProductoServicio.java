@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface ProductoServicio
 {
+    List<Producto> listaProductosPrecio (Double precio1, Double precio2) throws Exception;
+
     Producto publicarProducto(Producto producto) throws Exception;
 
     Producto actualizarProducto(Producto producto) throws Exception;
@@ -40,6 +42,7 @@ public interface ProductoServicio
     void  eliminarPorFechas();
 
     List<Producto> listaProductosSubastados() throws Exception;
+    List<Producto>listaProductosCiudad(String ciudad) throws  Exception;
 
     String productosComprados(List<ProductoCarrito> u);
 

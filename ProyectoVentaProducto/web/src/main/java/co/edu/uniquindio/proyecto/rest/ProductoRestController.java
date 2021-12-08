@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("api/productos")
 public class ProductoRestController {
@@ -37,14 +36,21 @@ public class ProductoRestController {
         }
     }
 
-    @GetMapping("/{nomb}")
-    public List<Producto> listarProductosCategorias(@PathVariable(name = "nomb") String categori) throws Exception {
 
+    @GetMapping("/categoria/{nom}")
+    public List<Producto> listarCategorias(@PathVariable(name = "nom") String cat)throws Exception {
+        return productoServicio.listaProductos(categoriaServicio.obtenerCategoriaN(cat));
+    }
 
-        Categoria c=categoriaServicio.obtenerCategoriaN(categori);
-        System.out.println(c);
-        return productoServicio.listaProductos(c);
+    @GetMapping("/rango/{rango1}/{rango2}")
+    public List<Producto> listarRangoPrecio(@PathVariable(name = "rango1") Integer precio1, @PathVariable(name = "rango2") Integer precio2)throws Exception {
 
+        System.out.println(precio1+"");
+        return productoServicio.listaProductosPrecio(precio1*1.0,precio2*1.0);
+    }
+    @GetMapping("/ciudad/{nom}")
+    public List<Producto> listarCiudad(@PathVariable(name = "nom") String ciu)throws Exception {
+        return productoServicio.listaProductosCiudad(ciu);
     }
 
     @PostMapping
